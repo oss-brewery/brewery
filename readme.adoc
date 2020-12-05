@@ -63,18 +63,17 @@ sudo systemctl daemon-reload
 sudo service systemd-udevd --full-restart
 
 
-== GPIO Setup
 
+## How to compile the system utils
 
-
-Interaktion mit dem SPI Bus https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md
-
-[source,bash]
+[source, bash]
 ----
 
-apt-get install spi-tools
-
+sudo apt-get install libi2c-dev gpiod libgpiod-dev
 ----
+
+
+
 
 
 == Libs zur Interaktion mit der Hardware
@@ -97,27 +96,68 @@ sudo apt-get install wiringpi
 ----
 
 
-## How to compile the system utils
+== Basis OS Setup
+
+PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
+
+. if you use Raspbian GNU/Linux 10 (buster)
+[source, bash]
+----
+sudo apt-get update
+sudo apt-get dist-upgrade -f
+sudo rpi-update  # important w1 modules have to be upgraded
+sudo reboot
+----
+
+
+
+
+== GPIO Setup
+
+=== SPI Bus
+* https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md
+
+.Update boot configuration
+/boot/firmare/syscfg.txt or on raspbian /boot/config.txt
 
 [source, bash]
 ----
-
-sudo apt-get install libi2c-dev gpiod libgpiod-dev
+/boot/firmare/:qusercfg.txt
+dtparam=spi=on
 ----
 
 
-## 1-wire
-https://wiki.fhem.de/wiki/Raspberry_Pi_und_1-Wire
+.bash tool
+[source,bash]
+----
+
+apt-get install spi-tools
+
+----
+
+
+
+=== 1-wire
+
+* https://wiki.fhem.de/wiki/Raspberry_Pi_und_1-Wire
+* https://www.raspberrypi-spy.co.uk/2018/02/enable-1-wire-interface-raspberry-pi/
+
+.w1 device path
 /sys/bus/w1/devices/
 
-
+.bash tool to interact with the w1 devices
+[source,bash]
+----
 apt-get install digitemp
-sudo modprobe wire
-sudo modprobe w1-gpio
-sudo modprobe w1-therm
+----
 
-.persistierung über
+.Activate kernel modules
+[source,bash]
+----
+sudo modprobe wire w1-gpio w1-therm
+----
 
+.Permanent activation of the modules
 [source, bash]
 ----
 ./etc/modules
@@ -127,7 +167,7 @@ w1-gpio
 w1-therm
 ----
 
-update boot configuration
+.Update boot configuration
 /boot/firmare/usercfg.txt or on raspbian /boot/config.txt
 
 [source, bash]
@@ -144,7 +184,7 @@ sudo vcdbg log msg
 
 
 
-== ic2 board erweiterung
+=== ic2 board erweiterung
 
 [source, bash]
 ----
