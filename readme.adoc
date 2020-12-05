@@ -1,0 +1,156 @@
+= Raspi Pinout
+
+https://pinout.xyz/#
+
+
+= How to develop
+
+.Simple uber jar
+
+```bash
+mvn package
+
+```
+
+Copy /target/quarkus-app/* to raspberry
+
+.Start via on the raspberry
+```bash
+
+export QUARKUS_LAUNCH_DEVMODE=true
+java -jar quarkus-run.jar
+```
+
+
+check for: (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+
+
+On the development maschine activate hot code deployment
+
+```bash
+mvn quarkus:remote-dev -Dquarkus.live-reload.url=http://brewery:8080 -f pom.xml
+
+```
+
+[source=bash]
+.sample startup log
+----
+[ERROR] Port 5005 in use, not starting in debug mode
+OpenJDK 64-Bit Server VM warning: forcing TieredStopAtLevel to full optimization because JVMCI is enabled
+2020-10-27 01:43:28,204 INFO  [org.jbo.threads] (main) JBoss Threads version 3.1.1.Final
+2020-10-27 01:43:28,978 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 1031ms
+2020-10-27 01:43:30,430 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending lib/deployment/appmodel.dat
+2020-10-27 01:43:30,452 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending quarkus-run.jar
+2020-10-27 01:43:30,459 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending app/backend-0.0.1-SNAPSHOT.jar
+2020-10-27 01:43:30,467 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending lib/deployment/build-system.properties
+2020-10-27 01:43:30,473 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Connected to remote server
+----
+
+
+== Additional USB Data Storage
+
+cat /etc/udev/rules.d/brewery.application.data.rules
+ACTION=="add", ATTRS{serial}=="4C530202010203121320", ATTRS{product}=="Cruzer Fit", ATTRS{manufacturer}=="SanDisk", ATTRS{idProduct}=="5571", SYMLINK+="brewerystorage", RUN+="mount -a"
+
+
+
+sudo systemctl edit systemd-udevd
+[Service]
+PrivateMounts=no
+
+Save and execute
+sudo systemctl daemon-reload
+sudo service systemd-udevd --full-restart
+
+
+== GPIO Setup
+
+
+
+Interaktion mit dem SPI Bus https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md
+
+[source,bash]
+----
+
+apt-get install spi-tools
+
+----
+
+
+== Libs zur Interaktion mit der Hardware
+https://github.com/mattjlewis/diozero
+https://mvnrepository.com/artifact/com.diozero/diozero/0.13
+
+https://oss.sonatype.org/index.html#nexus-search;gav~com.diozero~~~~
+
+Einbindung von third party jars verhindert quarkus native images, müssen manuell referenziert werden und weiteres
+
+== Pi4j Setup ... verschoben
+
+. Install wiringpi Latest
+
+[source,bash]
+----
+
+sudo apt-get install wiringpi
+
+----
+
+
+## How to compile the system utils
+
+[source, bash]
+----
+
+sudo apt-get install libi2c-dev gpiod libgpiod-dev
+----
+
+
+## 1-wire
+https://wiki.fhem.de/wiki/Raspberry_Pi_und_1-Wire
+/sys/bus/w1/devices/
+
+
+apt-get install digitemp
+sudo modprobe wire
+sudo modprobe w1-gpio
+sudo modprobe w1-therm
+
+.persistierung über
+
+[source, bash]
+----
+./etc/modules
+
+wire
+w1-gpio
+w1-therm
+----
+
+update boot configuration
+/boot/firmare/usercfg.txt or on raspbian /boot/config.txt
+
+[source, bash]
+----
+/boot/firmare/usercfg.txt
+dtoverlay=w1-gpio-pullup  # default is port 4
+----
+
+command to debug
+[source, bash]
+----
+sudo vcdbg log msg
+----
+
+
+
+== ic2 board erweiterung
+
+[source, bash]
+----
+sudo apt-get install i2c-tools
+----
+
+https://raspberrypi.stackexchange.com/questions/32719/i2cdetect-shows-every-possible-address
+https://www.raspberrypi-spy.co.uk/2014/11/enabling-the-i2c-interface-on-the-raspberry-pi/
+http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html
