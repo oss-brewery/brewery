@@ -1,0 +1,72 @@
+package com.pipiobjo.brewery.sensors;
+
+import com.diozero.api.SpiClockMode;
+import com.diozero.api.SpiDevice;
+import com.diozero.api.ThermometerInterface;
+import com.diozero.util.RuntimeIOException;
+import com.pipiobjo.brewery.adapters.FlameTempSensor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
+
+/**
+ * MCP23S17 Version 1.0
+ * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
+ */
+public class MCP23S17  {
+    public static final BigDecimal MAX_TEMPRATURE = new BigDecimal(1023.75);
+    private static final Logger log = LoggerFactory.getLogger(FlameTempSensor.class);
+    private static final int MAX_SPI_CLOCK_FREQUENCY = 12_500_000;
+
+    // datasheet says always at the end
+    private static final boolean lsbFirst = false;
+
+    private SpiDevice device;
+
+    /**
+     *
+     * @param controller
+     * @param chipSelect
+     * @param frequence
+     */
+    public MCP23S17(int controller, int chipSelect, int frequence) {
+        if(frequence > MAX_SPI_CLOCK_FREQUENCY){
+            throw new UnsupportedOperationException("the given frequency is higher than supported max:" + MAX_SPI_CLOCK_FREQUENCY);
+        }
+        try{
+        device = new SpiDevice(controller, chipSelect, frequence,SpiClockMode.MODE_0, lsbFirst);
+        }catch (Exception e){
+            log.error("Error while init temp sensor ", e);
+            device.close();
+            throw e;
+        }
+    }
+
+
+    //@Override
+    public void close() {
+        if (device != null) {
+            device.close();
+        }
+    }
+
+    //@Override
+    public void setRegister(byte deviceOpcode, byte Register, byte spiMCP_Data) throws RuntimeIOException {
+        byte[] write = new byte[]{deviceOpcode,Register,spiMCP_Data};
+        device.write(write);
+        BigInteger binaryValue = new BigInteger(readData());
+
+
+    }
+
+
+
+    private byte[] readData(){
+        byte[] write = new byte[]{0x0000, 0x0000};
+        byte[] read =device.writeAndRead(write);
+        return read;
+    }
+}
