@@ -156,4 +156,3 @@ https://www.raspberrypi-spy.co.uk/2014/11/enabling-the-i2c-interface-on-the-rasp
 http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html
 
 
-next test change for simpe00 git explanation
