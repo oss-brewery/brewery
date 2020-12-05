@@ -3,6 +3,7 @@ package com.pipiobjo.brewery.rest;
 import com.pipiobjo.brewery.adapters.BreweryStatusLED;
 import com.pipiobjo.brewery.adapters.ExtensionBoard;
 import com.pipiobjo.brewery.adapters.FlameTempSensor;
+import com.pipiobjo.brewery.adapters.SPIExtensionBoard;
 import com.pipiobjo.brewery.sensors.DS18B20;
 
 import javax.inject.Inject;
@@ -20,12 +21,18 @@ public class SampleRest {
     @Inject
     FlameTempSensor flameTempSensor;
 
+    @Inject
+    SPIExtensionBoard spiExtensionBoard;
+
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
 
-        new ExtensionBoard();
-        new DS18B20();
+//        new ExtensionBoard();
+//        new DS18B20();
+
+        spiExtensionBoard.spi();
+
 //        flameTempSensor.spi();
 //        breweryStatusLED.doMagic();
 

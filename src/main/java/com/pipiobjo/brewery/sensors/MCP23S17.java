@@ -18,7 +18,7 @@ import java.math.RoundingMode;
  */
 public class MCP23S17  {
     public static final BigDecimal MAX_TEMPRATURE = new BigDecimal(1023.75);
-    private static final Logger log = LoggerFactory.getLogger(FlameTempSensor.class);
+    private static final Logger log = LoggerFactory.getLogger(MCP23S17.class);
     private static final int MAX_SPI_CLOCK_FREQUENCY = 12_500_000;
 
     // datasheet says always at the end
@@ -39,7 +39,7 @@ public class MCP23S17  {
         try{
         device = new SpiDevice(controller, chipSelect, frequence,SpiClockMode.MODE_0, lsbFirst);
         }catch (Exception e){
-            log.error("Error while init temp sensor ", e);
+            log.error("Error while init device ", e);
             device.close();
             throw e;
         }

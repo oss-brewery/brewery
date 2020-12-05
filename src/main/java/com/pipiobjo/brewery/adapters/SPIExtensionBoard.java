@@ -1,7 +1,5 @@
 package com.pipiobjo.brewery.adapters;
 
-import com.diozero.api.SpiClockMode;
-import com.pipiobjo.brewery.sensors.MAX6675V12;
 import com.pipiobjo.brewery.sensors.MCP23S17;
 import io.quarkus.runtime.ShutdownEvent;
 import org.slf4j.Logger;
@@ -42,35 +40,34 @@ public class SPIExtensionBoard {
 
 
     //chiselect == cs // ss -> 0 / 1
-    int chipselect = 0;
+    int chipselect = 1;
     int freq = 12500000;
     //modes cpha oder cpol
     boolean lsbFirst = false; // leastSignifactBit kommt am ende
-    MCP23S17 Extension_Board = null;
+    MCP23S17 extensionBoard = new MCP23S17(0,chipselect, freq);
 
     public void spi(){
         log.info("init temp bus listener");
-        Extension_Board = new MCP23S17(0,chipselect, freq);
 
         // enable HAEN for enable addressing pins
-        Extension_Board.setRegister(IOEXPw, IOCON, (byte)0b00001000);
+        extensionBoard.setRegister(IOEXPw, IOCON, (byte)0b00001000);
 
         // Konfiguration: Port A, Pin 0 als output
         // 0xFE = 0b11111110
-        Extension_Board.setRegister(IOEXPw_1, IODIRB, (byte)0xFE);
-        Extension_Board.setRegister(IOEXPw_2, IODIRB, (byte)0xFE);
+        extensionBoard.setRegister(IOEXPw_1, IODIRB, (byte)0xFE);
+        extensionBoard.setRegister(IOEXPw_2, IODIRB, (byte)0xFE);
 
         // write output
-        Extension_Board.setRegister(IOEXPw_1, OLATB, (byte)0x01);
-        Extension_Board.setRegister(IOEXPw_2, OLATB, (byte)0x01);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, (byte)0x01);
+        extensionBoard.setRegister(IOEXPw_2, OLATB, (byte)0x01);
 
         //Extension_Board.close();
     }
 
     void onStop(@Observes ShutdownEvent ev) {
         log.info("The application is stopping...");
-        if(Extension_Board !=null){
-            Extension_Board.close();
+        if(extensionBoard !=null){
+            extensionBoard.close();
         }
     }
 
