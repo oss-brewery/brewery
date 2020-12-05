@@ -155,3 +155,5 @@ https://raspberrypi.stackexchange.com/questions/32719/i2cdetect-shows-every-poss
 https://www.raspberrypi-spy.co.uk/2014/11/enabling-the-i2c-interface-on-the-raspberry-pi/
 http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html
 
+
+next test change for simpe00 git explanation
