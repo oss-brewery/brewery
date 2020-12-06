@@ -1,0 +1,792 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!-- Created with Fritzing (http://www.fritzing.org/) -->
+<svg xmlns:svg='http://www.w3.org/2000/svg' xmlns='http://www.w3.org/2000/svg' version='1.2' baseProfile='tiny' x='0in' y='0in' width='12.0943in' height='10.4197in' viewBox='0 0 870.79 750.217' >
+<g partID='854206830'><g transform='translate(34.1505,655.058)' ><g transform='matrix(-1,0,0,-1,0,0)'  ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#787878" y2="3.6" stroke-linejoin="round" y1="3.6" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="3.25" height="0.699999"/>
+<circle cy="3.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="10.8" stroke-linejoin="round" y1="10.8" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="10.45" height="0.699999"/>
+<circle cy="10.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="18" stroke-linejoin="round" y1="18" id="connector2pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector2terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="17.65" height="0.699999"/>
+<circle cy="18" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="25.2" stroke-linejoin="round" y1="25.2" id="connector3pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector3terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="24.85" height="0.699999"/>
+<circle cy="25.2" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="32.4" stroke-linejoin="round" y1="32.4" id="connector4pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector4terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="32.05" height="0.699999"/>
+<circle cy="32.4" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="39.6" stroke-linejoin="round" y1="39.6" id="connector5pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector5terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="39.25" height="0.699999"/>
+<circle cy="39.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="46.8" stroke-linejoin="round" y1="46.8" id="connector6pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector6terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="46.45" height="0.699999"/>
+<circle cy="46.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="54" stroke-linejoin="round" y1="54" id="connector7pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector7terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="53.65" height="0.699999"/>
+<circle cy="54" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+</g>
+</g></g></g><g partID='854206490'><g transform='translate(546.79,610.418)' ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#787878" y2="3.6" stroke-linejoin="round" y1="3.6" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="3.25" height="0.699999"/>
+<circle cy="3.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="10.8" stroke-linejoin="round" y1="10.8" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="10.45" height="0.699999"/>
+<circle cy="10.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="18" stroke-linejoin="round" y1="18" id="connector2pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector2terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="17.65" height="0.699999"/>
+<circle cy="18" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="25.2" stroke-linejoin="round" y1="25.2" id="connector3pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector3terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="24.85" height="0.699999"/>
+<circle cy="25.2" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="32.4" stroke-linejoin="round" y1="32.4" id="connector4pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector4terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="32.05" height="0.699999"/>
+<circle cy="32.4" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="39.6" stroke-linejoin="round" y1="39.6" id="connector5pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector5terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="39.25" height="0.699999"/>
+<circle cy="39.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="46.8" stroke-linejoin="round" y1="46.8" id="connector6pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector6terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="46.45" height="0.699999"/>
+<circle cy="46.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="54" stroke-linejoin="round" y1="54" id="connector7pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector7terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="53.65" height="0.699999"/>
+<circle cy="54" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+</g>
+</g></g><g partID='854205910'><g transform='translate(98.9505,287.858)' ><g transform='matrix(-1,0,0,-1,0,0)'  ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#787878" y2="3.6" stroke-linejoin="round" y1="3.6" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="3.25" height="0.699999"/>
+<circle cy="3.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="10.8" stroke-linejoin="round" y1="10.8" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="10.45" height="0.699999"/>
+<circle cy="10.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="18" stroke-linejoin="round" y1="18" id="connector2pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector2terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="17.65" height="0.699999"/>
+<circle cy="18" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="25.2" stroke-linejoin="round" y1="25.2" id="connector3pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector3terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="24.85" height="0.699999"/>
+<circle cy="25.2" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="32.4" stroke-linejoin="round" y1="32.4" id="connector4pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector4terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="32.05" height="0.699999"/>
+<circle cy="32.4" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="39.6" stroke-linejoin="round" y1="39.6" id="connector5pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector5terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="39.25" height="0.699999"/>
+<circle cy="39.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="46.8" stroke-linejoin="round" y1="46.8" id="connector6pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector6terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="46.45" height="0.699999"/>
+<circle cy="46.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="54" stroke-linejoin="round" y1="54" id="connector7pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector7terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="53.65" height="0.699999"/>
+<circle cy="54" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+</g>
+</g></g></g><g partID='854205570'><g transform='translate(385.51,230.258)' ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#787878" y2="3.6" stroke-linejoin="round" y1="3.6" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="3.25" height="0.699999"/>
+<circle cy="3.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="10.8" stroke-linejoin="round" y1="10.8" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="10.45" height="0.699999"/>
+<circle cy="10.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="18" stroke-linejoin="round" y1="18" id="connector2pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector2terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="17.65" height="0.699999"/>
+<circle cy="18" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="25.2" stroke-linejoin="round" y1="25.2" id="connector3pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector3terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="24.85" height="0.699999"/>
+<circle cy="25.2" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="32.4" stroke-linejoin="round" y1="32.4" id="connector4pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector4terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="32.05" height="0.699999"/>
+<circle cy="32.4" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="39.6" stroke-linejoin="round" y1="39.6" id="connector5pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector5terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="39.25" height="0.699999"/>
+<circle cy="39.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="46.8" stroke-linejoin="round" y1="46.8" id="connector6pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector6terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="46.45" height="0.699999"/>
+<circle cy="46.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="54" stroke-linejoin="round" y1="54" id="connector7pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector7terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="53.65" height="0.699999"/>
+<circle cy="54" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+</g>
+</g></g><g partID='854208380'><g transform='translate(849.19,79.0584)' ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#787878" y2="3.6" stroke-linejoin="round" y1="3.6" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="3.25" height="0.699999"/>
+<circle cy="3.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="10.8" stroke-linejoin="round" y1="10.8" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="10.45" height="0.699999"/>
+<circle cy="10.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="18" stroke-linejoin="round" y1="18" id="connector2pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector2terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="17.65" height="0.699999"/>
+<circle cy="18" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="25.2" stroke-linejoin="round" y1="25.2" id="connector3pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector3terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="24.85" height="0.699999"/>
+<circle cy="25.2" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="32.4" stroke-linejoin="round" y1="32.4" id="connector4pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector4terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="32.05" height="0.699999"/>
+<circle cy="32.4" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="39.6" stroke-linejoin="round" y1="39.6" id="connector5pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector5terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="39.25" height="0.699999"/>
+<circle cy="39.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+</g>
+</g></g><g partID='854207200'><g transform='translate(849.19,197.138)' ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#787878" y2="3.6" stroke-linejoin="round" y1="3.6" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="3.25" height="0.699999"/>
+<circle cy="3.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="10.8" stroke-linejoin="round" y1="10.8" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="10.45" height="0.699999"/>
+<circle cy="10.8" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="18" stroke-linejoin="round" y1="18" id="connector2pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector2terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="17.65" height="0.699999"/>
+<circle cy="18" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="25.2" stroke-linejoin="round" y1="25.2" id="connector3pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector3terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="24.85" height="0.699999"/>
+<circle cy="25.2" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="32.4" stroke-linejoin="round" y1="32.4" id="connector4pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector4terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="32.05" height="0.699999"/>
+<circle cy="32.4" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+<line stroke="#787878" y2="39.6" stroke-linejoin="round" y1="39.6" id="connector5pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="0.699999" x1="0.349999" x2="13.7"/>
+<g x="0" id="connector5terminal" xmlns="http://www.w3.org/2000/svg" width="0" y="39.25" height="0.699999"/>
+<circle cy="39.6" stroke="#787878" xmlns="http://www.w3.org/2000/svg" r="2.9" fill="none" stroke-width="0.699999" cx="17.3"/>
+</g>
+</g></g><g partID='854138040'><g transform='translate(347.73,750.217)' ><g transform='matrix(-1,0,0,-1,0,0)'  ><g id="schematic">
+<rect x="42.5197" gorn="0.2.0" stroke="#000000" stroke-linejoin="round" id="rect6478" stroke-dasharray="none" stroke-linecap="butt" stroke-opacity="1" stroke-width="3.09839" fill="none" width="85.0394" y="21.2598" height="318.898" stroke-dashoffset="0" stroke-miterlimit="4"/>
+<path enable-background="accumulate" display="inline" gorn="0.2.1" overflow="visible" stroke="#000000" id="path6480" stroke-dasharray="none" fill-rule="nonzero" marker="none" stroke-opacity="1" stroke-width="2.4" fill="#c2c2c2" visibility="visible" fill-opacity="1" color="#000000" stroke-miterlimit="4" d="M42.5197,42.5197L21.2598,42.5197"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.2" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6484" d="M42.5197,63.7795L21.2598,63.7795" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.3" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6486" d="M42.5197,85.0392L21.2598,85.0392" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.4" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6488" d="M42.5197,106.299L21.2598,106.299" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.5" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6490" d="M42.5197,127.559L21.2598,127.559" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.6" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6492" d="M42.5197,148.819L21.2598,148.819" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.7" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6494" d="M42.5197,170.078L21.2598,170.078" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.8" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6496" d="M42.5197,191.338L21.2598,191.338" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.9" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6510" d="m127.559,318.898l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.10" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6512" d="m127.559,297.638l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.11.0.0" font-style="normal" y="66.6142" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="tspan6520" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB1</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.12.0.0" font-style="normal" y="45.3543" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6548" stroke="none" word-spacing="0px" x="123.307" fill-opacity="1" line-height="125%">GPA7</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.13.0.0" font-style="normal" y="66.615" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6552" stroke="none" word-spacing="0px" x="122.68" fill-opacity="1" line-height="125%">GPA6</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.14.0.0" font-style="normal" y="87.874" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6556" stroke="none" word-spacing="0px" x="123.26" fill-opacity="1" line-height="125%">GPA5</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.15.0.0" font-style="normal" y="109.135" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6560" stroke="none" word-spacing="0px" x="123.256" fill-opacity="1" line-height="125%">GPA4</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.16.0.0" font-style="normal" y="130.394" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6564" stroke="none" word-spacing="0px" x="123.415" fill-opacity="1" line-height="125%">GPA3</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.17.0.0" font-style="normal" y="151.654" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6568" stroke="none" word-spacing="0px" x="123.272" fill-opacity="1" line-height="125%">GPA2</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.18.0.0" font-style="normal" y="172.913" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6572" stroke="none" word-spacing="0px" x="123.311" fill-opacity="1" line-height="125%">GPA1</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.19.0.0" font-style="normal" y="194.174" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6576" stroke="none" word-spacing="0px" x="123.303" fill-opacity="1" line-height="125%">GPA0</text>
+<g transform="rotate(-90)">
+<text font-family="'Droid Sans'" text-anchor="middle" letter-spacing="0px" gorn="0.2.20.0.0" font-style="normal" y="90.7087" font-weight="normal" font-variant="normal" fill="#000000" text-align="center" font-size="0" font-stretch="normal" id="tspan6580" stroke="none" word-spacing="0px" x="-181.417" fill-opacity="1" line-height="125%">MCP23S17</text>
+</g>
+<rect x="18.4252" gorn="0.2.21" stroke="none" id="connector1pin" fill="none" width="5.66929" y="39.685" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.22" stroke="none" id="connector2pin" fill="none" width="5.66929" y="60.9449" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.23" stroke="none" id="connector3pin" fill="none" width="5.66929" y="82.2047" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.24" stroke="none" id="connector4pin" fill="none" width="5.66929" y="103.465" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.25" stroke="none" id="connector5pin" fill="none" width="5.66929" y="124.724" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.26" stroke="none" id="connector6pin" fill="none" width="5.66929" y="145.984" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.27" stroke="none" id="connector7pin" fill="none" width="5.66929" y="167.244" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.28" stroke="none" id="connector8pin" fill="none" width="5.66929" y="188.504" height="5.66929"/>
+<rect x="145.984" gorn="0.2.29" stroke="none" id="connector16pin" fill="none" width="5.66929" y="294.803" height="5.66929"/>
+<rect x="145.984" gorn="0.2.30" stroke="none" id="connector15pin" fill="none" width="5.66929" y="316.063" height="5.66929"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.31" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6502" d="m42.5197,255.118l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.32" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6504" d="m42.5197,276.378l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.33" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6506" d="m42.5197,297.638l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.34" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6508" d="m42.5197,318.898l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.35.0" stroke="none" id="connector14pin" fill="none" width="5.66929" y="-321.732" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.36.0" stroke="none" id="connector13pin" fill="none" width="5.66929" y="-300.472" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.37.0" stroke="none" id="connector12pin" fill="none" width="5.66929" y="-279.213" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.38.0" stroke="none" id="connector11pin" fill="none" width="5.66929" y="-257.953" height="5.66929"/>
+</g>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.39" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6498" d="m42.5197,212.598l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.40" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6500" d="m42.5197,233.858l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.41.0" stroke="none" id="connector10pin" fill="none" width="5.66929" y="-236.693" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.42.0" stroke="none" id="connector9pin" fill="none" width="5.66929" y="-215.433" height="5.66929"/>
+</g>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.43" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4967" d="m127.559,276.378l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.44" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4969" d="m127.559,255.118l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.45" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4971" d="m127.559,233.858l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.46" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4973" d="m127.559,212.598l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.47" stroke="none" id="connector20pin" fill="none" width="5.66929" y="209.764" height="5.66929"/>
+<rect x="145.984" gorn="0.2.48" stroke="none" id="connector19pin" fill="none" width="5.66929" y="231.024" height="5.66929"/>
+<rect x="145.984" gorn="0.2.49" stroke="none" id="connector18pin" fill="none" width="5.66929" y="252.283" height="5.66929"/>
+<rect x="145.984" gorn="0.2.50" stroke="none" id="connector17pin" fill="none" width="5.66929" y="273.543" height="5.66929"/>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.51.0.0" font-style="normal" y="215.432" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text4993" stroke="none" word-spacing="0px" x="123.315" fill-opacity="1" line-height="125%">INTA</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.52.0.0" font-style="normal" y="236.693" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text4997" stroke="none" word-spacing="0px" x="123.307" fill-opacity="1" line-height="125%">INTB</text>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.53" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9097" d="m127.559,191.338l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.54" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9099" d="m127.559,170.078l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.55" stroke="none" id="connector22pin" fill="none" width="5.66929" y="167.244" height="5.66929"/>
+<rect x="145.984" gorn="0.2.56" stroke="none" id="connector21pin" fill="none" width="5.66929" y="188.504" height="5.66929"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.57" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9105" d="m127.559,148.819l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.58" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9107" d="m127.559,127.559l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.59" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9109" d="m127.559,106.299l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.60" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9111" d="m127.559,85.0392l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.61" stroke="none" id="connector26pin" fill="none" width="5.66929" y="82.2047" height="5.66929"/>
+<rect x="145.984" gorn="0.2.62" stroke="none" id="connector25pin" fill="none" width="5.66929" y="103.465" height="5.66929"/>
+<rect x="145.984" gorn="0.2.63" stroke="none" id="connector24pin" fill="none" width="5.66929" y="124.724" height="5.66929"/>
+<rect x="145.984" gorn="0.2.64" stroke="none" id="connector23pin" fill="none" width="5.66929" y="145.984" height="5.66929"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.65" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9121" d="m127.559,63.7795l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.66" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9123" d="m127.559,42.5197l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.67" stroke="none" id="connector28pin" fill="none" width="5.66929" y="39.685" height="5.66929"/>
+<rect x="145.984" gorn="0.2.68" stroke="none" id="connector27pin" fill="none" width="5.66929" y="60.9449" height="5.66929"/>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.69.0.0" font-style="normal" y="45.3543" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9147" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB0</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.70.0.0" font-style="normal" y="87.874" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9151" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB2</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.71.0.0" font-style="normal" y="130.394" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9155" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB4</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.72.0.0" font-style="normal" y="109.134" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9159" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB3</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.73.0.0" font-style="normal" y="151.654" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9163" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB5</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.74.0.0" font-style="normal" y="194.173" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9167" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB7</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.75.0.0" font-style="normal" y="172.913" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9171" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB6</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.76.0.0" font-style="normal" y="215.433" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9175" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">Vdd</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.77.0.0" font-style="normal" y="257.953" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9179" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">CS</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.78.0.0" font-style="normal" y="236.693" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9183" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">Vss</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.79.0.0" font-style="normal" y="279.213" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9187" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">SCK</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.80.0.0" font-style="normal" y="300.472" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9191" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">SI</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.81.0.0" font-style="normal" y="321.732" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9195" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">SO</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.82.0.0" font-style="normal" y="257.953" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9199" stroke="none" word-spacing="0px" x="123.307" fill-opacity="1" line-height="125%">RESET</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.83.0.0" font-style="normal" y="279.214" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9203" stroke="none" word-spacing="0px" x="123.299" fill-opacity="1" line-height="125%">A2</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.84.0.0" font-style="normal" y="300.472" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9207" stroke="none" word-spacing="0px" x="123.311" fill-opacity="1" line-height="125%">A1</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.85.0.0" font-style="normal" y="321.732" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9211" stroke="none" word-spacing="0px" x="123.303" fill-opacity="1" line-height="125%">A0</text>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.86" fill="none" stroke-opacity="1" stroke-dashoffset="0.28800002" stroke-linecap="round" display="inline" marker="none" id="path9217" d="m102.047,250.866l21.2598,0" stroke-width="0.566929" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.86" fill="none" stroke-opacity="1" stroke-dashoffset="0.28800002" stroke-linecap="round" display="inline" marker="none" id="path442" d="M46.701,250.234L55.2649,250.234" stroke-width="0.566929" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" enable-background="accumulate"/>
+</g>
+</g></g></g><g partID='854136600'><g transform='translate(354.93,361.418)' ><g transform='matrix(-1,0,0,-1,0,0)'  ><g id="schematic">
+<rect x="42.5197" gorn="0.2.0" stroke="#000000" stroke-linejoin="round" id="rect6478" stroke-dasharray="none" stroke-linecap="butt" stroke-opacity="1" stroke-width="3.09839" fill="none" width="85.0394" y="21.2598" height="318.898" stroke-dashoffset="0" stroke-miterlimit="4"/>
+<path enable-background="accumulate" display="inline" gorn="0.2.1" overflow="visible" stroke="#000000" id="path6480" stroke-dasharray="none" fill-rule="nonzero" marker="none" stroke-opacity="1" stroke-width="2.4" fill="#c2c2c2" visibility="visible" fill-opacity="1" color="#000000" stroke-miterlimit="4" d="M42.5197,42.5197L21.2598,42.5197"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.2" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6484" d="M42.5197,63.7795L21.2598,63.7795" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.3" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6486" d="M42.5197,85.0392L21.2598,85.0392" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.4" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6488" d="M42.5197,106.299L21.2598,106.299" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.5" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6490" d="M42.5197,127.559L21.2598,127.559" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.6" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6492" d="M42.5197,148.819L21.2598,148.819" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.7" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6494" d="M42.5197,170.078L21.2598,170.078" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.8" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6496" d="M42.5197,191.338L21.2598,191.338" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.9" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6510" d="m127.559,318.898l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.10" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6512" d="m127.559,297.638l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.11.0.0" font-style="normal" y="66.6142" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="tspan6520" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB1</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.12.0.0" font-style="normal" y="45.3543" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6548" stroke="none" word-spacing="0px" x="123.307" fill-opacity="1" line-height="125%">GPA7</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.13.0.0" font-style="normal" y="66.615" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6552" stroke="none" word-spacing="0px" x="122.68" fill-opacity="1" line-height="125%">GPA6</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.14.0.0" font-style="normal" y="87.874" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6556" stroke="none" word-spacing="0px" x="123.26" fill-opacity="1" line-height="125%">GPA5</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.15.0.0" font-style="normal" y="109.135" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6560" stroke="none" word-spacing="0px" x="123.256" fill-opacity="1" line-height="125%">GPA4</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.16.0.0" font-style="normal" y="130.394" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6564" stroke="none" word-spacing="0px" x="123.415" fill-opacity="1" line-height="125%">GPA3</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.17.0.0" font-style="normal" y="151.654" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6568" stroke="none" word-spacing="0px" x="123.272" fill-opacity="1" line-height="125%">GPA2</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.18.0.0" font-style="normal" y="172.913" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6572" stroke="none" word-spacing="0px" x="123.311" fill-opacity="1" line-height="125%">GPA1</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.19.0.0" font-style="normal" y="194.174" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="tspan6576" stroke="none" word-spacing="0px" x="123.303" fill-opacity="1" line-height="125%">GPA0</text>
+<g transform="rotate(-90)">
+<text font-family="'Droid Sans'" text-anchor="middle" letter-spacing="0px" gorn="0.2.20.0.0" font-style="normal" y="90.7087" font-weight="normal" font-variant="normal" fill="#000000" text-align="center" font-size="0" font-stretch="normal" id="tspan6580" stroke="none" word-spacing="0px" x="-181.417" fill-opacity="1" line-height="125%">MCP23S17</text>
+</g>
+<rect x="18.4252" gorn="0.2.21" stroke="none" id="connector1pin" fill="none" width="5.66929" y="39.685" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.22" stroke="none" id="connector2pin" fill="none" width="5.66929" y="60.9449" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.23" stroke="none" id="connector3pin" fill="none" width="5.66929" y="82.2047" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.24" stroke="none" id="connector4pin" fill="none" width="5.66929" y="103.465" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.25" stroke="none" id="connector5pin" fill="none" width="5.66929" y="124.724" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.26" stroke="none" id="connector6pin" fill="none" width="5.66929" y="145.984" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.27" stroke="none" id="connector7pin" fill="none" width="5.66929" y="167.244" height="5.66929"/>
+<rect x="18.4252" gorn="0.2.28" stroke="none" id="connector8pin" fill="none" width="5.66929" y="188.504" height="5.66929"/>
+<rect x="145.984" gorn="0.2.29" stroke="none" id="connector16pin" fill="none" width="5.66929" y="294.803" height="5.66929"/>
+<rect x="145.984" gorn="0.2.30" stroke="none" id="connector15pin" fill="none" width="5.66929" y="316.063" height="5.66929"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.31" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6502" d="m42.5197,255.118l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.32" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6504" d="m42.5197,276.378l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.33" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6506" d="m42.5197,297.638l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.34" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6508" d="m42.5197,318.898l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.35.0" stroke="none" id="connector14pin" fill="none" width="5.66929" y="-321.732" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.36.0" stroke="none" id="connector13pin" fill="none" width="5.66929" y="-300.472" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.37.0" stroke="none" id="connector12pin" fill="none" width="5.66929" y="-279.213" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.38.0" stroke="none" id="connector11pin" fill="none" width="5.66929" y="-257.953" height="5.66929"/>
+</g>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.39" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6498" d="m42.5197,212.598l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.40" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path6500" d="m42.5197,233.858l-21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.41.0" stroke="none" id="connector10pin" fill="none" width="5.66929" y="-236.693" height="5.66929"/>
+</g>
+<g transform="scale(-1)">
+<rect x="-24.0945" gorn="0.2.42.0" stroke="none" id="connector9pin" fill="none" width="5.66929" y="-215.433" height="5.66929"/>
+</g>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.43" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4967" d="m127.559,276.378l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.44" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4969" d="m127.559,255.118l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.45" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4971" d="m127.559,233.858l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.46" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path4973" d="m127.559,212.598l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.47" stroke="none" id="connector20pin" fill="none" width="5.66929" y="209.764" height="5.66929"/>
+<rect x="145.984" gorn="0.2.48" stroke="none" id="connector19pin" fill="none" width="5.66929" y="231.024" height="5.66929"/>
+<rect x="145.984" gorn="0.2.49" stroke="none" id="connector18pin" fill="none" width="5.66929" y="252.283" height="5.66929"/>
+<rect x="145.984" gorn="0.2.50" stroke="none" id="connector17pin" fill="none" width="5.66929" y="273.543" height="5.66929"/>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.51.0.0" font-style="normal" y="215.432" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text4993" stroke="none" word-spacing="0px" x="123.315" fill-opacity="1" line-height="125%">INTA</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.52.0.0" font-style="normal" y="236.693" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text4997" stroke="none" word-spacing="0px" x="123.307" fill-opacity="1" line-height="125%">INTB</text>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.53" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9097" d="m127.559,191.338l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.54" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9099" d="m127.559,170.078l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.55" stroke="none" id="connector22pin" fill="none" width="5.66929" y="167.244" height="5.66929"/>
+<rect x="145.984" gorn="0.2.56" stroke="none" id="connector21pin" fill="none" width="5.66929" y="188.504" height="5.66929"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.57" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9105" d="m127.559,148.819l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.58" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9107" d="m127.559,127.559l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.59" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9109" d="m127.559,106.299l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.60" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9111" d="m127.559,85.0392l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.61" stroke="none" id="connector26pin" fill="none" width="5.66929" y="82.2047" height="5.66929"/>
+<rect x="145.984" gorn="0.2.62" stroke="none" id="connector25pin" fill="none" width="5.66929" y="103.465" height="5.66929"/>
+<rect x="145.984" gorn="0.2.63" stroke="none" id="connector24pin" fill="none" width="5.66929" y="124.724" height="5.66929"/>
+<rect x="145.984" gorn="0.2.64" stroke="none" id="connector23pin" fill="none" width="5.66929" y="145.984" height="5.66929"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.65" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9121" d="m127.559,63.7795l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.66" fill="#c2c2c2" stroke-opacity="1" stroke-dashoffset="0" fill-rule="nonzero" stroke-linecap="butt" display="inline" marker="none" id="path9123" d="m127.559,42.5197l21.2598,0" stroke-width="2.4" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" fill-opacity="1" enable-background="accumulate"/>
+<rect x="145.984" gorn="0.2.67" stroke="none" id="connector28pin" fill="none" width="5.66929" y="39.685" height="5.66929"/>
+<rect x="145.984" gorn="0.2.68" stroke="none" id="connector27pin" fill="none" width="5.66929" y="60.9449" height="5.66929"/>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.69.0.0" font-style="normal" y="45.3543" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9147" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB0</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.70.0.0" font-style="normal" y="87.874" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9151" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB2</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.71.0.0" font-style="normal" y="130.394" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9155" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB4</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.72.0.0" font-style="normal" y="109.134" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9159" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB3</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.73.0.0" font-style="normal" y="151.654" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9163" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB5</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.74.0.0" font-style="normal" y="194.173" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9167" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB7</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.75.0.0" font-style="normal" y="172.913" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9171" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">GPB6</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.76.0.0" font-style="normal" y="215.433" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9175" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">Vdd</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.77.0.0" font-style="normal" y="257.953" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9179" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">CS</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.78.0.0" font-style="normal" y="236.693" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9183" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">Vss</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.79.0.0" font-style="normal" y="279.213" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9187" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">SCK</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.80.0.0" font-style="normal" y="300.472" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9191" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">SI</text>
+<text font-family="'Droid Sans'" text-anchor="start" letter-spacing="0px" gorn="0.2.81.0.0" font-style="normal" y="321.732" font-weight="normal" font-variant="normal" fill="#000000" text-align="start" font-size="8" font-stretch="normal" id="text9195" stroke="none" word-spacing="0px" x="46.7717" fill-opacity="1" line-height="125%">SO</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.82.0.0" font-style="normal" y="257.953" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9199" stroke="none" word-spacing="0px" x="123.307" fill-opacity="1" line-height="125%">RESET</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.83.0.0" font-style="normal" y="279.214" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9203" stroke="none" word-spacing="0px" x="123.299" fill-opacity="1" line-height="125%">A2</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.84.0.0" font-style="normal" y="300.472" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9207" stroke="none" word-spacing="0px" x="123.311" fill-opacity="1" line-height="125%">A1</text>
+<text font-family="'Droid Sans'" text-anchor="end" letter-spacing="0px" gorn="0.2.85.0.0" font-style="normal" y="321.732" font-weight="normal" font-variant="normal" fill="#000000" text-align="end" font-size="8" font-stretch="normal" id="text9211" stroke="none" word-spacing="0px" x="123.303" fill-opacity="1" line-height="125%">A0</text>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.86" fill="none" stroke-opacity="1" stroke-dashoffset="0.28800002" stroke-linecap="round" display="inline" marker="none" id="path9217" d="m102.047,250.866l21.2598,0" stroke-width="0.566929" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" enable-background="accumulate"/>
+<path visibility="visible" color="#000000" stroke-miterlimit="4" overflow="visible" gorn="0.2.86" fill="none" stroke-opacity="1" stroke-dashoffset="0.28800002" stroke-linecap="round" display="inline" marker="none" id="path442" d="M46.701,250.234L55.2649,250.234" stroke-width="0.566929" stroke-dasharray="none" stroke="#000000" stroke-linejoin="miter" enable-background="accumulate"/>
+</g>
+</g></g></g><g partID='854162450'><g transform='translate(17.9601,95.6184)' ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line class="other" y2="12.96" stroke="#000000" y1="12.96" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="20.1501" stroke-width="0.720003" x2="21.9501"/>
+<line class="other" y2="3.96" stroke="#000000" y1="0.36" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="20.1501" stroke-width="0.720003" x2="20.1501"/>
+<line class="other" y2="3.96" stroke="#000000" y1="0.36" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="9.35003" stroke-width="0.720003" x2="9.35003"/>
+<line class="other" y2="0.36" stroke="#000000" y1="0.36" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="20.1501" stroke-width="0.720003" x2="14.75"/>
+<line class="other" y2="0.36" stroke="#000000" y1="0.36" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="14.75" stroke-width="0.720003" x2="9.35003"/>
+<line class="other" y2="7.56" stroke="#000000" y1="5.76" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="14.75" stroke-width="0.432002" x2="14.75"/>
+<line class="other" y2="11.16" stroke="#000000" y1="9.36" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="14.75" stroke-width="0.432002" x2="14.75"/>
+<line class="other" y2="3.96" stroke="#000000" y1="0.36" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="14.75" stroke-width="0.432002" x2="14.75"/>
+<line class="other" y2="12.96" stroke="#000000" y1="20.16" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="21.9501" stroke-width="0.432002" x2="21.9501"/>
+<line class="other" y2="12.96" stroke="#000000" y1="20.16" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="7.55002" stroke-width="0.432002" x2="7.55002"/>
+<line class="other" y2="9.36" stroke="#000000" y1="12.96" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="7.55002" stroke-width="0.720003" x2="20.1501"/>
+<circle class="other" cy="12.96" stroke="#000000" xmlns="http://www.w3.org/2000/svg" r="0.360001" cx="7.55002" stroke-width="1.152" fill="none"/>
+<circle class="other" cy="12.96" stroke="#000000" xmlns="http://www.w3.org/2000/svg" r="0.360001" cx="21.9501" stroke-width="1.152" fill="none"/>
+<line class="pin" y2="12.96" stroke="#787878" y1="12.96" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="0.350001" stroke-width="0.700001" connectorname="1" x2="7.55002"/>
+<g x="0.350001" class="terminal" stroke="none" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0.000283466" stroke-width="0" fill="none" y="12.96" height="0.000283465"/>
+<text x="3.95001" class="text" font-family="'Droid Sans'" text-anchor="middle" stroke="none" xmlns="http://www.w3.org/2000/svg" font-size="2.50001" stroke-width="0" fill="#8c8c8c" y="11.91">1</text>
+<line class="pin" y2="12.96" stroke="#787878" y1="12.96" id="connector2pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="29.1502" stroke-width="0.700001" connectorname="3" x2="21.9501"/>
+<g x="29.1502" class="terminal" stroke="none" id="connector2terminal" xmlns="http://www.w3.org/2000/svg" width="0.000283466" stroke-width="0" fill="none" y="12.96" height="0.000283465"/>
+<text x="25.5501" class="text" font-family="'Droid Sans'" text-anchor="middle" stroke="none" xmlns="http://www.w3.org/2000/svg" font-size="2.50001" stroke-width="0" fill="#8c8c8c" y="11.91">3</text>
+<line class="pin" y2="20.16" stroke="#787878" y1="20.16" id="connector3pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="29.1502" stroke-width="0.700001" connectorname="4" x2="21.9501"/>
+<g x="29.1502" class="terminal" stroke="none" id="connector3terminal" xmlns="http://www.w3.org/2000/svg" width="0.000283466" stroke-width="0" fill="none" y="20.16" height="0.000283465"/>
+<text x="25.5501" class="text" font-family="'Droid Sans'" text-anchor="middle" stroke="none" xmlns="http://www.w3.org/2000/svg" font-size="2.50001" stroke-width="0" fill="#8c8c8c" y="19.11">4</text>
+<line class="pin" y2="20.16" stroke="#787878" y1="20.16" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="0.350001" stroke-width="0.700001" connectorname="2" x2="7.55002"/>
+<g x="0.350001" class="terminal" stroke="none" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0.000283466" stroke-width="0" fill="none" y="20.16" height="0.000283465"/>
+<text x="3.95001" class="text" font-family="'Droid Sans'" text-anchor="middle" stroke="none" xmlns="http://www.w3.org/2000/svg" font-size="2.50001" stroke-width="0" fill="#8c8c8c" y="19.11">2</text>
+</g>
+</g></g><g partID='854170370'><g transform='translate(609.201,401.747)' ><g transform='matrix(0,-1,1,0,0,0)'  ><g gorn="0.1" id="schematic">
+<rect x="7.7" gorn="0.1.0" stroke="#010101" id="part_symbol" stroke-linecap="round" fill="#FFFFFF" stroke-width="0.9002" width="43.198" y="7.69998" height="68.9248"/>
+<g gorn="0.1.1" id="pins">
+<line gorn="0.1.1.0" y2="29.7539" stroke="#565656" stroke-linejoin="round" y1="29.7499" id="connector13pin" stroke-linecap="round" x1="50.899" fill="none" stroke-width="0.7" x2="58.099"/>
+<g x="58.4413" gorn="0.1.1.1" stroke="none" id="connector13terminal" fill="none" stroke-width="0" width="0.0158008" y="29.7512" height="0.00140877"/>
+<line gorn="0.1.1.2" y2="22.5499" stroke="#565656" stroke-linejoin="round" y1="22.5499" id="connector6pin" stroke-linecap="round" x1="0.499" fill="none" stroke-width="0.7" x2="7.699"/>
+<g x="0.1411" gorn="0.1.1.3" stroke="none" id="connector6terminal" fill="none" stroke-width="0" width="0.0158" y="22.5492" height="0.0014"/>
+<line gorn="0.1.1.4" y2="15.35" stroke="#565656" stroke-linejoin="round" y1="15.35" id="connector5pin" stroke-linecap="round" x1="0.499" fill="none" stroke-width="0.7" x2="7.699"/>
+<g x="0.1411" gorn="0.1.1.5" stroke="none" id="connector5terminal" fill="none" stroke-width="0" width="0.0158" y="15.3493" height="0.0014"/>
+<line display="none" y2="36.9499" stroke="#565656" stroke-linejoin="round" y1="36.9499" stroke-linecap="round" x1="0.499" fill="none" stroke-width="0.7" x2="7.699"/>
+<line gorn="0.1.1.7" y2="29.7499" stroke="#565656" stroke-linejoin="round" y1="29.7499" id="connector9pin" stroke-linecap="round" x1="0.499" fill="none" stroke-width="0.7" x2="7.699"/>
+<g x="0.1411" gorn="0.1.1.8" stroke="none" id="connector9terminal" fill="none" stroke-width="0" width="0.0158" y="29.7492" height="0.0014"/>
+<line gorn="0.1.1.9" y2="22.5499" stroke="#565656" stroke-linejoin="round" y1="22.5499" id="connector12pin" stroke-linecap="round" x1="50.899" fill="none" stroke-width="0.7" x2="58.099"/>
+<g x="58.4411" gorn="0.1.1.10" stroke="none" id="connector12terminal" fill="none" stroke-width="0" width="0.0158" y="22.5492" height="0.0014"/>
+<line gorn="0.1.1.11" y2="15.354" stroke="#565656" stroke-linejoin="round" y1="15.35" id="connector11pin" stroke-linecap="round" x1="50.899" fill="none" stroke-width="0.7" x2="58.099"/>
+<g x="58.4413" gorn="0.1.1.12" stroke="none" id="connector11terminal" fill="none" stroke-width="0" width="0.0158008" y="15.3513" height="0.00140877"/>
+<line gorn="0.1.1.13" y2="36.9499" stroke="#565656" stroke-linejoin="round" y1="36.9499" id="connector10pin" stroke-linecap="round" x1="0.499" fill="none" stroke-width="0.7" x2="7.699"/>
+<g x="0.1411" gorn="0.1.1.14" stroke="none" id="connector10terminal" fill="none" stroke-width="0" width="0.0158" y="36.9492" height="0.0014"/>
+<line gorn="0.1.1.15" y2="36.9499" stroke="#565656" stroke-linejoin="round" y1="36.9499" id="connector14pin" stroke-linecap="round" x1="50.899" fill="none" stroke-width="0.7" x2="58.1"/>
+<g x="58.4421" gorn="0.1.1.16" stroke="none" id="connector14terminal" fill="none" stroke-width="0" width="0.015802" y="36.9492" height="0.0014"/>
+</g>
+<g gorn="0.1.2" id="pin_numbers">
+<g transform="matrix(1, 0, 0, 1, 53.8096, 13.9043)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">5</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 53.6396, 21.1991)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">6</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 3.2734, 13.8105)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">1</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 3.2734, 20.9354)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">2</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 3.2734, 28.4354)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">3</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 53.8096, 28.4354)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">7</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 3.2734, 35.7274)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">4</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 53.6396, 35.7274)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="3" fill="#565656">8</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g gorn="0.1.3" id="pin_labels">
+<g transform="matrix(1, 0, 0, 1, 38.374, 30.8183)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">GND</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 41.2109, 45.369)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text display="none" font-family="DroidSans" font-size="4.5" fill="#565656">Out</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 9.7588, 16.4336)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">VCC</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 9.7178, 23.7362)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">VCC</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 9.7588, 30.8183)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">VCC</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 9.7178, 38.122)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text display="none" font-family="DroidSans" font-size="4.5" fill="#565656">In</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 38.374, 16.4336)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">GND</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 38.4258, 23.7362)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">GND</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 9.7178, 37.9433)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">VCC</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 38.374, 37.9433)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text font-family="DroidSans" font-size="4.5" fill="#565656">GND</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 17.2783, 49.5878)">
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<g>
+<text x="0" font-family="DroidSans" font-size="6" fill="#010101" y="0">YwRobot </text>
+<text x="-4.226" font-family="DroidSans" font-size="6" fill="#010101" y="7.19898">Breadboard </text>
+<text x="-6.536" font-family="DroidSans" font-size="6" fill="#010101" y="14.4">Power Supply </text>
+<text x="3.81" font-family="DroidSans" font-size="6" fill="#010101" y="21.5999">MB-V2</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g></g></g><g partID='854171130'><g transform='translate(47.4609,151.994)' ><g transform='matrix(-1,0,0,-1,0,0)'  ><g id="schematic" xmlns="http://www.w3.org/2000/svg">
+<line class="other" y2="0.216" stroke="#000000" y1="3.096" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="7.55002" stroke-width="0.432002" x2="8.63003"/>
+<line class="other" y2="5.976" stroke="#000000" y1="0.216" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="8.63003" stroke-width="0.432002" x2="10.43"/>
+<line class="other" y2="0.216" stroke="#000000" y1="5.976" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="10.43" stroke-width="0.432002" x2="12.23"/>
+<line class="other" y2="5.976" stroke="#000000" y1="0.216" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="12.23" stroke-width="0.432002" x2="14.03"/>
+<line class="other" y2="0.216" stroke="#000000" y1="5.976" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="14.03" stroke-width="0.432002" x2="15.8301"/>
+<line class="other" y2="5.976" stroke="#000000" y1="0.216" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="15.8301" stroke-width="0.432002" x2="17.6301"/>
+<line class="other" y2="0.216" stroke="#000000" y1="5.976" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="17.6301" stroke-width="0.432002" x2="19.4301"/>
+<line class="other" y2="5.976" stroke="#000000" y1="0.216" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="19.4301" stroke-width="0.432002" x2="21.2301"/>
+<line class="other" y2="3.096" stroke="#000000" y1="5.976" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="21.2301" stroke-width="0.432002" x2="21.9501"/>
+<line class="pin" y2="3.096" stroke="#787878" y1="3.096" id="connector1pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="29.1502" stroke-width="0.700001" connectorname="2" x2="21.9501"/>
+<g x="29.1502" class="terminal" stroke="none" id="connector1terminal" xmlns="http://www.w3.org/2000/svg" width="0.000283466" stroke-width="0" fill="none" y="3.096" height="0.000283465"/>
+<text x="25.5501" class="text" font-family="'Droid Sans'" text-anchor="middle" stroke="none" xmlns="http://www.w3.org/2000/svg" font-size="2.50001" stroke-width="0" fill="#8c8c8c" y="2.046">2</text>
+<line class="pin" y2="3.096" stroke="#787878" y1="3.096" id="connector0pin" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" x1="0.350001" stroke-width="0.700001" connectorname="1" x2="7.55002"/>
+<g x="0.350001" class="terminal" stroke="none" id="connector0terminal" xmlns="http://www.w3.org/2000/svg" width="0.000283466" stroke-width="0" fill="none" y="3.096" height="0.000283465"/>
+<text x="3.95001" class="text" font-family="'Droid Sans'" text-anchor="middle" stroke="none" xmlns="http://www.w3.org/2000/svg" font-size="2.50001" stroke-width="0" fill="#8c8c8c" y="2.046">1</text>
+</g>
+</g></g></g><g partID='854237610'><line stroke-linecap='round' stroke='#404040' x1='47.1105' y1='495.099' x2='47.1105' y2='148.898' stroke-width='0.699998' /></g><circle  fill="black" cx="47.1105" cy="148.898" r="1.44" stroke-width="0" stroke="none" /><g partID='854237620'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='495.099' x2='47.1105' y2='495.099' stroke-width='0.699998' /></g><g partID='854217130'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='643.918' x2='546.791' y2='642.819' stroke-width='0.699998' /></g><g partID='854217190'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='622.658' x2='193.985' y2='622.091' stroke-width='0.699998' /></g><g partID='854217210'><line stroke-linecap='round' stroke='#404040' x1='193.986' y1='622.091' x2='49.9857' y2='622.091' stroke-width='0.699998' /></g><g partID='854217230'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='622.091' x2='34.1506' y2='622.658' stroke-width='0.699998' /></g><g partID='854217250'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='255.118' x2='201.185' y2='254.891' stroke-width='0.699998' /></g><g partID='854217270'><line stroke-linecap='round' stroke='#404040' x1='201.186' y1='254.891' x2='201.186' y2='262.091' stroke-width='0.699998' /></g><g partID='854217290'><line stroke-linecap='round' stroke='#404040' x1='201.186' y1='262.091' x2='107.586' y2='262.091' stroke-width='0.699998' /></g><g partID='854217310'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='262.091' x2='98.9506' y2='262.658' stroke-width='0.699998' /></g><g partID='854217330'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='233.858' x2='352.501' y2='233.862' stroke-width='0.699998' /></g><g partID='854217390'><line stroke-linecap='round' stroke='#404040' x1='352.501' y1='233.862' x2='352.501' y2='255.458' stroke-width='0.699998' /></g><g partID='854217410'><line stroke-linecap='round' stroke='#404040' x1='352.501' y1='255.458' x2='385.51' y2='255.458' stroke-width='0.699998' /></g><g partID='854217490'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='212.598' x2='359.667' y2='212.598' stroke-width='0.699998' /></g><g partID='854217510'><line stroke-linecap='round' stroke='#404040' x1='359.667' y1='212.598' x2='359.667' y2='248.258' stroke-width='0.699998' /></g><g partID='854217570'><line stroke-linecap='round' stroke='#404040' x1='359.667' y1='248.258' x2='385.51' y2='248.258' stroke-width='0.699998' /></g><g partID='854217610'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='276.378' x2='337.986' y2='276.378' stroke-width='0.699998' /></g><g partID='854217630'><line stroke-linecap='round' stroke='#404040' x1='337.986' y1='276.378' x2='337.986' y2='269.858' stroke-width='0.699998' /></g><g partID='854217650'><line stroke-linecap='round' stroke='#404040' x1='337.986' y1='269.858' x2='385.51' y2='269.858' stroke-width='0.699998' /></g><g partID='854217690'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='255.118' x2='337.986' y2='255.118' stroke-width='0.699998' /></g><g partID='854217710'><line stroke-linecap='round' stroke='#404040' x1='337.986' y1='255.118' x2='337.986' y2='262.658' stroke-width='0.699998' /></g><g partID='854217730'><line stroke-linecap='round' stroke='#404040' x1='337.986' y1='262.658' x2='385.51' y2='262.658' stroke-width='0.699998' /></g><g partID='854217770'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='318.898' x2='381.186' y2='318.898' stroke-width='0.699998' /></g><g partID='854217790'><line stroke-linecap='round' stroke='#404040' x1='381.186' y1='318.898' x2='381.186' y2='284.258' stroke-width='0.699998' /></g><g partID='854217890'><line stroke-linecap='round' stroke='#404040' x1='381.186' y1='284.258' x2='385.511' y2='284.258' stroke-width='0.699998' /></g><g partID='854217910'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='558.878' x2='49.9849' y2='558.878' stroke-width='0.699998' /></g><g partID='854217930'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='558.878' x2='49.9857' y2='578.891' stroke-width='0.699998' /></g><g partID='854218010'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='578.891' x2='49.9857' y2='600.491' stroke-width='0.699998' /></g><g partID='854218030'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='600.491' x2='34.1506' y2='601.058' stroke-width='0.699998' /></g><g partID='854218050'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='318.898' x2='107.585' y2='318.898' stroke-width='0.699998' /></g><g partID='854218070'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='318.898' x2='107.586' y2='298.091' stroke-width='0.699998' /></g><g partID='854218150'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='298.091' x2='107.586' y2='283.691' stroke-width='0.699998' /></g><g partID='854218170'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='283.691' x2='98.9506' y2='284.258' stroke-width='0.699998' /></g><g partID='854218190'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='665.178' x2='470.71' y2='665.178' stroke-width='0.699998' /></g><g partID='854218210'><line stroke-linecap='round' stroke='#404040' x1='470.71' y1='665.178' x2='470.71' y2='650.381' stroke-width='0.699998' /></g><g partID='854218270'><line stroke-linecap='round' stroke='#404040' x1='470.71' y1='650.381' x2='546.79' y2='650.018' stroke-width='0.699998' /></g><g partID='854218310'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='580.138' x2='64.3849' y2='580.138' stroke-width='0.699998' /></g><g partID='854218330'><line stroke-linecap='round' stroke='#404040' x1='64.3857' y1='580.138' x2='64.3857' y2='593.291' stroke-width='0.699998' /></g><g partID='854218390'><line stroke-linecap='round' stroke='#404040' x1='64.3857' y1='593.291' x2='64.3857' y2='607.691' stroke-width='0.699998' /></g><g partID='854218410'><line stroke-linecap='round' stroke='#404040' x1='64.3857' y1='607.691' x2='49.9857' y2='607.691' stroke-width='0.699998' /></g><g partID='854218430'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='607.691' x2='34.1506' y2='608.258' stroke-width='0.699998' /></g><g partID='854218450'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='297.638' x2='366.786' y2='297.638' stroke-width='0.699998' /></g><g partID='854218470'><line stroke-linecap='round' stroke='#404040' x1='366.786' y1='297.638' x2='366.786' y2='277.058' stroke-width='0.699998' /></g><g partID='854218550'><line stroke-linecap='round' stroke='#404040' x1='366.786' y1='277.058' x2='385.51' y2='277.058' stroke-width='0.699998' /></g><g partID='854218590'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='276.378' x2='201.185' y2='276.491' stroke-width='0.699998' /></g><g partID='854218610'><line stroke-linecap='round' stroke='#404040' x1='201.186' y1='276.491' x2='201.186' y2='269.291' stroke-width='0.699998' /></g><g partID='854218630'><line stroke-linecap='round' stroke='#404040' x1='201.186' y1='269.291' x2='107.586' y2='269.291' stroke-width='0.699998' /></g><g partID='854218650'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='269.291' x2='98.9506' y2='269.858' stroke-width='0.699998' /></g><g partID='854218670'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='558.879' x2='525.186' y2='558.879' stroke-width='0.699998' /></g><g partID='854218690'><line stroke-linecap='round' stroke='#404040' x1='525.186' y1='558.879' x2='525.186' y2='614.019' stroke-width='0.699998' /></g><g partID='854218790'><line stroke-linecap='round' stroke='#404040' x1='525.186' y1='614.018' x2='546.791' y2='614.018' stroke-width='0.699998' /></g><g partID='854218810'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='707.698' x2='49.9849' y2='707.698' stroke-width='0.699998' /></g><g partID='854218830'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='707.698' x2='49.9857' y2='679.691' stroke-width='0.699998' /></g><g partID='854218910'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='679.691' x2='49.9857' y2='650.891' stroke-width='0.699998' /></g><g partID='854218930'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='650.891' x2='34.1506' y2='651.458' stroke-width='0.699998' /></g><g partID='854218950'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='297.638' x2='121.985' y2='297.638' stroke-width='0.699998' /></g><g partID='854218970'><line stroke-linecap='round' stroke='#404040' x1='121.986' y1='297.638' x2='121.986' y2='283.691' stroke-width='0.699998' /></g><g partID='854219030'><line stroke-linecap='round' stroke='#404040' x1='121.986' y1='283.691' x2='121.986' y2='276.491' stroke-width='0.699998' /></g><g partID='854219050'><line stroke-linecap='round' stroke='#404040' x1='121.986' y1='276.491' x2='107.586' y2='276.491' stroke-width='0.699998' /></g><g partID='854219070'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='276.491' x2='98.9506' y2='277.058' stroke-width='0.699998' /></g><g partID='854219090'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='643.918' x2='198.911' y2='636.492' stroke-width='0.699998' /></g><g partID='854219110'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='636.491' x2='143.585' y2='636.491' stroke-width='0.699998' /></g><g partID='854219150'><line stroke-linecap='round' stroke='#404040' x1='143.586' y1='636.491' x2='143.586' y2='629.291' stroke-width='0.699998' /></g><g partID='854219170'><line stroke-linecap='round' stroke='#404040' x1='143.586' y1='629.291' x2='49.9857' y2='629.291' stroke-width='0.699998' /></g><g partID='854219190'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='629.291' x2='34.1506' y2='629.858' stroke-width='0.699998' /></g><g partID='854219210'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='601.398' x2='198.911' y2='607.691' stroke-width='0.699998' /></g><g partID='854219230'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='607.691' x2='78.7849' y2='607.691' stroke-width='0.699998' /></g><g partID='854219270'><line stroke-linecap='round' stroke='#404040' x1='78.7857' y1='607.691' x2='78.7857' y2='614.891' stroke-width='0.699998' /></g><g partID='854219290'><line stroke-linecap='round' stroke='#404040' x1='78.7857' y1='614.891' x2='49.9857' y2='614.891' stroke-width='0.699998' /></g><g partID='854219310'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='614.891' x2='34.1506' y2='615.458' stroke-width='0.699998' /></g><g partID='854219330'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='170.079' x2='107.585' y2='170.079' stroke-width='0.699998' /></g><g partID='854219350'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='170.079' x2='107.586' y2='204.492' stroke-width='0.699998' /></g><g partID='854219410'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='204.491' x2='107.586' y2='233.291' stroke-width='0.699998' /></g><g partID='854219430'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='233.291' x2='98.9506' y2='233.858' stroke-width='0.699998' /></g><g partID='854219450'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='686.438' x2='345.186' y2='686.438' stroke-width='0.699998' /></g><g partID='854219470'><line stroke-linecap='round' stroke='#404040' x1='345.186' y1='686.438' x2='510.786' y2='686.438' stroke-width='0.699998' /></g><g partID='854219550'><line stroke-linecap='round' stroke='#404040' x1='510.786' y1='686.438' x2='510.786' y2='657.218' stroke-width='0.699998' /></g><g partID='854219570'><line stroke-linecap='round' stroke='#404040' x1='510.786' y1='657.218' x2='546.791' y2='657.218' stroke-width='0.699998' /></g><g partID='854219610'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='707.698' x2='525.186' y2='707.698' stroke-width='0.699998' /></g><g partID='854219630'><line stroke-linecap='round' stroke='#404040' x1='525.186' y1='707.698' x2='525.186' y2='707.698' stroke-width='0.699998' /></g><g partID='854233030'><line stroke-linecap='round' stroke='#404040' x1='525.186' y1='664.418' x2='546.791' y2='664.418' stroke-width='0.699998' /></g><g partID='854219750'><line stroke-linecap='round' stroke='#404040' x1='525.186' y1='707.698' x2='525.186' y2='664.418' stroke-width='0.699998' /></g><g partID='854219790'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='580.138' x2='510.786' y2='580.138' stroke-width='0.699998' /></g><g partID='854219810'><line stroke-linecap='round' stroke='#404040' x1='510.786' y1='580.138' x2='510.786' y2='621.218' stroke-width='0.699998' /></g><g partID='854219890'><line stroke-linecap='round' stroke='#404040' x1='510.786' y1='621.218' x2='546.791' y2='621.218' stroke-width='0.699998' /></g><g partID='854219930'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='622.658' x2='470.442' y2='622.658' stroke-width='0.699998' /></g><g partID='854219990'><line stroke-linecap='round' stroke='#404040' x1='470.442' y1='622.658' x2='470.442' y2='635.618' stroke-width='0.699998' /></g><g partID='854220010'><line stroke-linecap='round' stroke='#404040' x1='470.442' y1='635.618' x2='546.79' y2='635.618' stroke-width='0.699998' /></g><g partID='854220050'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='191.339' x2='121.985' y2='191.339' stroke-width='0.699998' /></g><g partID='854220070'><line stroke-linecap='round' stroke='#404040' x1='121.986' y1='191.339' x2='121.986' y2='218.892' stroke-width='0.699998' /></g><g partID='854220130'><line stroke-linecap='round' stroke='#404040' x1='121.986' y1='218.891' x2='121.986' y2='240.491' stroke-width='0.699998' /></g><g partID='854220150'><line stroke-linecap='round' stroke='#404040' x1='121.986' y1='240.491' x2='107.586' y2='240.491' stroke-width='0.699998' /></g><g partID='854220170'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='240.491' x2='98.9506' y2='241.058' stroke-width='0.699998' /></g><g partID='854220190'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='212.598' x2='136.385' y2='212.598' stroke-width='0.699998' /></g><g partID='854220210'><line stroke-linecap='round' stroke='#404040' x1='136.386' y1='212.598' x2='136.386' y2='233.291' stroke-width='0.699998' /></g><g partID='854220290'><line stroke-linecap='round' stroke='#404040' x1='136.386' y1='233.291' x2='136.386' y2='247.691' stroke-width='0.699998' /></g><g partID='854220310'><line stroke-linecap='round' stroke='#404040' x1='136.386' y1='247.691' x2='107.586' y2='247.691' stroke-width='0.699998' /></g><g partID='854220330'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='247.691' x2='98.9506' y2='248.258' stroke-width='0.699998' /></g><g partID='854220350'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='191.339' x2='366.786' y2='191.339' stroke-width='0.699998' /></g><g partID='854220430'><line stroke-linecap='round' stroke='#404040' x1='366.786' y1='191.339' x2='366.786' y2='241.059' stroke-width='0.699998' /></g><g partID='854220490'><line stroke-linecap='round' stroke='#404040' x1='366.786' y1='241.058' x2='385.51' y2='241.058' stroke-width='0.699998' /></g><g partID='854220530'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='170.079' x2='381.186' y2='170.079' stroke-width='0.699998' /></g><g partID='854220550'><line stroke-linecap='round' stroke='#404040' x1='381.186' y1='170.079' x2='381.186' y2='233.859' stroke-width='0.699998' /></g><g partID='854220790'><line stroke-linecap='round' stroke='#404040' x1='381.186' y1='233.858' x2='385.511' y2='233.858' stroke-width='0.699998' /></g><g partID='854220810'><line stroke-linecap='round' stroke='#404040' x1='206.11' y1='233.858' x2='150.785' y2='233.858' stroke-width='0.699998' /></g><g partID='854220830'><line stroke-linecap='round' stroke='#404040' x1='150.786' y1='233.858' x2='150.786' y2='247.691' stroke-width='0.699998' /></g><g partID='854220890'><line stroke-linecap='round' stroke='#404040' x1='150.786' y1='247.691' x2='150.786' y2='254.891' stroke-width='0.699998' /></g><g partID='854220910'><line stroke-linecap='round' stroke='#404040' x1='150.786' y1='254.891' x2='107.586' y2='254.891' stroke-width='0.699998' /></g><g partID='854220930'><line stroke-linecap='round' stroke='#404040' x1='107.586' y1='254.891' x2='98.9506' y2='255.458' stroke-width='0.699998' /></g><g partID='854220950'><line stroke-linecap='round' stroke='#404040' x1='326.471' y1='601.398' x2='496.386' y2='601.398' stroke-width='0.699998' /></g><g partID='854220970'><line stroke-linecap='round' stroke='#404040' x1='496.386' y1='601.398' x2='496.386' y2='628.418' stroke-width='0.699998' /></g><g partID='854221070'><line stroke-linecap='round' stroke='#404040' x1='496.386' y1='628.418' x2='546.791' y2='628.418' stroke-width='0.699998' /></g><g partID='854221110'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='686.438' x2='64.3849' y2='686.438' stroke-width='0.699998' /></g><g partID='854221130'><line stroke-linecap='round' stroke='#404040' x1='64.3857' y1='686.438' x2='64.3857' y2='665.291' stroke-width='0.699998' /></g><g partID='854221190'><line stroke-linecap='round' stroke='#404040' x1='64.3857' y1='665.291' x2='64.3857' y2='643.691' stroke-width='0.699998' /></g><g partID='854221210'><line stroke-linecap='round' stroke='#404040' x1='64.3857' y1='643.691' x2='49.9857' y2='643.691' stroke-width='0.699998' /></g><g partID='854221230'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='643.691' x2='34.1506' y2='644.258' stroke-width='0.699998' /></g><g partID='854221250'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='665.178' x2='78.7849' y2='665.178' stroke-width='0.699998' /></g><g partID='854221270'><line stroke-linecap='round' stroke='#404040' x1='78.7857' y1='665.178' x2='78.7857' y2='650.892' stroke-width='0.699998' /></g><g partID='854221350'><line stroke-linecap='round' stroke='#404040' x1='78.7857' y1='650.891' x2='78.7857' y2='636.491' stroke-width='0.699998' /></g><g partID='854221370'><line stroke-linecap='round' stroke='#404040' x1='78.7857' y1='636.491' x2='49.9857' y2='636.491' stroke-width='0.699998' /></g><g partID='854221390'><line stroke-linecap='round' stroke='#404040' x1='49.9857' y1='636.491' x2='34.1506' y2='637.058' stroke-width='0.699998' /></g><g partID='854221410'><line stroke-linecap='round' stroke='#404040' x1='849.19' y1='104.258' x2='742.542' y2='104.307' stroke-width='0.699998' /></g><g partID='854221430'><line stroke-linecap='round' stroke='#404040' x1='742.542' y1='104.306' x2='742.542' y2='106.407' stroke-width='0.699998' /></g><circle  fill="black" cx="742.542" cy="106.407" r="1.44" stroke-width="0" stroke="none" /><g partID='854221450'><line stroke-linecap='round' stroke='#404040' x1='742.542' y1='106.407' x2='742.542' y2='229.538' stroke-width='0.699998' /></g><g partID='854221470'><line stroke-linecap='round' stroke='#404040' x1='742.542' y1='229.538' x2='849.19' y2='229.538' stroke-width='0.699998' /></g><g partID='854221510'><line stroke-linecap='round' stroke='#404040' x1='412.81' y1='106.407' x2='742.542' y2='106.407' stroke-width='0.699998' /></g><g partID='854231170'><line stroke-linecap='round' stroke='#404040' x1='742.719' y1='85.4808' x2='742.719' y2='97.0067' stroke-width='0.699998' /></g><g partID='854221550'><line stroke-linecap='round' stroke='#404040' x1='426.354' y1='85.4808' x2='742.719' y2='85.4808' stroke-width='0.699998' /></g><g partID='854228610'><line stroke-linecap='round' stroke='#404040' x1='779.232' y1='97.0584' x2='849.19' y2='97.0584' stroke-width='0.699998' /></g><circle  fill="black" cx="779.232" cy="97.0584" r="1.44" stroke-width="0" stroke="none" /><g partID='854226990'><line stroke-linecap='round' stroke='#404040' x1='742.719' y1='97.0064' x2='779.232' y2='97.0581' stroke-width='0.699998' /></g><g partID='854221650'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='63.78' x2='787.267' y2='63.78' stroke-width='0.699998' /></g><circle  fill="black" cx="333.67" cy="63.78" r="1.44" stroke-width="0" stroke="none" /><g partID='854221670'><line stroke-linecap='round' stroke='#404040' x1='787.266' y1='63.78' x2='787.266' y2='89.8586' stroke-width='0.699998' /></g><g partID='854221810'><line stroke-linecap='round' stroke='#404040' x1='787.266' y1='89.8584' x2='849.19' y2='89.8584' stroke-width='0.699998' /></g><circle  fill="black" cx="787.266" cy="89.8584" r="1.44" stroke-width="0" stroke="none" /><g partID='854221870'><line stroke-linecap='round' stroke='#404040' x1='638.784' y1='316.153' x2='638.784' y2='236.751' stroke-width='0.699998' /></g><g partID='854229030'><line stroke-linecap='round' stroke='#404040' x1='758.278' y1='236.751' x2='849.19' y2='236.738' stroke-width='0.699998' /></g><circle  fill="black" cx="758.278" cy="236.751" r="1.44" stroke-width="0" stroke="none" /><g partID='854221990'><line stroke-linecap='round' stroke='#404040' x1='638.784' y1='236.751' x2='758.278' y2='236.751' stroke-width='0.699998' /></g><g partID='854222030'><line stroke-linecap='round' stroke='#404040' x1='849.19' y1='118.658' x2='794.372' y2='118.658' stroke-width='0.699998' /></g><g partID='854222050'><line stroke-linecap='round' stroke='#404040' x1='794.372' y1='118.658' x2='794.372' y2='200.738' stroke-width='0.699998' /></g><g partID='854222070'><line stroke-linecap='round' stroke='#404040' x1='794.372' y1='200.738' x2='849.19' y2='200.738' stroke-width='0.699998' /></g><circle  fill="black" cx="794.372" cy="200.738" r="1.44" stroke-width="0" stroke="none" /><g partID='854222090'><line stroke-linecap='round' stroke='#404040' x1='638.95' y1='419.562' x2='794.372' y2='419.562' stroke-width='0.699998' /></g><g partID='854222150'><line stroke-linecap='round' stroke='#404040' x1='794.372' y1='419.562' x2='794.372' y2='200.738' stroke-width='0.699998' /></g><g partID='854228110'><line stroke-linecap='round' stroke='#404040' x1='787.266' y1='215.138' x2='787.266' y2='89.8584' stroke-width='0.699998' /></g><g partID='854228120'><line stroke-linecap='round' stroke='#404040' x1='849.19' y1='215.138' x2='787.267' y2='215.138' stroke-width='0.699998' /></g><g partID='854228410'><line stroke-linecap='round' stroke='#404040' x1='779.232' y1='222.338' x2='779.232' y2='97.0584' stroke-width='0.699998' /></g><g partID='854228420'><line stroke-linecap='round' stroke='#404040' x1='849.19' y1='222.338' x2='779.232' y2='222.338' stroke-width='0.699998' /></g><g partID='854228790'><line stroke-linecap='round' stroke='#404040' x1='758.278' y1='111.458' x2='758.278' y2='236.751' stroke-width='0.699998' /></g><g partID='854228800'><line stroke-linecap='round' stroke='#404040' x1='849.19' y1='111.458' x2='758.278' y2='111.458' stroke-width='0.699998' /></g><g partID='854229690'><line stroke-linecap='round' stroke='#404040' x1='816.058' y1='82.62' x2='849.19' y2='82.6582' stroke-width='0.699998' /></g><g partID='854229810'><line stroke-linecap='round' stroke='#404040' x1='816.054' y1='207.938' x2='816.058' y2='82.62' stroke-width='0.699998' /></g><circle  fill="black" cx="816.058" cy="82.62" r="1.44" stroke-width="0" stroke="none" /><g partID='854229700'><line stroke-linecap='round' stroke='#404040' x1='849.19' y1='207.938' x2='816.054' y2='207.938' stroke-width='0.699998' /></g><g partID='854230160'><line stroke-linecap='round' stroke='#404040' x1='816.058' y1='42.52' x2='333.67' y2='42.52' stroke-width='0.699998' /></g><circle  fill="black" cx="333.67" cy="42.52" r="1.44" stroke-width="0" stroke="none" /><g partID='854229940'><line stroke-linecap='round' stroke='#404040' x1='816.058' y1='82.62' x2='816.058' y2='42.5198' stroke-width='0.699998' /></g><g partID='854148720'><line stroke-linecap='round' stroke='#404040' x1='449.457' y1='42.7064' x2='449.674' y2='431.249' stroke-width='0.699998' /></g><g partID='854146650'><line stroke-linecap='round' stroke='#404040' x1='449.674' y1='431.249' x2='326.47' y2='431.319' stroke-width='0.699998' /></g><g partID='854146310'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='42.52' x2='449.457' y2='42.7065' stroke-width='0.699998' /></g><circle  fill="black" cx="333.67" cy="42.52" r="1.44" stroke-width="0" stroke="none" /><g partID='854147320'><line stroke-linecap='round' stroke='#404040' x1='326.47' y1='452.579' x2='437.154' y2='452.579' stroke-width='0.699998' /></g><g partID='854147340'><line stroke-linecap='round' stroke='#404040' x1='437.154' y1='452.579' x2='437.154' y2='63.7792' stroke-width='0.699998' /></g><g partID='854147440'><line stroke-linecap='round' stroke='#404040' x1='437.154' y1='63.7792' x2='333.67' y2='63.7792' stroke-width='0.699998' /></g><circle  fill="black" cx="333.67" cy="63.7792" r="1.44" stroke-width="0" stroke="none" /><g partID='854147780'><line stroke-linecap='round' stroke='#404040' x1='326.47' y1='495.099' x2='413.35' y2='495.136' stroke-width='0.699998' /></g><g partID='854147800'><line stroke-linecap='round' stroke='#404040' x1='413.35' y1='495.136' x2='412.811' y2='106.407' stroke-width='0.699998' /></g><g partID='854147840'><line stroke-linecap='round' stroke='#404040' x1='412.81' y1='106.407' x2='333.669' y2='106.299' stroke-width='0.699998' /></g><circle  fill="black" cx="412.81" cy="106.407" r="1.44" stroke-width="0" stroke="none" /><g partID='854148530'><line stroke-linecap='round' stroke='#404040' x1='333.67' y1='85.04' x2='426.354' y2='85.4811' stroke-width='0.699998' /></g><g partID='854148550'><line stroke-linecap='round' stroke='#404040' x1='426.354' y1='85.4808' x2='426.354' y2='473.839' stroke-width='0.699998' /></g><circle  fill="black" cx="426.354" cy="85.4808" r="1.44" stroke-width="0" stroke="none" /><g partID='854148630'><line stroke-linecap='round' stroke='#404040' x1='426.354' y1='473.839' x2='326.47' y2='473.839' stroke-width='0.699998' /></g><g partID='854163500'><line stroke-linecap='round' stroke='#404040' x1='47.1161' y1='108.554' x2='47.1106' y2='108.578' stroke-width='0.699998' /></g><g partID='854163510'><path stroke-linecap='round' fill='none' stroke-width='0.699998' stroke='#404040' d='M47.1105,115.778C47.1105,115.778, 47.1105,115.778 47.116,115.804' /></g><circle  fill="black" cx="47.1105" cy="115.778" r="1.44" stroke-width="0" stroke="none" /><g partID='854163560'><path stroke-linecap='round' fill='none' stroke-width='0.699998' stroke='#404040' d='M47.1161,115.804C47.1161,115.804, 47.1161,115.804 47.1161,108.554' /></g><circle  fill="black" cx="47.1161" cy="108.554" r="1.44" stroke-width="0" stroke="none" /><g partID='854163690'><path stroke-linecap='round' fill='none' stroke-width='0.699998' stroke='#404040' d='M18.3673,108.633C18.3673,108.633, 18.3673,108.633 18.31,108.578' /></g><circle  fill="black" cx="18.31" cy="108.578" r="1.44" stroke-width="0" stroke="none" /><g partID='854163630'><path stroke-linecap='round' fill='none' stroke-width='0.699998' stroke='#404040' d='M18.3673,115.701C18.3673,115.701, 18.3673,115.701 18.3673,108.633' /></g><g partID='854163640'><line stroke-linecap='round' stroke='#404040' x1='18.3105' y1='115.778' x2='18.3677' y2='115.701' stroke-width='0.699998' /></g><g partID='854177330'><line stroke-linecap='round' stroke='#404040' x1='47.1105' y1='115.778' x2='47.1108' y2='148.898' stroke-width='0.699998' /></g><circle  fill="black" cx="47.1105" cy="115.778" r="1.44" stroke-width="0" stroke="none" /><circle  fill="black" cx="47.1108" cy="148.898" r="1.44" stroke-width="0" stroke="none" /><g partID='854177430'><line stroke-linecap='round' stroke='#404040' x1='47.1161' y1='108.554' x2='206.111' y2='106.299' stroke-width='0.699998' /></g><g partID='854178170'><line stroke-linecap='round' stroke='#404040' x1='1.10087' y1='43.6584' x2='206.111' y2='42.5195' stroke-width='0.699998' /></g><g partID='854178310'><line stroke-linecap='round' stroke='#404040' x1='1.05767' y1='149.118' x2='1.10164' y2='43.6592' stroke-width='0.699998' /></g><circle  fill="black" cx="1.05767" cy="149.118" r="1.44" stroke-width="0" stroke="none" /><g partID='854178180'><line stroke-linecap='round' stroke='#404040' x1='18.3105' y1='148.898' x2='1.05727' y2='149.117' stroke-width='0.699998' /></g><g partID='854178460'><line stroke-linecap='round' stroke='#404040' x1='2.45767' y1='387.908' x2='1.05717' y2='149.117' stroke-width='0.699998' /></g><g partID='854178470'><line stroke-linecap='round' stroke='#404040' x1='135.478' y1='387.858' x2='2.45767' y2='387.908' stroke-width='0.699998' /></g><g partID='854188540'><line stroke-linecap='round' stroke='#404040' x1='516.518' y1='387.858' x2='135.478' y2='387.858' stroke-width='0.699998' /></g><circle  fill="black" cx="516.518" cy="387.858" r="1.44" stroke-width="0" stroke="none" /><g partID='854179690'><line stroke-linecap='round' stroke='#404040' x1='136.358' y1='452.609' x2='198.911' y2='452.58' stroke-width='0.699998' /></g><g partID='854179530'><line stroke-linecap='round' stroke='#404040' x1='135.478' y1='387.858' x2='136.358' y2='452.609' stroke-width='0.699998' /></g><circle  fill="black" cx="135.478" cy="387.858" r="1.44" stroke-width="0" stroke="none" /><g partID='854178780'><line stroke-linecap='round' stroke='#404040' x1='590.091' y1='387.858' x2='516.518' y2='387.858' stroke-width='0.699998' /></g><g partID='854178700'><line stroke-linecap='round' stroke='#404040' x1='590.091' y1='419.49' x2='590.091' y2='387.858' stroke-width='0.699998' /></g><circle  fill="black" cx="590.091" cy="419.49" r="1.44" stroke-width="0" stroke="none" /><g partID='854178600'><line stroke-linecap='round' stroke='#404040' x1='638.95' y1='419.562' x2='590.091' y2='419.49' stroke-width='0.699998' /></g><g partID='854178610'><line stroke-linecap='round' stroke='#404040' x1='638.95' y1='401.598' x2='638.95' y2='419.563' stroke-width='0.699998' /></g><circle  fill="black" cx="638.95" cy="419.563" r="1.44" stroke-width="0" stroke="none" /><g partID='854181990'><line stroke-linecap='round' stroke='#404040' x1='176.715' y1='85.6072' x2='206.112' y2='85.0395' stroke-width='0.699998' /></g><circle  fill="black" cx="176.715" cy="85.6072" r="1.44" stroke-width="0" stroke="none" /><g partID='854180160'><line stroke-linecap='round' stroke='#404040' x1='176.621' y1='367.66' x2='176.715' y2='85.6072' stroke-width='0.699998' /></g><g partID='854180170'><line stroke-linecap='round' stroke='#404040' x1='176.863' y1='367.65' x2='176.621' y2='367.66' stroke-width='0.699998' /></g><g partID='854186970'><line stroke-linecap='round' stroke='#404040' x1='552.424' y1='367.914' x2='176.863' y2='367.65' stroke-width='0.699998' /></g><circle  fill="black" cx="552.424" cy="367.914" r="1.44" stroke-width="0" stroke="none" /><g partID='854182740'><line stroke-linecap='round' stroke='#404040' x1='176.784' y1='431.16' x2='198.911' y2='431.32' stroke-width='0.699998' /></g><circle  fill="black" cx="176.784" cy="431.16" r="1.44" stroke-width="0" stroke="none" /><g partID='854180930'><line stroke-linecap='round' stroke='#404040' x1='176.863' y1='367.65' x2='176.784' y2='431.16' stroke-width='0.699998' /></g><circle  fill="black" cx="176.863" cy="367.65" r="1.44" stroke-width="0" stroke="none" /><g partID='854180760'><line stroke-linecap='round' stroke='#404040' x1='590.029' y1='367.671' x2='552.424' y2='367.914' stroke-width='0.699998' /></g><g partID='854180580'><line stroke-linecap='round' stroke='#404040' x1='590.029' y1='316.153' x2='590.029' y2='367.671' stroke-width='0.699998' /></g><g partID='854180420'><line stroke-linecap='round' stroke='#404040' x1='638.784' y1='316.153' x2='590.029' y2='316.153' stroke-width='0.699998' /></g><g partID='854180430'><line stroke-linecap='round' stroke='#404040' x1='638.953' y1='343.298' x2='638.784' y2='316.153' stroke-width='0.699998' /></g><circle  fill="black" cx="638.784" cy="316.153" r="1.44" stroke-width="0" stroke="none" /><g partID='854182160'><line stroke-linecap='round' stroke='#404040' x1='176.79' y1='63.8112' x2='176.812' y2='85.5906' stroke-width='0.699998' /></g><circle  fill="black" cx="176.812" cy="85.5906" r="1.44" stroke-width="0" stroke="none" /><g partID='854182170'><line stroke-linecap='round' stroke='#404040' x1='206.111' y1='63.78' x2='176.79' y2='63.8112' stroke-width='0.699998' /></g><g partID='854182930'><line stroke-linecap='round' stroke='#404040' x1='176.784' y1='474.327' x2='176.784' y2='431.159' stroke-width='0.699998' /></g><g partID='854182940'><line stroke-linecap='round' stroke='#404040' x1='198.911' y1='473.839' x2='176.784' y2='474.327' stroke-width='0.699998' /></g><g partID='854183420'><line stroke-linecap='round' stroke='#404040' x1='18.3673' y1='86.9424' x2='18.31' y2='108.578' stroke-width='0.699998' /></g><circle  fill="black" cx="18.31" cy="108.578" r="1.44" stroke-width="0" stroke="none" /><g partID='854183430'><line stroke-linecap='round' stroke='#404040' x1='176.812' y1='85.5904' x2='18.3681' y2='86.9427' stroke-width='0.699998' /></g><g partID='854185770'><line stroke-linecap='round' stroke='#404040' x1='590.091' y1='537.619' x2='326.47' y2='537.619' stroke-width='0.699998' /></g><g partID='854185470'><line stroke-linecap='round' stroke='#404040' x1='590.091' y1='419.49' x2='590.091' y2='537.619' stroke-width='0.699998' /></g><g partID='854186390'><line stroke-linecap='round' stroke='#404040' x1='552.424' y1='516.359' x2='326.47' y2='516.359' stroke-width='0.699998' /></g><g partID='854186190'><line stroke-linecap='round' stroke='#404040' x1='552.424' y1='367.914' x2='552.424' y2='516.359' stroke-width='0.699998' /></g><circle  fill="black" cx="552.424" cy="367.914" r="1.44" stroke-width="0" stroke="none" /><g partID='854187790'><line stroke-linecap='round' stroke='#404040' x1='550.929' y1='127.332' x2='333.67' y2='127.559' stroke-width='0.699998' /></g><g partID='854187430'><line stroke-linecap='round' stroke='#404040' x1='552.424' y1='367.914' x2='550.929' y2='127.332' stroke-width='0.699998' /></g><g partID='854188270'><line stroke-linecap='round' stroke='#404040' x1='516.518' y1='148.862' x2='333.67' y2='148.819' stroke-width='0.699998' /></g><g partID='854188150'><line stroke-linecap='round' stroke='#404040' x1='516.518' y1='387.858' x2='516.518' y2='148.863' stroke-width='0.699998' /></g><g partID='854138040' id='partLabel'><g transform='translate(449,654.548)' ><g transform='matrix(0,1,-1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>U2</text></g></g></g></g><g partID='854136600' id='partLabel'><g transform='translate(456.199,265.748)' ><g transform='matrix(0,1,-1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>U1</text></g></g></g></g><g partID='854162450' id='partLabel'><g transform='translate(16.8553,91.1232)' ><g transform='matrix(0,-1,1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>S1</text></g></g></g></g><g partID='854170370' id='partLabel'><g transform='translate(702.269,414.106)' ><g transform='matrix(0,-1,1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>YwRobot Power Supply1</text><text x='0' y='8.75'>545043</text></g></g></g></g><g partID='854171130' id='partLabel'><g transform='translate(51.8065,163.649)' ><g transform='matrix(0,1,-1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>R1</text><text x='0' y='8.75'>10k&#x3a9;</text><text x='0' y='13.75'>&#xb1;5%</text></g></g></g></g><g partID='854206490' id='partLabel'><g transform='translate(561.962,607.312)' ><g transform='matrix(0,-1,1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>J3</text></g></g></g></g><g partID='854206830' id='partLabel'><g transform='translate(57.7505,637.058)' ><g transform='matrix(0,1,-1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>J4</text></g></g></g></g><g partID='854205910' id='partLabel'><g transform='translate(88.9385,290.61)' ><g transform='matrix(0,1,-1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>J2</text></g></g></g></g><g partID='854205570' id='partLabel'><g transform='translate(361.91,248.258)' ><g transform='matrix(0,-1,1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>J1</text></g></g></g></g><g partID='854208380' id='partLabel'><g transform='translate(832.79,89.8584)' ><g transform='matrix(0,-1,1,0,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>J6</text></g></g></g></g><g partID='854207200' id='partLabel'><g transform='translate(832.79,207.938)' ><g transform='matrix(-2.22045e-16,-1,1,-2.22045e-16,0,0)'  ><g font-size='5' font-style='normal' font-weight='normal' fill='#000000' font-family="'DroidSans'" id='schematicLabel' fill-opacity='1' stroke='none' ><text x='0' y='3.75'>J5</text></g></g></g></g></svg>
