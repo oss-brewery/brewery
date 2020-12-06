@@ -1,0 +1,8 @@
+Setting
+
+SPI-Frequenz:	12.5 MHz
+READ:		16bit
+WRITE:		16bit
+Number MCP´s:	2
+
+Average Time:	420 µs
