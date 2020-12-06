@@ -1,5 +1,6 @@
 package com.pipiobjo.brewery.sensors;
 
+import com.diozero.api.SensorInterface;
 import com.diozero.api.SpiClockMode;
 import com.diozero.api.SpiDevice;
 import com.diozero.api.ThermometerInterface;
@@ -8,6 +9,7 @@ import com.pipiobjo.brewery.adapters.FlameTempSensor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Closeable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -16,8 +18,7 @@ import java.math.RoundingMode;
  * MCP23S17 Version 1.0
  * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
  */
-public class MCP23S17  {
-    public static final BigDecimal MAX_TEMPRATURE = new BigDecimal(1023.75);
+public class MCP23S17  implements SensorInterface {
     private static final Logger log = LoggerFactory.getLogger(MCP23S17.class);
     private static final int MAX_SPI_CLOCK_FREQUENCY = 12_500_000;
 
@@ -37,27 +38,27 @@ public class MCP23S17  {
             throw new UnsupportedOperationException("the given frequency is higher than supported max:" + MAX_SPI_CLOCK_FREQUENCY);
         }
         try{
-        device = new SpiDevice(controller, chipSelect, frequence,SpiClockMode.MODE_0, lsbFirst);
+        device = new SpiDevice(controller, chipSelect, frequence, SpiClockMode.MODE_0, lsbFirst);
         }catch (Exception e){
             log.error("Error while init device ", e);
-            device.close();
+//            device.close();
             throw e;
         }
     }
 
 
-    //@Override
+    @Override
     public void close() {
         if (device != null) {
+            log.info("closing spi bus device {}", device);
             device.close();
         }
     }
 
-    //@Override
     public void setRegister(byte deviceOpcode, byte Register, byte spiMCP_Data) throws RuntimeIOException {
         byte[] write = new byte[]{deviceOpcode,Register,spiMCP_Data};
-        device.write(write);
-        BigInteger binaryValue = new BigInteger(readData());
+        byte[] bytes = device.writeAndRead(write);
+        BigInteger binaryValue = new BigInteger(bytes);
 
 
     }

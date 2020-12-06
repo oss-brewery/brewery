@@ -9,9 +9,9 @@ import javax.enterprise.context.ApplicationScoped;
 
 
 @ApplicationScoped
-public class ExtensionBoard {
+public class ExtensionBoard_OLD {
 
-    public ExtensionBoard(){
+    public ExtensionBoard_OLD(){
 
 
 /**

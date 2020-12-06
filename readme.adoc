@@ -124,6 +124,8 @@ sudo reboot
 ----
 /boot/firmare/:qusercfg.txt
 dtparam=spi=on
+dtoverlay=spi0-2cs
+dtoverlay=spi1-2cs
 ----
 
 

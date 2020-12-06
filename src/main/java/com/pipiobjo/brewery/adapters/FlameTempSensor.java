@@ -26,7 +26,7 @@ public class FlameTempSensor {
 
     public void spi(){
         log.info("init temp bus listener");
-        tempSensor = new MAX6675V12(0,chipselect, freq, SpiClockMode.MODE_0);
+//        tempSensor = new MAX6675V12(0,chipselect, freq, SpiClockMode.MODE_0);
         float temperature = tempSensor.getTemperature();
         log.info("temp {}", temperature);
 

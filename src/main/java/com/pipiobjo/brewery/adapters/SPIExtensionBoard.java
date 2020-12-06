@@ -1,10 +1,13 @@
 package com.pipiobjo.brewery.adapters;
 
+import com.diozero.api.GpioPullUpDown;
+import com.diozero.devices.Button;
 import com.pipiobjo.brewery.sensors.MCP23S17;
 import io.quarkus.runtime.ShutdownEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 
@@ -40,34 +43,48 @@ public class SPIExtensionBoard {
 
 
     //chiselect == cs // ss -> 0 / 1
-    int chipselect = 1;
-    int freq = 12500000;
+    static int chipselect = 0;
+    static int freq = 12_500_000 - 1000;
+
     //modes cpha oder cpol
     boolean lsbFirst = false; // leastSignifactBit kommt am ende
-    MCP23S17 extensionBoard = new MCP23S17(0,chipselect, freq);
+    private static final MCP23S17 extensionBoard = new MCP23S17(0,chipselect, freq); // working
+
+
+    @PostConstruct
+    void init() {
+        log.info("init extension board");
+//        extensionBoard = new MCP23S17(0,chipselect, freq); // working
+
+    }
+
+
 
     public void spi(){
+//        extensionBoard = new MCP23S17(0,chipselect, freq);
         log.info("init temp bus listener");
-
         // enable HAEN for enable addressing pins
         extensionBoard.setRegister(IOEXPw, IOCON, (byte)0b00001000);
-
+        log.info("1");
         // Konfiguration: Port A, Pin 0 als output
         // 0xFE = 0b11111110
         extensionBoard.setRegister(IOEXPw_1, IODIRB, (byte)0xFE);
         extensionBoard.setRegister(IOEXPw_2, IODIRB, (byte)0xFE);
-
+        log.info("2");
         // write output
         extensionBoard.setRegister(IOEXPw_1, OLATB, (byte)0x01);
         extensionBoard.setRegister(IOEXPw_2, OLATB, (byte)0x01);
-
-        //Extension_Board.close();
+        log.info("3");
+//        extensionBoard.close();
     }
 
     void onStop(@Observes ShutdownEvent ev) {
-        log.info("The application is stopping...");
+        log.info("The application is stopping... {}", extensionBoard);
         if(extensionBoard !=null){
+            log.info("The application is stopping... closing extension board");
             extensionBoard.close();
+        }else{
+            log.info("The application is stopping... closing extension board ... but its not there");
         }
     }
 

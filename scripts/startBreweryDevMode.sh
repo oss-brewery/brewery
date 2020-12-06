@@ -70,7 +70,7 @@ BREWERY_PID_FILE=$BREWERY_BACKEND_HOME/pid
 echo "BREWERY_BACKEND_HOME=$BREWERY_BACKEND_HOME"
 
 cd $BREWERY_BACKEND_HOME
-#./mvnw clean package
+./mvnw clean package
 
 
 
