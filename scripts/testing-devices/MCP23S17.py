@@ -1,9 +1,9 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
-#import smbus
 import sys, spidev
 
+# pip install spidev
 # Slaveadresse des MCP23S17
 # IOEXP = 0x20
 SPIBUS = 0     # SPI0

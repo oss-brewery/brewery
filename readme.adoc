@@ -186,7 +186,7 @@ sudo vcdbg log msg
 
 
 
-=== ic2 board erweiterung
+=== ic2 board erweiterung - for the moment not in use
 
 [source, bash]
 ----
@@ -198,3 +198,11 @@ https://www.raspberrypi-spy.co.uk/2014/11/enabling-the-i2c-interface-on-the-rasp
 http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html
 
 
+
+
+== Java Setup
+
+UI to select java:
+
+jdk https://adoptopenjdk.net/installation.html#archives
+graalvm https://github.com/graalvm/graalvm-ce-builds/releases/tag/vm-20.3.0
