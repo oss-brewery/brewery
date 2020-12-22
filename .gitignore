@@ -5,6 +5,6 @@ target/
 
 .project
 
-/.idea/**
+/.idea/**/*.*
 
 backend.iml
