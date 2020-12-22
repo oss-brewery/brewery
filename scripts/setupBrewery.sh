@@ -118,12 +118,6 @@ createUDEVRule()
 
 
 
-installDeps()
-{
-
-
-}
-
 
 
 
@@ -145,8 +139,8 @@ echo "Executing script as $(whoami)"
 
 if      [ $SYSTEM_ARCH = "armv7l" ]; then
         USE64BIT=false
-        #prepareArch32JAVA
-        prepareArc64JAVA
+        prepareArch32JAVA
+        #prepareArc64JAVA
 elif    [ $SYSTEM_ARCH = "aarch64" ]; then
         USE64BIT=true
         prepareArc64JAVA
