@@ -7,7 +7,7 @@ ORIGIN_PWD="$PWD"
 JAVA_BIN32=$SCRIPTPATH/../../java/jdk-11.0.9.1+1-jre/bin/java
 JAVA_BIN64=$SCRIPTPATH/../../java/graalvm-ce-java11-20.2.0/bin/java
 #BREWERY_USER=brewery
-BREWERY_USER=pi
+BREWERY_USER=ubuntu
 
 
 

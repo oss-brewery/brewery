@@ -5,8 +5,8 @@ set -x
 # define constants
 
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-BREWERY_USER="pi"
-BREWERY_GROUP="pi"
+BREWERY_USER="ubuntu"
+BREWERY_GROUP="ubuntu"
 SYSTEM_ARCH=`uname -m`
 USE64BIT=undefined
 
