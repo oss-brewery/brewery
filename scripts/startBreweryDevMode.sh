@@ -4,10 +4,13 @@ set -x
 # define constants
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 ORIGIN_PWD="$PWD"
-JAVA_BIN32=$SCRIPTPATH/../../java/jdk-11.0.9.1+1-jre/bin/java
-JAVA_BIN64=$SCRIPTPATH/../../java/graalvm-ce-java11-20.2.0/bin/java
+JAVA_HOME32=$SCRIPTPATH/../../java/jdk-11.0.9.1+1
+JAVA_BIN32=$JAVA_HOME32/bin/java
+
+JAVA_HOME64=$SCRIPTPATH/../../java/graalvm-ce-java11-20.2.0
+JAVA_BIN64=$JAVA_HOME64/bin/java
 #BREWERY_USER=brewery
-BREWERY_USER=ubuntu
+BREWERY_USER=pi
 
 
 
@@ -17,6 +20,7 @@ BREWERY_USER=ubuntu
 prepareArch32SpecificVariables()
 {
   JAVA_BIN=$JAVA_BIN32
+  export JAVA_HOME=$JAVA_HOME32
 
 }
 
@@ -24,6 +28,7 @@ prepareArch32SpecificVariables()
 prepareArch64SpecificVariables()
 {
   JAVA_BIN=$JAVA_BIN64
+  export JAVA_HOME=$JAVA_HOME64
 }
 
 

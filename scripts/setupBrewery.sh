@@ -14,9 +14,9 @@ USE64BIT=undefined
 JAVA_HOME_BASE_PATH=$SCRIPTPATH/../../java
 
 
-#TODO use github api to get latest release
-JDK32_URL="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jre_arm_linux_hotspot_11.0.9.1_1.tar.gz"
-JDK32_CHECKSUM_URL="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jre_arm_linux_hotspot_11.0.9.1_1.tar.gz.sha256.txt"
+#TODO use github api to get latest release - https://adoptopenjdk.net/releases.html
+JDK32_URL="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_arm_linux_hotspot_11.0.9.1_1.tar.gz"
+JDK32_CHECKSUM_URL="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_arm_linux_hotspot_11.0.9.1_1.tar.gz.sha256.txt"
 JDK32_FILENAME="$(basename -- $JDK32_URL)"
 
 #TODO use github api to get latest release
@@ -37,7 +37,7 @@ prepareArc32JAVA()
   cd $JAVA_HOME_BASE_PATH
   if [ ! -d "$JAVA_HOME_BASE_PATH/$JDK32_FILENAME" ]; then
 
-    if [ ! -f "$JAVA_HOME_BASE_PATH/OpenJDK11U-jre_arm_linux_hotspot_11.0.9.1_1.tar.gz" ]; then
+    if [ ! -f "$JAVA_HOME_BASE_PATH/$JDK32_FILENAME.tar.gz" ]; then
         wget $JDK32_URL
 
     fi
@@ -49,7 +49,7 @@ prepareArc32JAVA()
         exit -1;
     fi
 
-    tar xzf OpenJDK11U-jre_arm_linux_hotspot_11.0.9.1_1.tar.gz
+    tar xzf OpenJDK11U-jdk_arm_linux_hotspot_11.0.9.1_1.tar.gz
 
     #switch owner
     chown -R $BREWERY_USER:$BREWERY_GROUP $JAVA_HOME_BASE_PATH
@@ -118,9 +118,6 @@ createUDEVRule()
 
 
 
-
-
-
 ###
 ### MAIN
 ###
@@ -140,7 +137,7 @@ echo "Executing script as $(whoami)"
 if      [ $SYSTEM_ARCH = "armv7l" ]; then
         USE64BIT=false
         prepareArc32JAVA
-        #prepareArc64JAVA
+
 elif    [ $SYSTEM_ARCH = "aarch64" ]; then
         USE64BIT=true
         prepareArc64JAVA
