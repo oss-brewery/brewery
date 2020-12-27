@@ -3,16 +3,11 @@ package com.pipiobjo.brewery.sensors;
 import com.diozero.api.SensorInterface;
 import com.diozero.api.SpiClockMode;
 import com.diozero.api.SpiDevice;
-import com.diozero.api.ThermometerInterface;
 import com.diozero.util.RuntimeIOException;
-import com.pipiobjo.brewery.adapters.FlameTempSensor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Closeable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.RoundingMode;
 
 /**
  * MCP23S17 Version 1.0
@@ -62,6 +57,23 @@ public class MCP23S17  implements SensorInterface {
 
 
     }
+
+    /**
+     *
+     * @param deviceOpcode
+     * @param Register
+     * @param spiMCP_Data
+     * @return return the third byte of the byte[]
+     * @throws RuntimeIOException
+     */
+    public byte getRegister(byte deviceOpcode, byte Register, byte spiMCP_Data) throws RuntimeIOException {
+        byte[] write = new byte[]{deviceOpcode,Register,spiMCP_Data};
+        byte[] bytes = device.writeAndRead(write);
+        return bytes[2];
+
+
+    }
+
 
 
 

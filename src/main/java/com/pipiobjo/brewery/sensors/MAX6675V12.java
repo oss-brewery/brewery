@@ -42,7 +42,7 @@ public class MAX6675V12 implements ThermometerInterface {
         device = new SpiDevice(controller, chipSelect, frequence, mode, lsbFirst);
         }catch (Exception e){
             log.error("Error while init temp sensor ", e);
-            device.close();
+            close();
             throw e;
         }
     }
@@ -51,6 +51,7 @@ public class MAX6675V12 implements ThermometerInterface {
     @Override
     public void close() {
         if (device != null) {
+            log.info("closing");
             device.close();
         }
     }

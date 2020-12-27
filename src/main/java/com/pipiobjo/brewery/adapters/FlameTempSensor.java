@@ -20,7 +20,7 @@ public class FlameTempSensor {
 
 
     //chiselect == cs // ss -> 0 / 1
-    static int chipselect = 0;
+    static int chipselect = 1;
     static int freq = 1000000;
     //modes cpha oder cpol
     boolean lsbFirst = false; // leastSignifactBit kommt am ende

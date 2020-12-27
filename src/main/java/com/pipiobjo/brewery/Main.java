@@ -1,12 +1,8 @@
 package com.pipiobjo.brewery;
 
-import com.pipiobjo.brewery.adapters.SPIExtensionBoard;
-import com.pipiobjo.brewery.services.BrewingService;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
-
-import javax.inject.Inject;
 
 @QuarkusMain
 public class Main {

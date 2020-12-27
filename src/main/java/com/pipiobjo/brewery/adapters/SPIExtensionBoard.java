@@ -2,14 +2,17 @@ package com.pipiobjo.brewery.adapters;
 
 import com.diozero.api.GpioPullUpDown;
 import com.diozero.devices.Button;
+import com.diozero.util.SleepUtil;
 import com.pipiobjo.brewery.sensors.MCP23S17;
 import io.quarkus.runtime.ShutdownEvent;
+import io.quarkus.scheduler.Scheduled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import java.util.concurrent.TimeUnit;
 
 /**
  * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
@@ -48,34 +51,86 @@ public class SPIExtensionBoard {
 
     //modes cpha oder cpol
     boolean lsbFirst = false; // leastSignifactBit kommt am ende
-    private static final MCP23S17 extensionBoard = new MCP23S17(0,chipselect, freq); // working
+    private MCP23S17 extensionBoard = null;
+//    private static final MCP23S17 extensionBoard = new MCP23S17(0,chipselect, freq); // working
 
 
     @PostConstruct
     void init() {
-        log.info("init extension board");
-//        extensionBoard = new MCP23S17(0,chipselect, freq); // working
+        if(extensionBoard == null){
+            log.info("init extension board device");
+            extensionBoard = new MCP23S17(0,chipselect, freq);
+
+            // enable HAEN for enable addressing pins
+            log.info("use hardware adresses");
+            extensionBoard.setRegister(IOEXPw, IOCON, (byte)0b00001000);
+
+            // Konfiguration: Port B, Pin 0 als output
+            // 0xFE = 0b11111110
+            // Konfiguration: Port B, Pin 7,5,3,1,0 als output
+            // 0xFC = 0b01010100
+            log.info("define output pins");
+            extensionBoard.setRegister(IOEXPw_1, IODIRB, (byte)0x54);
+            extensionBoard.setRegister(IOEXPw_2, IODIRB, (byte)0xFE);
+
+        }
+
+    }
+
+    @Scheduled(every="10s", delayUnit = TimeUnit.MILLISECONDS)
+    void increment() {
+        byte registerState = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
+        if((registerState & 0x04) > 0){ // get 3 bit -> gpio_b_2
+            log.info("button pushed");
+        }else{
+            log.info("button released");
+        }
 
     }
 
 
 
     public void spi(){
-//        extensionBoard = new MCP23S17(0,chipselect, freq);
-        log.info("init temp bus listener");
-        // enable HAEN for enable addressing pins
-        extensionBoard.setRegister(IOEXPw, IOCON, (byte)0b00001000);
-        log.info("1");
-        // Konfiguration: Port A, Pin 0 als output
-        // 0xFE = 0b11111110
-        extensionBoard.setRegister(IOEXPw_1, IODIRB, (byte)0xFE);
-        extensionBoard.setRegister(IOEXPw_2, IODIRB, (byte)0xFE);
-        log.info("2");
-        // write output
-        extensionBoard.setRegister(IOEXPw_1, OLATB, (byte)0x01);
-        extensionBoard.setRegister(IOEXPw_2, OLATB, (byte)0x01);
-        log.info("3");
-//        extensionBoard.close();
+
+        blinkLED();
+
+        toggle230VRelais();
+
+
+    }
+
+    private void blinkLED() {
+        // write output - switch LED on
+        log.info("write values");
+        byte register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+        register = (byte) (register | (byte)0x01);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+
+        // switch LED off
+        SleepUtil.sleepSeconds(5);
+        register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+        register = (byte) (register & (byte)0xFE);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+
+        // switch LED on again
+        SleepUtil.sleepSeconds(5);
+        register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+        register = (byte) (register | (byte)0x01);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+        SleepUtil.sleepSeconds(5);
+    }
+
+    private void toggle230VRelais() {
+        byte register;// write relais 230V on, switch to 0 -> negative switch logik
+        register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
+        register = (byte) (register & (byte)0xFD);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+
+        SleepUtil.sleepSeconds(5);
+        // write relais 230V off, switch to 1
+        register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
+        register = (byte) (register | (byte)0x02);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
     }
 
     void onStop(@Observes ShutdownEvent ev) {
