@@ -27,19 +27,14 @@ public class SampleRest {
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
 
-//        new ExtensionBoard();
-//        new DS18B20();
 
-//        spiExtensionBoard.spi();
-
+//      new DS18B20(null);
 //        flameTempSensor.spi();
 //        breweryStatusLED.doMagic();
 
 
         spiExtensionBoard.spi();
 
-//        SPIExtensionBoard board = new SPIExtensionBoard();
-//        board.spi();
 
 
         return "hello2";

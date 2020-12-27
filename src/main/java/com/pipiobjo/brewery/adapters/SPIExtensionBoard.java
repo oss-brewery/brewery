@@ -71,7 +71,7 @@ public class SPIExtensionBoard {
             // 0xFC = 0b01010100
             log.info("define output pins");
             extensionBoard.setRegister(IOEXPw_1, IODIRB, (byte)0x54);
-            extensionBoard.setRegister(IOEXPw_2, IODIRB, (byte)0xFE);
+            extensionBoard.setRegister(IOEXPw_2, IODIRB, (byte)0xFC);
 
         }
 
@@ -83,7 +83,7 @@ public class SPIExtensionBoard {
         if((registerState & 0x04) > 0){ // get 3 bit -> gpio_b_2
             log.info("button pushed");
         }else{
-            log.info("button released");
+//            log.info("button released");
         }
 
     }
@@ -92,11 +92,79 @@ public class SPIExtensionBoard {
 
     public void spi(){
 
-        blinkLED();
-
-        toggle230VRelais();
+        beep();
 
 
+//        motorControl();
+//        blinkLED();
+//        toggle230VRelais();
+
+
+    }
+
+    private void beep() {
+        byte register = extensionBoard.getRegister(IOEXPw_2, OLATB, (byte) 0x00);
+        long periodLenght=10; // ms
+        for (int i = 0; i < 50; i++) {
+            // single step
+            // set pull high
+            register = extensionBoard.getRegister(IOEXPw_2, OLATB, (byte) 0x00);
+            register = (byte) (register | (byte) 0x02);
+            extensionBoard.setRegister(IOEXPw_2, OLATB, register);
+            SleepUtil.sleepMillis(periodLenght/2);
+            // set pull low
+            register = extensionBoard.getRegister(IOEXPw_2, OLATB, (byte) 0x00);
+            register = (byte) (register & (byte) 0xFD);
+            extensionBoard.setRegister(IOEXPw_2, OLATB, register);
+            SleepUtil.sleepMillis(periodLenght/2);
+        }
+    }
+
+    private void motorControl() {
+        log.info("start motor");
+        // motor controller
+        // enable driver
+        byte register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+        register = (byte) (register & (byte)0x7F);
+//        register = (byte) (register | (byte)0x80);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+
+        // set cycle direction
+        // open - right
+
+        register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+        register = (byte) (register & (byte)0xDF);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+
+        // close - left
+//        register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+//        register = (byte) (register | (byte)0x20);
+//        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+
+
+        // step control
+        long periodLenght=100; // ms
+        for (int i = 0; i < 50; i++) {
+            // single step
+            // set pull high
+            register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+            register = (byte) (register | (byte) 0x08);
+            extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+            SleepUtil.sleepMillis(periodLenght/2);
+            // set pull low
+            register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+            register = (byte) (register & (byte) 0xF7);
+            extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+            SleepUtil.sleepMillis(periodLenght/2);
+        }
+
+        // optional disable STO - motor is  not locked
+        register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
+        register = (byte) (register | (byte)0x80);
+        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
+
+
+        log.info("end motor");
     }
 
     private void blinkLED() {
