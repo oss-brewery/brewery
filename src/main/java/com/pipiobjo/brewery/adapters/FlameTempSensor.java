@@ -2,10 +2,12 @@ package com.pipiobjo.brewery.adapters;
 
 import com.diozero.api.SpiClockMode;
 import com.pipiobjo.brewery.sensors.MAX6675V12;
+import com.pipiobjo.brewery.sensors.MCP23S17;
 import io.quarkus.runtime.ShutdownEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 
@@ -18,19 +20,27 @@ public class FlameTempSensor {
 
 
     //chiselect == cs // ss -> 0 / 1
-    int chipselect = 0;
-    int freq = 1000000;
+    static int chipselect = 0;
+    static int freq = 1000000;
     //modes cpha oder cpol
     boolean lsbFirst = false; // leastSignifactBit kommt am ende
-    MAX6675V12 tempSensor = null;
+    private MAX6675V12 tempSensor = null;
+
+    @PostConstruct
+    void init() {
+        if(tempSensor == null){
+            log.info("init extension board device");
+            tempSensor = new MAX6675V12(0,chipselect, freq, SpiClockMode.MODE_0);
+        }
+
+    }
+
 
     public void spi(){
         log.info("init temp bus listener");
-//        tempSensor = new MAX6675V12(0,chipselect, freq, SpiClockMode.MODE_0);
         float temperature = tempSensor.getTemperature();
         log.info("temp {}", temperature);
 
-        tempSensor.close();
     }
 
     void onStop(@Observes ShutdownEvent ev) {
