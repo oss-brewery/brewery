@@ -94,7 +94,8 @@ chmod -R o+rw $BREWERY_BACKEND_HOME
 #JAVA_BIN=/usr/lib/jvm/java-11-openjdk-arm64/bin/java
 EXECUTABLE_JAR_PATH=$BREWERY_BACKEND_HOME/target/quarkus-app/quarkus-run.jar
 #BREWERY_START_CMD="QUARKUS_LAUNCH_DEVMODE=true $JAVA_BIN -jar $EXECUTABLE_JAR_PATH 2>&1 & </dev/null"
-BREWERY_START_CMD="QUARKUS_LAUNCH_DEVMODE=true $JAVA_BIN -jar $EXECUTABLE_JAR_PATH"
+JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+BREWERY_START_CMD="QUARKUS_LAUNCH_DEVMODE=true $JAVA_BIN $JAVA_OPTS -jar $EXECUTABLE_JAR_PATH"
 
 #Execute as defined user
 #sudo -u $BREWERY_USER bash -c "$BREWERY_START_CMD"
