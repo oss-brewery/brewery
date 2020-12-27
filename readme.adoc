@@ -122,7 +122,7 @@ sudo reboot
 
 [source, bash]
 ----
-/boot/firmare/:qusercfg.txt
+/boot/firmare/usercfg.txt
 dtparam=spi=on
 dtoverlay=spi0-2cs
 dtoverlay=spi1-2cs
