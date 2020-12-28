@@ -70,17 +70,26 @@ public class SPIExtensionBoard {
             // Konfiguration: Port B, Pin 7,5,3,1,0 als output
             // 0xFC = 0b01010100
             log.info("define output pins");
-            extensionBoard.setRegister(IOEXPw_1, IODIRB, (byte)0x54);
-            extensionBoard.setRegister(IOEXPw_2, IODIRB, (byte)0xFC);
+            byte tempregister = (byte)0xFF; // all as input --> default
+            tempregister = extensionBoard.setBitinByte(tempregister,false,0);  // set as output
+            tempregister = extensionBoard.setBitinByte(tempregister,false,1);  // set as output
+            tempregister = extensionBoard.setBitinByte(tempregister,false,3);  // set as output
+            tempregister = extensionBoard.setBitinByte(tempregister,false,5);  // set as output
+            tempregister = extensionBoard.setBitinByte(tempregister,false,7);  // set as output
+            extensionBoard.setRegister(IOEXPw_1, IODIRB, tempregister);
 
+            tempregister = (byte)0xFF; // all as input --> default
+            tempregister = extensionBoard.setBitinByte(tempregister,false,0);  // set as output
+            tempregister = extensionBoard.setBitinByte(tempregister,false,1);  // set as output
+            extensionBoard.setRegister(IOEXPw_2, IODIRB, tempregister);
         }
 
     }
 
-    @Scheduled(every="10s", delayUnit = TimeUnit.MILLISECONDS)
+    @Scheduled(every="2s", delayUnit = TimeUnit.MILLISECONDS)
     void increment() {
-        byte registerState = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
-        if((registerState & 0x04) > 0){ // get 3 bit -> gpio_b_2
+        byte register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
+        if(extensionBoard.getBitinByte(register,2)){ // get 3 bit -> gpio_b_2
             log.info("button pushed");
         }else{
 //            log.info("button released");
@@ -95,7 +104,7 @@ public class SPIExtensionBoard {
         beep();
 
 
-//        motorControl();
+        motorControl();
 //        blinkLED();
 //        toggle230VRelais();
 
@@ -103,18 +112,19 @@ public class SPIExtensionBoard {
     }
 
     private void beep() {
+
         byte register = extensionBoard.getRegister(IOEXPw_2, OLATB, (byte) 0x00);
         long periodLenght=10; // ms
         for (int i = 0; i < 50; i++) {
             // single step
             // set pull high
             register = extensionBoard.getRegister(IOEXPw_2, OLATB, (byte) 0x00);
-            register = (byte) (register | (byte) 0x02);
+            register = extensionBoard.setBitinByte(register,true,1);
             extensionBoard.setRegister(IOEXPw_2, OLATB, register);
             SleepUtil.sleepMillis(periodLenght/2);
             // set pull low
             register = extensionBoard.getRegister(IOEXPw_2, OLATB, (byte) 0x00);
-            register = (byte) (register & (byte) 0xFD);
+            register = extensionBoard.setBitinByte(register,false,1);
             extensionBoard.setRegister(IOEXPw_2, OLATB, register);
             SleepUtil.sleepMillis(periodLenght/2);
         }
@@ -125,20 +135,19 @@ public class SPIExtensionBoard {
         // motor controller
         // enable driver
         byte register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-        register = (byte) (register & (byte)0x7F);
-//        register = (byte) (register | (byte)0x80);
+        register = extensionBoard.setBitinByte(register,false,7);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
 
         // set cycle direction
         // open - right
 
         register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-        register = (byte) (register & (byte)0xDF);
+        register = extensionBoard.setBitinByte(register,false,5);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
 
         // close - left
 //        register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-//        register = (byte) (register | (byte)0x20);
+//        register = extensionBoard.setBitinByte(register,true,5);
 //        extensionBoard.setRegister(IOEXPw_1, OLATB, register);
 
 
@@ -148,19 +157,18 @@ public class SPIExtensionBoard {
             // single step
             // set pull high
             register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-            register = (byte) (register | (byte) 0x08);
+            register = extensionBoard.setBitinByte(register,true,3);
             extensionBoard.setRegister(IOEXPw_1, OLATB, register);
             SleepUtil.sleepMillis(periodLenght/2);
             // set pull low
-            register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-            register = (byte) (register & (byte) 0xF7);
+            register = extensionBoard.setBitinByte(register,false,3);
             extensionBoard.setRegister(IOEXPw_1, OLATB, register);
             SleepUtil.sleepMillis(periodLenght/2);
         }
 
         // optional disable STO - motor is  not locked
         register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-        register = (byte) (register | (byte)0x80);
+        register = extensionBoard.setBitinByte(register,true,7);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
 
 
@@ -171,19 +179,19 @@ public class SPIExtensionBoard {
         // write output - switch LED on
         log.info("write values");
         byte register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-        register = (byte) (register | (byte)0x01);
+        register = extensionBoard.setBitinByte(register,true,0);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
 
         // switch LED off
         SleepUtil.sleepSeconds(5);
         register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-        register = (byte) (register & (byte)0xFE);
+        register = extensionBoard.setBitinByte(register,false,0);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
 
         // switch LED on again
         SleepUtil.sleepSeconds(5);
         register = extensionBoard.getRegister(IOEXPr_1, OLATB, (byte) 0x00);
-        register = (byte) (register | (byte)0x01);
+        register = extensionBoard.setBitinByte(register,true,0);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
         SleepUtil.sleepSeconds(5);
     }
@@ -191,13 +199,13 @@ public class SPIExtensionBoard {
     private void toggle230VRelais() {
         byte register;// write relais 230V on, switch to 0 -> negative switch logik
         register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
-        register = (byte) (register & (byte)0xFD);
+        register = extensionBoard.setBitinByte(register,false,1);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
 
         SleepUtil.sleepSeconds(5);
         // write relais 230V off, switch to 1
         register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
-        register = (byte) (register | (byte)0x02);
+        register = extensionBoard.setBitinByte(register,true,1);
         extensionBoard.setRegister(IOEXPw_1, OLATB, register);
     }
 
