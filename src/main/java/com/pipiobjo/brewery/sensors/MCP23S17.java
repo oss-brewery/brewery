@@ -58,14 +58,14 @@ public class MCP23S17  implements SensorInterface {
 
     }
 
-    public byte setBitinByte(byte Register, boolean value,int bitNum) throws RuntimeIOException {
+    public byte setBitinByte(byte register, boolean value,int bitNum) throws RuntimeIOException {
         if (value) {
             // set high
-            return (byte) (Register | ((byte) 0x01<<bitNum));
+            return (byte) (register | ((byte) 0x01<<bitNum));
         }
         else {
             // set low
-            return (byte) (Register & ~((byte) 0x01<<bitNum));
+            return (byte) (register & ~((byte) 0x01<<bitNum));
         }
     }
 
