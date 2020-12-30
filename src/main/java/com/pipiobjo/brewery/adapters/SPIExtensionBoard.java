@@ -102,11 +102,9 @@ public class SPIExtensionBoard {
     public void spi(){
 
         beep();
-
-
         motorControl();
-//        blinkLED();
-//        toggle230VRelais();
+        blinkLED();
+        toggle230VRelais();
 
 
     }

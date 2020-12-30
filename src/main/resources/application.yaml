@@ -8,3 +8,11 @@ quarkus:
 #quarkus.package.type=mutable-jar
 #quarkus.live-reload.password=changeit
 #quarkus.live-reload.url=http://brewery:8080
+
+
+brewery:
+  inpot:
+    w1-temp-device-path: /sys/bus/w1/devices/w1_bus_master1/
+    w1-temp-top-id: 123
+    w1-temp-middle-id: 123
+    w1-temp-bottom-id: 123
