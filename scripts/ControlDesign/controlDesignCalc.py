@@ -61,3 +61,34 @@ def calc1():
     
     outList=[calc_R_B,calc_R_LS,numNormcoef,denNormcoef];
     return outList;
+
+def calcburnerPID(T_sensor,normalizationFaktor,bandwidthDiv):
+    
+    # checking input
+    if (True!=isinstance(T_sensor,float)):
+        # error
+        print('T_sensor must be a float')
+        return -1;
+    if (True!=isinstance(normalizationFaktor,float)):
+        # error
+        print('normalizationFaktor must be a float')
+        return -1;
+    if (True!=isinstance(bandwidthDiv,float)):
+        # error
+        print('bandwidth must be a float')
+        return -1;
+       
+    # calculating the parameters for an PI-controller
+    w_d = 1/(T_sensor*bandwidthDiv);            # controller bandwidth
+
+    # serial
+    K_PS = T_sensor*w_d/normalizationFaktor;    # Proportional-gain 
+    w_IS = 1/T_sensor;                          # Integrator-base frequency [rad/s]
+    
+    # parallel
+    K_PP_B = K_PS;                              # Proportional-gain [xx/rad]
+    K_IP_B = K_PS*w_IS;                         # Integrator-gain [xx/rads]
+       
+    # output
+    outList=[K_PP_B,K_IP_B];
+    return outList;

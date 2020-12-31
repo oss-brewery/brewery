@@ -10,3 +10,5 @@ target/
 backend.iml
 
 .idea/
+
+**.pyc
