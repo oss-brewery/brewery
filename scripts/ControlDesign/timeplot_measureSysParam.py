@@ -5,6 +5,7 @@ Created on Wed Dec 30 18:45:45 2020
 @author: Peppel
 """
 # imports
+import numpy as np
 import controlDesignCalc as cdc
 from scipy import signal
 #import sympy as sym
@@ -19,7 +20,7 @@ from Bode.Bode import Bode_plot
 delta_T_boiler = 40;    # [K]
 delta_T_burner = 300;   # [K]
 TimeConstant = 170;     # [s]
-C_S_value = 4e5;     # [J/K]
+C_S_value = 4e5;        # [J/K]
 
 
 ##############################################################
@@ -68,6 +69,21 @@ yout_meas = yout*delta_T_burner;
 
 # plot the step response
 plt.plot(T,yout_meas)
+
+# drawing lines for understanding the PT1 step response
+########################################################
+# asymptote of maximum out value
+stepLimit=[numNumbercoef[0]*delta_T_burner]*len(T);
+plt.plot(T,stepLimit);
+
+# auxiliary line for measuring the time constant
+T_line = np.linspace(0,TimeConstant,len(T));
+Line_1_out = T_line*(numNumbercoef[0]*delta_T_burner/TimeConstant);
+plt.plot(T_line,Line_1_out);
+
+# point for time constant at maximum value
+plt.scatter(max(T_line),max(Line_1_out));
+plt.annotate("T1",(max(T_line),max(Line_1_out)))
 
 # adding the Bode-diagram
 Bode_plot(systemBrewery,omegamin='auto',omegamax='auto')
