@@ -34,7 +34,7 @@ m_water = 55;                                   # [Kg] weigth
 m_cereals = 40;                                 # [Kg] weigth
  
 # calc temp values from parameters
-ABottom = np.pi*RadiusBottom^2;                             # [m^2] area 
+ABottom = np.pi*RadiusBottom**2;                            # [m^2] area 
 R_th_Bottom=1/(ABottom*HeatTransferCoefficientBottom);      # [W/K] thermal resistor bottom 
 
 # thermal capacity

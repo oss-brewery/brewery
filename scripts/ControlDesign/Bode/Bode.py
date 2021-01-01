@@ -9,6 +9,26 @@ from control import matlab as matlab
 
 # Bode-diagram with magnitude and phase
 def Bode_plot(system,omegamin='auto',omegamax='auto',**kwargs):
+    """
+    old lib --> lti function
+    e.g.    
+        Bode_plot(signal.lti) 
+    
+    Parameters
+    ----------
+    system : TYPE
+        matlab.sys / list of matlab.sys
+    omegamin : int, optional
+        :math:`\omega` The default is 'auto'.
+    omegamax : int, optional
+        The default is 'auto'.
+    **kwargs : TYPE
+        DESCRIPTION.
+    Returns
+    -------
+    None.
+    
+    """
     # bode-diagram of a system
 
     # const
@@ -84,27 +104,33 @@ def Bode_plot(system,omegamin='auto',omegamax='auto',**kwargs):
     plt.show()
     return
 
-def Bode_plot1(syslist,omegamin='auto',omegamax='auto',**kwargs):
-    '''
-    e.g.    
-        Bode_plot1(syslist,fileName='Test.svg',labellist=['label1','label2'])
-    
+def Bode_plot_save(syslist,fileName=-1,omegamin='auto',omegamax='auto',**kwargs):
+    """
+    Plot Bode-diaragm of system(s).\n
+    Can be saved in a file.
+
     Parameters
     ----------
-    syslist : matlab.sys / list of matlab.sys
-        DESCRIPTION.
-    omegamin : int, optional
-        DESCRIPTION. The default is 'auto'.
-    omegamax : int, optional
-        DESCRIPTION. The default is 'auto'.
+    syslist : control.xferfcn.TransferFunction
+        list of systems or system
+    fileName : TYPE, optional
+        Name of the saved file. The default is -1.
+    omegamin : TYPE, optional
+        :math:`\omega_{min}` for ploting. The default is 'auto'.
+    omegamax : TYPE, optional
+        :math:`\omega_{max}` for ploting. The default is 'auto'.
     **kwargs : TYPE
         DESCRIPTION.
-    Returns
-    -------
-    None.
-    '''
-    
-    
+
+    Examples
+    ----------
+    >>>     Bode_plot_save(syslist,fileName='Test.svg',labellist=['label1','label2'])
+
+
+    .. todo::
+
+    """
+
     
     # bode-diagram of a system
 
@@ -206,7 +232,7 @@ def Bode_plot1(syslist,omegamin='auto',omegamax='auto',**kwargs):
     BodeList=[]
     
     while (i<len(syslist)):
-        BodeData = matlab.bode(syslist[i],omega_limits=omega_list,omega_num=n_omega,Plot=False)
+        BodeData = matlab.bode(syslist[i],Hz=False,omega_limits=omega_list,omega_num=n_omega,Plot=False)
         # BodeData ist a tuple --> (mag,phase,omega)
         BodeList.append(BodeData)
         
@@ -226,13 +252,22 @@ def Bode_plot1(syslist,omegamin='auto',omegamax='auto',**kwargs):
     # ticks Y-axis
     axs[1].yaxis.set_ticks(yt)
     
-    # labeel    
-    axs[0].legend(labellist,loc='best')
+    # legend   
+    axs[0].legend(labellist,loc='best')    
+    # x-Label
+    axs[0].set_xlabel('frequency (rad/s)')
+    axs[1].set_xlabel('frequency (rad/s)')    
+    # y-Label
+    axs[0].set_ylabel('Magnitude (dB)')
+    axs[1].set_ylabel('Phase (deg)')
     
     # save plot as ''
-    plt.savefig(fname=fileName)
+    if isinstance(fileName,str):
+        plt.savefig(fname=fileName)
+    else:
+        print('file was not saved')
 
     plt.show()
-    return
+    return 
 
 

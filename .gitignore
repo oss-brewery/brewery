@@ -12,3 +12,6 @@ backend.iml
 .idea/
 
 **.pyc
+
+*.pyc
+/scripts/ControlDesign/*.svg
