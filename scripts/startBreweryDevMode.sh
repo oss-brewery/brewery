@@ -2,7 +2,10 @@
 set -x
 
 # define constants
-SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+SCRIPTPATH="$(
+  cd "$(dirname "$0")" >/dev/null 2>&1
+  pwd -P
+)"
 ORIGIN_PWD="$PWD"
 JAVA_HOME32=$SCRIPTPATH/../../java/jdk-11.0.9.1+1
 JAVA_BIN32=$JAVA_HOME32/bin/java
@@ -12,62 +15,44 @@ JAVA_BIN64=$JAVA_HOME64/bin/java
 #BREWERY_USER=brewery
 BREWERY_USER=pi
 
-
-
 # define functions
 
-
-prepareArch32SpecificVariables()
-{
+prepareArch32SpecificVariables() {
   JAVA_BIN=$JAVA_BIN32
   export JAVA_HOME=$JAVA_HOME32
 
 }
 
-
-prepareArch64SpecificVariables()
-{
+prepareArch64SpecificVariables() {
   JAVA_BIN=$JAVA_BIN64
   export JAVA_HOME=$JAVA_HOME64
 }
-
-
-
-
-
 
 #
 # MAIN
 #
 
-
-
 # switch to root
 [ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 
-
-
-SYSTEM_ARCH=`uname -m`
+SYSTEM_ARCH=$(uname -m)
 USE64BIT=undefined
 
-if      [ $SYSTEM_ARCH = "armv7l" ]; then
-        USE64BIT=false
-        prepareArch32SpecificVariables
-elif    [ $SYSTEM_ARCH = "aarch64" ]; then
-        USE64BIT=true
-        prepareArch64SpecificVariables
-        exit
+if [ $SYSTEM_ARCH = "armv7l" ]; then
+  USE64BIT=false
+  prepareArch32SpecificVariables
+elif [ $SYSTEM_ARCH = "aarch64" ]; then
+  USE64BIT=true
+  prepareArch64SpecificVariables
+  exit
 else
-        echo "Unsupported OS $SYSTEM_ARCH"
-        exit -1
+  echo "Unsupported OS $SYSTEM_ARCH"
+  exit -1
 fi
 
 echo "USE64BIT: $USE64BIT"
 echo "JAVA_BIN=$JAVA_BIN"
 echo "SCRIPTPATH=$SCRIPTPATH"
-
-
-
 
 BREWERY_BACKEND_HOME="$SCRIPTPATH/.."
 BREWERY_PID_FILE=$BREWERY_BACKEND_HOME/pid
@@ -76,13 +61,6 @@ echo "BREWERY_BACKEND_HOME=$BREWERY_BACKEND_HOME"
 
 cd $BREWERY_BACKEND_HOME
 ./mvnw clean package
-
-
-
-
-
-
-
 
 #export QUARKUS_LAUNCH_DEVMODE=true
 #java -jar backend-0.0.1-SNAPSHOT-runner.jar
@@ -107,7 +85,6 @@ BREWERY_START_CMD="QUARKUS_LAUNCH_DEVMODE=true $JAVA_BIN $JAVA_OPTS -jar $EXECUT
 su -c "$BREWERY_START_CMD "
 #BREWERY_PID=$!
 #echo "$BREWERY_PID" > $BREWERY_BACKEND_HOME/pid
-
 
 # switch back to original pwd
 cd $ORIGIN_PWD
