@@ -166,9 +166,25 @@ graalvm https://github.com/graalvm/graalvm-ce-builds/releases/tag/vm-20.3.0
 
 === How to develop
 
-TODO:
-Explain steps with the new setup scripts
+.Start the setup script ones
+```bash
+/mnt/usb/repos/brewery-backend/scripts/./setupBrewery.sh
+```
+.Start the hot deployment script
+```bash
+/mnt/usb/repos/brewery-backend/scripts/./startBreweryDevMode.sh
+```
 
+For having a simple-to-use alias you can create them.
+```bash
+alias brewerySetup='/mnt/usb/repos/brewery-backend/scripts/./setupBrewery.sh'
+alias breweryDev='/mnt/usb/repos/brewery-backend/scripts/./startBreweryDevMode.sh'
+```
+
+So from now on you can start your developing with an alias on your raspberry pi and then from your IntelliJ.
+```bash
+breweryDev
+```
 
 
 
