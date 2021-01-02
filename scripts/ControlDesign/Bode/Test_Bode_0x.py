@@ -3,7 +3,7 @@
 from scipy import signal
 #import matplotlib.pyplot as plt
 import numpy as np
-from Bode import Bode_plot
+from Bode.Bode import Bode_plot
 
    
 #%matplotlib inline

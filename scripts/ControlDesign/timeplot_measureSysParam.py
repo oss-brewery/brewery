@@ -7,10 +7,11 @@ Created on Wed Dec 30 18:45:45 2020
 # imports
 import numpy as np
 import controlDesignCalc as cdc
-from scipy import signal
+#from scipy import signal
 #import sympy as sym
+from control import matlab as matlab
 import matplotlib.pyplot as plt
-from Bode.Bode import Bode_plot
+from Bode.Bode import Bode_plot_save
 
 ##############################################################
 ## input values
@@ -48,22 +49,23 @@ R_B_value = calc_R_B.subs([(P_meas,P_meas_value),(T_1_meas,TimeConstant),(C_S,C_
 R_LS_value = calc_R_LS.subs([(P_meas,P_meas_value),(T_1_meas,TimeConstant),(C_S,C_S_value)]);
     
 # init list for numerator and denumerator
-numNumbercoef=[0]*1;                  
-denNumbercoef=[0]*2;
+numNumbercoef=np.array([0.0]);                  
+denNumbercoef=np.array([0.0,0.0]); 
+
 # define the numerator and denumerator of the transfer function
 numNumbercoef[0] = numNormcoef[0].subs([(R_B,R_B_value),(R_LS,R_LS_value),(C_S,C_S_value)])
 denNumbercoef[0] = denNormcoef[0].subs([(R_B,R_B_value),(R_LS,R_LS_value),(C_S,C_S_value)])
 denNumbercoef[1] = denNormcoef[1].subs([(R_B,R_B_value),(R_LS,R_LS_value),(C_S,C_S_value)])
 
 # covert to float - maybe a bug - try to fix in future
-denNumbercoef[1] = float(denNumbercoef[1]);
 denNumbercoef[0] = float(denNumbercoef[0]);
+denNumbercoef[1] = float(denNumbercoef[1]);
 
 # build the transfer function of the brewery
-systemBrewery=signal.lti(numNumbercoef,denNumbercoef);
+systemBrewery = matlab.TransferFunction(numNumbercoef,denNumbercoef)
 
 # step response with input 1
-[T,yout]=signal.step(systemBrewery)
+[yout,T]=matlab.step(systemBrewery)
 # change to meaured input
 yout_meas = yout*delta_T_burner;
 
@@ -86,4 +88,4 @@ plt.scatter(max(T_line),max(Line_1_out));
 plt.annotate("T1",(max(T_line),max(Line_1_out)))
 
 # adding the Bode-diagram
-Bode_plot(systemBrewery,omegamin='auto',omegamax='auto')
+Bode_plot_save(syslist=systemBrewery,fileName='BreweryBodePlot.svg',labellist=['brewery_PT1'])

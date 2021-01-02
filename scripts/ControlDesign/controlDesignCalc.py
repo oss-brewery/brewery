@@ -62,16 +62,35 @@ def calc1():
     outList=[calc_R_B,calc_R_LS,numNormcoef,denNormcoef];
     return outList;
 
-def calcburnerPID(T_sensor,normalizationFaktor,bandwidthDiv):
+def calcburnerPID(T_sensor:float,normalizationFactor:float,bandwidthDiv:float):
+    """
+    Magnitude Optimum for an PT1 sensor with insignificant plant
+    
+    Parameters
+    ----------
+    T_sensor : float
+        Time constant , :math:`T_{Sensor}`
+    normalizationFactor : float
+        Factor for the normalization after the PI-controller
+    bandwidthDiv : float
+        Factor for slowing down the closed-loop
+
+    Examples
+    ----------
+    >>> [K_PP_B,K_IP_B] = calcburnerPID
+
+    .. todo::
+
+    """
     
     # checking input
     if (True!=isinstance(T_sensor,float)):
         # error
         print('T_sensor must be a float')
         return -1;
-    if (True!=isinstance(normalizationFaktor,float)):
+    if (True!=isinstance(normalizationFactor,float)):
         # error
-        print('normalizationFaktor must be a float')
+        print('normalizationFactor must be a float')
         return -1;
     if (True!=isinstance(bandwidthDiv,float)):
         # error
@@ -82,7 +101,7 @@ def calcburnerPID(T_sensor,normalizationFaktor,bandwidthDiv):
     w_d = 1/(T_sensor*bandwidthDiv);            # controller bandwidth
 
     # serial
-    K_PS = T_sensor*w_d/normalizationFaktor;    # Proportional-gain 
+    K_PS = T_sensor*w_d/normalizationFactor;    # Proportional-gain 
     w_IS = 1/T_sensor;                          # Integrator-base frequency [rad/s]
     
     # parallel
