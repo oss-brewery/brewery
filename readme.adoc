@@ -175,8 +175,8 @@ mvnw quarkus:remote-dev -Dquarkus.live-reload.url=http://brewery:8080 -f pom.xml
 
 ```
 
-[source=bash]
 .sample startup log
+[source=bash]
 ----
 [ERROR] Port 5005 in use, not starting in debug mode
 OpenJDK 64-Bit Server VM warning: forcing TieredStopAtLevel to full optimization because JVMCI is enabled
@@ -189,7 +189,9 @@ OpenJDK 64-Bit Server VM warning: forcing TieredStopAtLevel to full optimization
 2020-10-27 01:43:30,473 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Connected to remote server
 ----
 
+.Access the rest api
 
+Open http://brewery32:8080/swagger-ui
 
 === How to compile the system utils - optional if you use 64bit
 
