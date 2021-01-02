@@ -1,53 +1,21 @@
-= Raspi Pinout
-
-https://pinout.xyz/#
+:toc:
 
 
-= How to develop
 
-.Simple uber jar
+== Basis OS Setup
 
-```bash
-mvn package
+PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
 
-```
-
-Copy /target/quarkus-app/* to raspberry
-
-.Start via on the raspberry
-```bash
-
-export QUARKUS_LAUNCH_DEVMODE=true
-java -jar quarkus-run.jar
-```
-
-
-check for: (Quarkus Main Thread) Profile dev activated. Live Coding activated.
-
-
-On the development maschine activate hot code deployment
-
-```bash
-mvn quarkus:remote-dev -Dquarkus.live-reload.url=http://brewery:8080 -f pom.xml
-
-```
-
-[source=bash]
-.sample startup log
+. if you use Raspbian GNU/Linux 10 (buster)
+[source, bash]
 ----
-[ERROR] Port 5005 in use, not starting in debug mode
-OpenJDK 64-Bit Server VM warning: forcing TieredStopAtLevel to full optimization because JVMCI is enabled
-2020-10-27 01:43:28,204 INFO  [org.jbo.threads] (main) JBoss Threads version 3.1.1.Final
-2020-10-27 01:43:28,978 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 1031ms
-2020-10-27 01:43:30,430 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending lib/deployment/appmodel.dat
-2020-10-27 01:43:30,452 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending quarkus-run.jar
-2020-10-27 01:43:30,459 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending app/backend-0.0.1-SNAPSHOT.jar
-2020-10-27 01:43:30,467 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending lib/deployment/build-system.properties
-2020-10-27 01:43:30,473 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Connected to remote server
+sudo apt-get update
+sudo apt-get dist-upgrade -f
+sudo rpi-update  # important w1 modules have to be upgraded
+sudo reboot
 ----
 
-
-== Additional USB Data Storage
+=== Additional USB Data Storage
 
 cat /etc/udev/rules.d/brewery.application.data.rules
 ACTION=="add", ATTRS{serial}=="4C530202010203121320", ATTRS{product}=="Cruzer Fit", ATTRS{manufacturer}=="SanDisk", ATTRS{idProduct}=="5571", SYMLINK+="brewerystorage", RUN+="mount -a"
@@ -64,57 +32,9 @@ sudo service systemd-udevd --full-restart
 
 
 
-## How to compile the system utils
-
-[source, bash]
-----
-
-sudo apt-get install libi2c-dev gpiod libgpiod-dev
-----
-
-
-
-
-
-== Libs zur Interaktion mit der Hardware
-https://github.com/mattjlewis/diozero
-https://mvnrepository.com/artifact/com.diozero/diozero/0.13
-
-https://oss.sonatype.org/index.html#nexus-search;gav~com.diozero~~~~
-
-Einbindung von third party jars verhindert quarkus native images, müssen manuell referenziert werden und weiteres
-
-== Pi4j Setup ... verschoben
-
-. Install wiringpi Latest
-
-[source,bash]
-----
-
-sudo apt-get install wiringpi
-
-----
-
-
-== Basis OS Setup
-
-PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
-
-. if you use Raspbian GNU/Linux 10 (buster)
-[source, bash]
-----
-sudo apt-get update
-sudo apt-get dist-upgrade -f
-sudo rpi-update  # important w1 modules have to be upgraded
-sudo reboot
-----
-
-
-
-
-== GPIO Setup
 
 === SPI Bus
+
 * https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md
 
 .Update boot configuration
@@ -186,7 +106,9 @@ sudo vcdbg log msg
 
 
 
-=== ic2 board erweiterung - for the moment not in use
+=== ic2 board erweiterung - for the moment not in use,
+
+stackoverflow in some of the diozero c libs
 
 [source, bash]
 ----
@@ -206,3 +128,105 @@ UI to select java:
 
 jdk https://adoptopenjdk.net/installation.html#archives
 graalvm https://github.com/graalvm/graalvm-ce-builds/releases/tag/vm-20.3.0
+
+
+
+
+
+
+
+== Development Setup
+
+
+* https://pinout.xyz/#[Raspi Pinout ]
+
+=== How to develop
+
+TODO:
+Explain steps with the new setup scripts
+
+
+
+
+.Simple uber jar
+
+```bash
+mvn package
+
+```
+
+Copy /target/quarkus-app/* to raspberry
+
+.Start via on the raspberry
+```bash
+
+export QUARKUS_LAUNCH_DEVMODE=true
+java -jar quarkus-run.jar
+```
+
+
+check for: (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+
+
+On the development maschine activate hot code deployment
+
+```bash
+mvnw quarkus:remote-dev -Dquarkus.live-reload.url=http://brewery:8080 -f pom.xml
+
+```
+
+[source=bash]
+.sample startup log
+----
+[ERROR] Port 5005 in use, not starting in debug mode
+OpenJDK 64-Bit Server VM warning: forcing TieredStopAtLevel to full optimization because JVMCI is enabled
+2020-10-27 01:43:28,204 INFO  [org.jbo.threads] (main) JBoss Threads version 3.1.1.Final
+2020-10-27 01:43:28,978 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 1031ms
+2020-10-27 01:43:30,430 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending lib/deployment/appmodel.dat
+2020-10-27 01:43:30,452 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending quarkus-run.jar
+2020-10-27 01:43:30,459 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending app/backend-0.0.1-SNAPSHOT.jar
+2020-10-27 01:43:30,467 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Sending lib/deployment/build-system.properties
+2020-10-27 01:43:30,473 INFO  [io.qua.ver.htt.dep.dev.HttpRemoteDevClient] (Remote dev client thread) Connected to remote server
+----
+
+
+
+=== How to compile the system utils - optional if you use 64bit
+
+If you try to use diozero on a raspberry via 64 bit you have to recompile and link the systemutils this can be done with
+the following steps
+
+.Install dependencies
+[source, bash]
+----
+
+sudo apt-get install libi2c-dev gpiod libgpiod-dev
+----
+
+.Clone the repo
+[source, bash]
+----
+
+git clone https://github.com/mattjlewis/diozero.git
+
+----
+
+.Compile and link
+[source, bash]
+----
+
+cd system-utils-native/src/main/c/
+make
+LIB_DIOZERO="./libdiozero-system-utils.so"
+ln -s $LIB_DIOZERO /usr/lib/libdiozero-system-utils.so
+----
+
+
+=== Diozero Lib abstraction layer to interact with hardware
+
+* https://github.com/mattjlewis/diozero
+* https://mvnrepository.com/artifact/com.diozero/diozero/0.13
+* https://oss.sonatype.org/index.html#nexus-search;gav~com.diozero~~~~
+
+
+
