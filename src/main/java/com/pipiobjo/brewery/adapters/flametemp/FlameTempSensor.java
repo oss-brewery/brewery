@@ -1,24 +1,29 @@
-package com.pipiobjo.brewery.adapters;
+package com.pipiobjo.brewery.adapters.flametemp;
 
 import com.diozero.api.SpiClockMode;
 import com.pipiobjo.brewery.sensors.MAX6675V12;
-import com.pipiobjo.brewery.sensors.MCP23S17;
 import io.quarkus.runtime.ShutdownEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.Optional;
 
 /**
  * https://www.sparkfun.com/datasheets/IC/MAX6675.pdf
  */
+@Slf4j
 @ApplicationScoped
 public class FlameTempSensor {
-    Logger log = LoggerFactory.getLogger(FlameTempSensor.class);
 
+    @Inject
+    FlameTempConfigProperties config;
 
+    static int controller = 0;
     //chiselect == cs // ss -> 0 / 1
     static int chipselect = 1;
     static int freq = 1000000;
@@ -28,24 +33,28 @@ public class FlameTempSensor {
 
     @PostConstruct
     void init() {
-        if(tempSensor == null){
+        if (tempSensor == null) {
             log.info("init extension board device");
-            tempSensor = new MAX6675V12(0,chipselect, freq, SpiClockMode.MODE_0);
+            tempSensor = new MAX6675V12(config.getController(), config.getChipselect(), config.getFreq(), SpiClockMode.MODE_0);
         }
 
     }
 
 
-    public void spi(){
+    public FlameTemperature getFlameTemp() {
         log.info("init temp bus listener");
-        float temperature = tempSensor.getTemperature();
-        log.info("temp {}", temperature);
+        FlameTemperature result = new FlameTemperature();
+        result.setTimestamp(OffsetDateTime.now());
+        Optional<BigDecimal> temperature = Optional.of(BigDecimal.valueOf(tempSensor.getTemperature()));
+        log.info("temp {}", temperature.get());
+        result.setTemperature(temperature);
+        return result;
 
     }
 
     void onStop(@Observes ShutdownEvent ev) {
         log.info("The application is stopping...");
-        if(tempSensor !=null){
+        if (tempSensor != null) {
             tempSensor.close();
         }
     }

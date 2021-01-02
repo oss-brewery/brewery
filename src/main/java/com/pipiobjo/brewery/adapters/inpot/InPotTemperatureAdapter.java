@@ -2,16 +2,20 @@ package com.pipiobjo.brewery.adapters.inpot;
 
 import com.diozero.devices.W1ThermSensor;
 import com.pipiobjo.brewery.sensors.DS18B20;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
+@Slf4j
+@ApplicationScoped
 public class InPotTemperatureAdapter {
 
-    private static final Logger log = LoggerFactory.getLogger(InPotTemperatureAdapter.class);
     private AtomicReference<W1ThermSensor> bottomSensor = null;
     private AtomicReference<W1ThermSensor> middleSensor = null;
     private AtomicReference<W1ThermSensor> topSensor = null;
@@ -19,16 +23,13 @@ public class InPotTemperatureAdapter {
     private DS18B20 device = null;
 
     @Inject
-    private InPotTemperatureConfigProperties config;
+    InPotTemperatureConfigProperties config;
+
     @PostConstruct
     void init() {
         if(device == null){
-            log.info("init extension board device");
             device = new DS18B20(config.getW1TempDevicePath());
-//            device = new DS18B20("/sys/bus/w1/devices/w1_bus_master1/");
         }
-        checkConfiguration();
-
     }
 
 
@@ -60,7 +61,7 @@ public class InPotTemperatureAdapter {
         }
 
         if(bottomSensor == null || middleSensor == null | topSensor == null){
-            log.error("Available w1 sensors are: ");
+            log.error("No inpot temp sensor is configured successfull. Available w1 sensors are: ");
             device.getTempSensors().forEach(s -> {
                 log.error("Sensor: type={}, serialNo={}, temp={}", s.getType(), s.getSerialNumber(), s.getTemperature());
             });
@@ -68,7 +69,28 @@ public class InPotTemperatureAdapter {
     }
 
 
-    public void getTemparatures(){
-        bottomSensor.get().getTemperature();
+    public InpotTemperature getTemparatures(){
+        InpotTemperature result = new InpotTemperature();
+
+        OffsetDateTime now = OffsetDateTime.now();
+        result.setTimestamp(now);
+
+        if(bottomSensor != null && bottomSensor.get() != null){
+            result.setBottom(Optional.of(BigDecimal.valueOf(bottomSensor.get().getTemperature())));
+        }else{
+            result.setBottom(Optional.empty());
+        }
+        if(middleSensor != null && middleSensor.get() != null){
+            result.setMiddle(Optional.of(BigDecimal.valueOf(middleSensor.get().getTemperature())));
+        }else{
+            result.setMiddle(Optional.empty());
+        }
+        if(topSensor != null && topSensor.get() != null){
+            result.setTop(Optional.of(BigDecimal.valueOf(topSensor.get().getTemperature())));
+        }else{
+            result.setTop(Optional.empty());
+        }
+        return result;
+
     }
 }

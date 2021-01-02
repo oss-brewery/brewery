@@ -4,7 +4,7 @@ import com.diozero.api.SpiClockMode;
 import com.diozero.api.SpiDevice;
 import com.diozero.api.ThermometerInterface;
 import com.diozero.util.RuntimeIOException;
-import com.pipiobjo.brewery.adapters.FlameTempSensor;
+import com.pipiobjo.brewery.adapters.flametemp.FlameTempSensor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
