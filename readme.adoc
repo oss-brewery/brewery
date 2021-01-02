@@ -17,6 +17,30 @@ sudo reboot
 
 === Additional USB Data Storage
 
+1 Find out the UUID of the USB Storage
+----
+sudo blkid
+----
+
+2 Make a directory for the USB Storage
+
+----
+sudo mkdir /mnt/usb1
+----
+
+
+3 Editing "fstab" file for auto-mounting the USB Storage
+----
+sudo nano /etc/fstab
+----
+
+adding the follow line in the file (with your UUID)
+
+----
+UUID="dfc419e9-c98a-41a9-80f7-f1b192173c18" /mnt/usb ext4 defaults,auto,users,rw,nofail 0 0
+----
+4 Reboot
+
 cat /etc/udev/rules.d/brewery.application.data.rules
 ACTION=="add", ATTRS{serial}=="4C530202010203121320", ATTRS{product}=="Cruzer Fit", ATTRS{manufacturer}=="SanDisk", ATTRS{idProduct}=="5571", SYMLINK+="brewerystorage", RUN+="mount -a"
 
