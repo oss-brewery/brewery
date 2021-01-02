@@ -1,0 +1,28 @@
+:toc:
+
+
+== Architecture
+This is the first design concept.
+
+image::../../../media/Design_Concept.svg[Embedded,1000,opts=inline]
+
+== Dual-MCP23S17-PCB
+=== PCB-Layout
+
+A simple layout for to MCP23S17 chips on a strip grid board. +
+Using a hardwired address for the SPI-bus. +
+Adding a reset button for both chips. +
+
+image::../../../media/MCP23S17_Dual_Platine_V2_Steckplatine.svg[Embedded,1000,opts=inline]
+
+=== Schematic
+
+image::../../../media/MCP23S17_Dual_Platine_V2_Schaltplan.svg[Embedded,1000,opts=inline]
+
+== Step sequence "brewery"
+First concept of a step sequence for the brewery. +
+Is made for discussion. +
+
+image::../../../media/brewery sfc.svg[]
+NOTE: made with: https://lucid.co/product/lucidchart
+
