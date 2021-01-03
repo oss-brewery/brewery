@@ -82,14 +82,28 @@ public class SensorCollectorService {
         long executionTime = it * config.getBaseCollectionIntervallInMS();
 
         if(executionTime < config.getInputCollectionIntervallInMS()){
-            return result;
+            //return result;    // realy nessasary?
         }
 
-
-        // TODO make decision
-        result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
-//        result.add(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS);
-
+        //        result.add(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS);
+        // easy with n-times --> more like an init
+        if (0==config.getInputCollectionIntervallInMS()%config.getBaseCollectionIntervallInMS()) {
+            // n-times multiple of the Base Interval
+            if (0==executionTime%config.getInputCollectionIntervallInMS()) {
+                // exce
+                result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
+            }
+        }else{
+            // odd multiple of the Base Interval
+            if (1>config.getInputCollectionIntervallInMS()/config.getBaseCollectionIntervallInMS()){
+                // In is faster then the Base Interval
+                // activate polling --> maybe a warning?
+                result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
+            }else if(0>=((config.getBaseCollectionIntervallInMS()+executionTime)%config.getInputCollectionIntervallInMS())-config.getBaseCollectionIntervallInMS()){
+                // between to Base Interval --> choosing lower Base Interval
+                result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
+            }
+        }
 
 
         return result;

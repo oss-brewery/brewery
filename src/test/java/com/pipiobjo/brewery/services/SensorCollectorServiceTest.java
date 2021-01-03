@@ -44,7 +44,7 @@ class SensorCollectorServiceTest {
         StopWatch stopWatch = new StopWatch();
         SensorCollectorServiceConfigProperties config = new SensorCollectorServiceConfigProperties();
         config.setBaseCollectionIntervallInMS(10);
-        config.setInputCollectionIntervallInMS(20);
+        config.setInputCollectionIntervallInMS(33);
         config.setTemperatureCollectionIntervallInMS(100);
 
         Long it = 1L;
@@ -59,7 +59,7 @@ class SensorCollectorServiceTest {
         assertThat(modes1).hasSize(0);
 
 
-        it = 3L;
+        it = 6L; //3L
         stopWatch.start();
         List<CollectionPublishMode> modes2 = Whitebox.invokeMethod(service, "selectCollectionMode", it, config);
         stopWatch.stop();
