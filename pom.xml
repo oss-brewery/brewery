@@ -56,6 +56,10 @@
       <groupId>org.jboss.slf4j</groupId>
       <artifactId>slf4j-jboss-logging</artifactId>
     </dependency>
+
+
+
+
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-vertx</artifactId>
@@ -96,26 +100,31 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
-    <!-- rxjava2-->
-    <!-- Automatic context propagation for RxJava2 -->
+
+
+
+
+
+    <!-- Mutiny and RestEasy support extensions if not already included -->
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-mutiny</artifactId>-->
+<!--    </dependency>-->
     <dependency>
-      <groupId>io.smallrye</groupId>
-      <artifactId>smallrye-context-propagation-propagators-rxjava2</artifactId>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-mutiny</artifactId>
     </dependency>
-    <!--
-    Required if you want transactions extended to the end of methods returning
-    an RxJava2 type.
-     -->
+    <!-- Context Propagation extension -->
     <dependency>
-      <groupId>io.smallrye.reactive</groupId>
-      <artifactId>smallrye-reactive-converter-rxjava2</artifactId>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-context-propagation</artifactId>
     </dependency>
-    <!-- Required if you return RxJava2 types from your REST endpoints -->
-    <dependency>
-      <groupId>org.jboss.resteasy</groupId>
-      <artifactId>resteasy-rxjava2</artifactId>
-    </dependency>
-    <!-- end rxjava2 -->
+
+
+
+
+
+
   </dependencies>
 
   <build>

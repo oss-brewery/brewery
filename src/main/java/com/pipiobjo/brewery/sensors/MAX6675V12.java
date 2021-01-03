@@ -72,7 +72,7 @@ public class MAX6675V12 implements ThermometerInterface {
         BigDecimal temperature = cleared.divide(segmentationFactor, 4, RoundingMode.HALF_UP);
 
         float roundedTemp = temperature.setScale(2, RoundingMode.HALF_UP).floatValue(); // resolution 0.25°C
-        log.info("found temperature bigdec{} float{}", temperature, roundedTemp);
+        log.debug("found temperature bigdec{} float{}", temperature, roundedTemp);
         return roundedTemp;
     }
 

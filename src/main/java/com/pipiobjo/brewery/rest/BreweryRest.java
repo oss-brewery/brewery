@@ -50,11 +50,9 @@ public class BreweryRest {
     @POST
     @Path("/start")
     @Produces(MediaType.APPLICATION_JSON)
-    public String start() {
+    public void start() {
 
-        log.info("start brewing");
-
-        return "hello2";
+        brewingService.startCollecting();
     }
 
 
@@ -62,11 +60,9 @@ public class BreweryRest {
     @POST
     @Path("/stop")
     @Produces(MediaType.APPLICATION_JSON)
-    public String stopBrewing() {
+    public void stopBrewing() {
 
-        log.info("stop brewing");
-
-        return "hello2";
+        brewingService.stopCollecting();
     }
 
 

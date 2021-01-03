@@ -53,4 +53,17 @@ public class BrewingService{
         SelfCheckResult result = sensorCollectorService.executeSelfCheck();
         return result;
     }
+
+    public void startCollecting(){
+        try {
+            sensorCollectorService.startCollecting();
+        } catch (InterruptedException e) {
+            log.error("error while collecting: ", e);
+        }
+    }
+
+    public void stopCollecting(){
+        sensorCollectorService.stopCollecting();
+    }
+
 }

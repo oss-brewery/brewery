@@ -42,7 +42,6 @@ public class FlameTempSensor {
 
 
     public FlameTemperature getFlameTemp() {
-        log.info("init temp bus listener");
         FlameTemperature result = new FlameTemperature();
         result.setTimestamp(OffsetDateTime.now());
         Optional<BigDecimal> temperature = Optional.of(BigDecimal.valueOf(tempSensor.getTemperature()));

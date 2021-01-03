@@ -5,12 +5,16 @@ import com.pipiobjo.brewery.adapters.flametemp.FlameTemperature;
 import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
+import io.quarkus.scheduler.Scheduler;
 import io.quarkus.vertx.ConsumeEvent;
 import io.reactivex.disposables.CompositeDisposable;
+import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.subscription.Cancellable;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.time.Duration;
 
 @Slf4j
 @ApplicationScoped
@@ -23,6 +27,9 @@ public class SensorCollectorService {
     @Inject
     FlameTempSensor flameTempSensor;
 
+    @Inject
+    Scheduler scheduler;
+    private Cancellable cancellable;
 
     public SelfCheckResult executeSelfCheck() {
 
@@ -45,4 +52,27 @@ public class SensorCollectorService {
     public void executeSelfCheckEvent(String event) {
 
     }
+
+
+    public void startCollecting() throws InterruptedException {
+        Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(2000));
+
+        this.cancellable = ticks.subscribe().with(
+                item -> {
+                    log.info("value {}", item);
+                    InpotTemperature temparatures = inpotTemp.getTemparatures();
+                    FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
+
+                }
+
+        );
+
+    }
+
+
+    public void stopCollecting() {
+        cancellable.cancel();
+    }
+
 }
+
