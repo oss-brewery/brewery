@@ -1,6 +1,7 @@
 package com.pipiobjo.brewery.services;
 
 import com.pipiobjo.brewery.adapters.BreweryStartupButton;
+import com.pipiobjo.brewery.services.collector.SensorCollectorService;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import io.quarkus.vertx.ConsumeEvent;
 import io.vertx.core.eventbus.EventBus;
