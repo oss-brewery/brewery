@@ -56,11 +56,7 @@ public class BrewingService{
     }
 
     public void startCollecting(){
-        try {
             sensorCollectorService.startCollecting();
-        } catch (InterruptedException e) {
-            log.error("error while collecting: ", e);
-        }
     }
 
     public void stopCollecting(){

@@ -9,5 +9,8 @@ public class SensorCollectorServiceConfigProperties {
     private long baseCollectionIntervallInMS;
     private long inputCollectionIntervallInMS;
     private long temperatureCollectionIntervallInMS;
+    private long persistenceIntervallInMS;
+    private long uiUpdateIntervallInMS;
+    private long calculationIntervallInMS;
 
 }

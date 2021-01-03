@@ -31,8 +31,9 @@ class SensorCollectorServiceTest {
         stopWatch.stop();
         long time = stopWatch.getTime();
         log.info("Method execution time {} ms", time);
-        assertThat(modes).isNotNull();
-        assertThat(modes).hasSize(0);
+        assertThat(modes)
+                .isNotNull()
+                .isEmpty();
 
     }
 
@@ -46,6 +47,9 @@ class SensorCollectorServiceTest {
         config.setBaseCollectionIntervallInMS(10);
         config.setInputCollectionIntervallInMS(33);
         config.setTemperatureCollectionIntervallInMS(100);
+        config.setCalculationIntervallInMS(150);
+        config.setPersistenceIntervallInMS(2000);
+        config.setUiUpdateIntervallInMS(2000);
 
         Long it = 1L;
         stopWatch.start();
@@ -55,23 +59,51 @@ class SensorCollectorServiceTest {
         log.info("Method execution time {} ms", stopWatch.getTime());
         stopWatch.reset();
 
-        assertThat(modes1).isNotNull();
-        assertThat(modes1).hasSize(0);
+        assertThat(modes1)
+                .isNotNull()
+                .isEmpty();
 
 
-        it = 6L; //3L
+        it = 6L;
         stopWatch.start();
         List<CollectionPublishMode> modes2 = Whitebox.invokeMethod(service, "selectCollectionMode", it, config);
         stopWatch.stop();
 
         log.info("Method execution time {} ms", stopWatch.getTime());
         stopWatch.reset();
-        assertThat(modes2).isNotNull();
-        assertThat(modes2).hasSize(1);
-        CollectionPublishMode collectionPublishMode = modes2.get(0);
 
-        assertThat(collectionPublishMode).isNotNull();
-        assertThat(collectionPublishMode).isEqualTo(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
+        assertThat(modes2)
+                .isNotNull()
+                .hasSize(1)
+                .contains(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
+
+
+        it = 10L;
+        stopWatch.start();
+        List<CollectionPublishMode> modes3 = Whitebox.invokeMethod(service, "selectCollectionMode", it, config);
+        stopWatch.stop();
+
+        log.info("Method execution time {} nanos", stopWatch.getNanoTime());
+        stopWatch.reset();
+
+        assertThat(modes3)
+                .isNotNull()
+                .hasSize(1)
+                .contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS);
+
+
+        it = 30L;
+        stopWatch.start();
+        List<CollectionPublishMode> modes4 = Whitebox.invokeMethod(service, "selectCollectionMode", it, config);
+        stopWatch.stop();
+
+        log.info("Method execution time {} nanos", stopWatch.getNanoTime());
+        stopWatch.reset();
+
+        assertThat(modes4).isNotNull()
+                .hasSize(2)
+                .contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS)
+                .contains(CollectionPublishMode.PUBLISH_TO_CALCULATION);
 
 
     }

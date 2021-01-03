@@ -105,10 +105,10 @@
 
 
     <!-- Mutiny and RestEasy support extensions if not already included see http://smallrye.io/smallrye-mutiny -->
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy-mutiny</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-resteasy-mutiny</artifactId>-->
+<!--    </dependency>-->
 
     <!-- Context Propagation extension -->
     <dependency>
@@ -133,7 +133,6 @@
       <version>3.18.1</version>
       <scope>test</scope>
     </dependency>
-
 
 
   </dependencies>
@@ -173,6 +172,7 @@
         <configuration>
           <systemPropertyVariables>
             <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+            <java.util.logging.config.file>${projectDir}/src/test/resources/logging.properties</java.util.logging.config.file>
             <maven.home>${maven.home}</maven.home>
           </systemPropertyVariables>
         </configuration>

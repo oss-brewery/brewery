@@ -6,7 +6,6 @@ import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import io.quarkus.scheduler.Scheduler;
-import io.quarkus.vertx.ConsumeEvent;
 import io.reactivex.disposables.CompositeDisposable;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
@@ -23,10 +22,14 @@ import java.util.List;
 public class SensorCollectorService {
     public static final String START_SELFCHECK = "START_SELFCHECK_SENSOR_DATA_COLLECTION";
     private final CompositeDisposable disposables = new CompositeDisposable();
-    @Inject InPotTemperatureAdapter inPotTemperatureAdapter;
-    @Inject FlameTempSensor flameTempSensor;
-    @Inject Scheduler scheduler;
-    @Inject SensorCollectorServiceConfigProperties config;
+    @Inject
+    InPotTemperatureAdapter inPotTemperatureAdapter;
+    @Inject
+    FlameTempSensor flameTempSensor;
+    @Inject
+    Scheduler scheduler;
+    @Inject
+    SensorCollectorServiceConfigProperties config;
     private Cancellable cancellable;
 
     public SelfCheckResult executeSelfCheck() {
@@ -55,7 +58,7 @@ public class SensorCollectorService {
         cancellable.cancel();
     }
 
-    public void startCollecting() throws InterruptedException {
+    public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
 
         this.cancellable = ticks.subscribe().with(
@@ -75,38 +78,57 @@ public class SensorCollectorService {
         List<CollectionPublishMode> result = new ArrayList<>();
 
         // there should be no negative or 0 value
-        if(it<=0L){
+        if (it <= 0L) {
             return result;
         }
 
         long executionTime = it * config.getBaseCollectionIntervallInMS();
 
-        if(executionTime < config.getInputCollectionIntervallInMS()){
-            //return result;    // realy nessasary?
+        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getInputCollectionIntervallInMS(), executionTime)){
+            result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
         }
 
-        //        result.add(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS);
-        // easy with n-times --> more like an init
-        if (0==config.getInputCollectionIntervallInMS()%config.getBaseCollectionIntervallInMS()) {
-            // n-times multiple of the Base Interval
-            if (0==executionTime%config.getInputCollectionIntervallInMS()) {
-                // exce
-                result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
-            }
-        }else{
-            // odd multiple of the Base Interval
-            if (1>config.getInputCollectionIntervallInMS()/config.getBaseCollectionIntervallInMS()){
-                // In is faster then the Base Interval
-                // activate polling --> maybe a warning?
-                result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
-            }else if(0>=((config.getBaseCollectionIntervallInMS()+executionTime)%config.getInputCollectionIntervallInMS())-config.getBaseCollectionIntervallInMS()){
-                // between to Base Interval --> choosing lower Base Interval
-                result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
-            }
+        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getTemperatureCollectionIntervallInMS(), executionTime)){
+            result.add(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS);
         }
 
+        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getPersistenceIntervallInMS(), executionTime)){
+            result.add(CollectionPublishMode.PUBLISH_TO_PERSISTENCE);
+        }
+
+        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getUiUpdateIntervallInMS(), executionTime)){
+            result.add(CollectionPublishMode.PUBLISH_TO_UI);
+        }
+
+        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getCalculationIntervallInMS(), executionTime)){
+            result.add(CollectionPublishMode.PUBLISH_TO_CALCULATION);
+        }
 
         return result;
+    }
+
+    private boolean isModeAddable(long baseIntervall, long intervall2Check, long executionTime) {
+        // easy with n-times --> more like an init
+        if (0 == intervall2Check % baseIntervall) {
+            // n-times multiple of the Base Interval
+            if (0 == executionTime % intervall2Check) {
+                // exec
+                return true;
+            }
+        } else {
+            // odd multiple of the Base Interval
+            if (1 > intervall2Check / baseIntervall) {
+                // In is faster then the Base Interval
+                // activate polling --> maybe a warning?
+                return true;
+            }
+            if (0 >= ((baseIntervall + executionTime) % intervall2Check) - baseIntervall) {
+                // between to Base Interval --> choosing lower Base Interval
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
