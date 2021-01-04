@@ -7,7 +7,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 @Data
-@ConfigProperties(prefix = "brewery.sensors")
+@ConfigProperties(prefix = "brewery.collector")
 public class SensorCollectorServiceConfigProperties {
 
     @Positive() private long baseCollectionIntervallInMS;

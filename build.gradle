@@ -10,6 +10,9 @@ repositories {
 
 dependencies {
     implementation 'com.diozero:diozero-core:0.14'
+    // stopwatch
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+
     implementation 'io.quarkus:quarkus-vertx'
     implementation 'io.quarkus:quarkus-undertow-websockets'
     implementation 'io.quarkus:quarkus-config-yaml'

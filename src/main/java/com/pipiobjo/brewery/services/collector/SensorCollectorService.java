@@ -1,5 +1,7 @@
 package com.pipiobjo.brewery.services.collector;
 
+import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetAdapter;
+import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetTemperature;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTempSensor;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTemperature;
 import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
@@ -9,6 +11,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.StopWatch;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -20,27 +23,33 @@ import java.util.List;
 @ApplicationScoped
 public class SensorCollectorService {
     public static final String START_SELFCHECK = "START_SELFCHECK_SENSOR_DATA_COLLECTION";
+
+    @Inject InPotTemperatureAdapter inPotTemperatureAdapter;
+    @Inject FlameTempSensor flameTempSensor;
+    @Inject ControlCabinetAdapter controlCabinetAdapter;
+    @Inject SensorCollectorServiceConfigProperties config;
+
     private final CompositeDisposable disposables = new CompositeDisposable();
-    @Inject
-    InPotTemperatureAdapter inPotTemperatureAdapter;
-    @Inject
-    FlameTempSensor flameTempSensor;
-    @Inject
-    SensorCollectorServiceConfigProperties config;
     private Cancellable cancellable;
 
     public SelfCheckResult executeSelfCheck() {
 
         log.info("Starting self check");
         SelfCheckResult result = new SelfCheckResult();
+
         inPotTemperatureAdapter.checkConfiguration();
         InpotTemperature inpotTemp = this.inPotTemperatureAdapter.getTemparatures();
         log.info("inpotTemp={}", inpotTemp);
         result.setInpotTemperature(inpotTemp);
 
+        controlCabinetAdapter.checkConfiguration();
+        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
+        log.info("controlCabinetTemp={}", controlCabinetTemp);
+        result.setControlCabinetTemperature(controlCabinetTemp);
+
         FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
         log.info("flameTemp={}", flameTemp);
-        result.setFlameTemp(flameTemp);
+        result.setFlameTemperature(flameTemp);
 
         return result;
     }
@@ -62,8 +71,29 @@ public class SensorCollectorService {
                 it -> {
                     log.info("iteration {}", it);
                     List<CollectionPublishMode> mode = selectCollectionMode(it, config);
-                    InpotTemperature temparatures = inPotTemperatureAdapter.getTemparatures();
+
+
+
+
+                    StopWatch watch = new StopWatch();
+
+                    watch.start();
+                    InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
+                    watch.stop();
+                    log.info("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
+                    watch.reset();
+
+                    watch.start();
                     FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
+                    watch.stop();
+                    log.info("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
+                    watch.reset();
+
+                    watch.start();
+                    ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
+                    watch.stop();
+                    log.info("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
+                    watch.reset();
 
                 }
 

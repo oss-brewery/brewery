@@ -13,6 +13,18 @@ quarkus:
 brewery:
   inpot:
     w1-temp-device-path: /sys/bus/w1/devices/w1_bus_master1/
-    w1-temp-top-id: 123
-    w1-temp-middle-id: 123
-    w1-temp-bottom-id: 123
+    w1-temp-top-id: 012033890289
+    w1-temp-middle-id: 012033b5c85b
+    w1-temp-bottom-id: 01203389483c
+  controlcabinet:
+    w1-air-temp-id: 012033c6d23a
+    w1-air-temp-in-cabinet-id: 012033c43620
+    w1-temp-device-path: /sys/bus/w1/devices/w1_bus_master1/
+  collector:
+    base-collection-intervall-in-ms: 10
+    input-collection-intervall-in-ms: 20
+    temperature-collection-intervall-in-ms: 2000
+    ui-update-intervall-in-ms: 2000
+    calculation-intervall-in-ms: 150
+    persistence-intervall-in-ms: 4000
+

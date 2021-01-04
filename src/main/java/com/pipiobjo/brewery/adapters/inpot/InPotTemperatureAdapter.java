@@ -16,9 +16,9 @@ import java.util.concurrent.atomic.AtomicReference;
 @ApplicationScoped
 public class InPotTemperatureAdapter {
 
-    private AtomicReference<W1ThermSensor> bottomSensor = null;
-    private AtomicReference<W1ThermSensor> middleSensor = null;
-    private AtomicReference<W1ThermSensor> topSensor = null;
+    private AtomicReference<W1ThermSensor> bottomSensor = new AtomicReference<W1ThermSensor>();
+    private AtomicReference<W1ThermSensor> middleSensor = new AtomicReference<W1ThermSensor>();
+    private AtomicReference<W1ThermSensor> topSensor = new AtomicReference<W1ThermSensor>();
 
     private DS18B20 device = null;
 

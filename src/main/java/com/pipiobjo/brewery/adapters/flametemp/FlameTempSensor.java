@@ -34,7 +34,6 @@ public class FlameTempSensor {
     @PostConstruct
     void init() {
         if (tempSensor == null) {
-            log.info("init extension board device");
             tempSensor = new MAX6675V12(config.getController(), config.getChipselect(), config.getFreq(), SpiClockMode.MODE_0);
         }
 
@@ -45,7 +44,6 @@ public class FlameTempSensor {
         FlameTemperature result = new FlameTemperature();
         result.setTimestamp(OffsetDateTime.now());
         Optional<BigDecimal> temperature = Optional.of(BigDecimal.valueOf(tempSensor.getTemperature()));
-        log.info("temp {}", temperature.get());
         result.setTemperature(temperature);
         return result;
 
