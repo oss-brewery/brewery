@@ -1,15 +1,18 @@
 package com.pipiobjo.brewery.services.collector;
 
+import com.pipiobjo.brewery.adapters.SPIExtensionBoard;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetAdapter;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetTemperature;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTempSensor;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTemperature;
 import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
+import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import io.reactivex.disposables.CompositeDisposable;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
+import io.vertx.core.eventbus.EventBus;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 
@@ -22,18 +25,30 @@ import java.util.List;
 @Slf4j
 @ApplicationScoped
 public class SensorCollectorService {
+    public static final String PUBLISH_TO_UI_EVENT_NAME = "BREWERY_PUBLISH_TO_UI_EVENT_NAME";
+    public static final String PUBLISH_TO_CALCULATION_EVENT_NAME = "BREWERY_PUBLISH_TO_CALCULATION_EVENT_NAME";
+    public static final String PUBLISH_TO_PERSISTENCE_EVENT_NAME = "BREWERY_PUBLISH_TO_PERSISTENCE_EVENT_NAME";
     public static final String START_SELFCHECK = "START_SELFCHECK_SENSOR_DATA_COLLECTION";
 
-    @Inject InPotTemperatureAdapter inPotTemperatureAdapter;
-    @Inject FlameTempSensor flameTempSensor;
-    @Inject ControlCabinetAdapter controlCabinetAdapter;
-    @Inject SensorCollectorServiceConfigProperties config;
+    @Inject
+    InPotTemperatureAdapter inPotTemperatureAdapter;
+    @Inject
+    FlameTempSensor flameTempSensor;
+    @Inject
+    ControlCabinetAdapter controlCabinetAdapter;
+    @Inject
+    SPIExtensionBoard extensionBoard;
+    @Inject
+    EventBus bus;
+    @Inject
+    SensorCollectorServiceConfigProperties config;
 
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Cancellable cancellable;
 
     public SelfCheckResult executeSelfCheck() {
 
+        // TODO add flame control cycle check
         log.info("Starting self check");
         SelfCheckResult result = new SelfCheckResult();
 
@@ -55,16 +70,11 @@ public class SensorCollectorService {
     }
 
 
-//    @ConsumeEvent(value = START_SELFCHECK, blocking = true)
-//    public void executeSelfCheckEvent(String event) {
-//
-//    }
-
     public void stopCollecting() {
-        if(cancellable != null){
+        if (cancellable != null) {
             cancellable.cancel();
             log.info("collecting stopped");
-        }else{
+        } else {
             log.info("nothing to stop");
         }
     }
@@ -78,41 +88,57 @@ public class SensorCollectorService {
                     StopWatch watch = new StopWatch();
                     List<CollectionPublishMode> mode = selectCollectionMode(it, config);
 
-                    if(mode.contains(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR)){
+                    CollectionResult result = new CollectionResult();
+
+                    if (mode.contains(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR)) {
+                        watch.start();
+                        boolean flameControlButtonPushed = extensionBoard.isFlameControlButtonPushed();
+                        watch.stop();
+                        log.debug("flameControlButtonCheck in {} ms: {}", watch.getTime(), flameControlButtonPushed);
+                        watch.reset();
+                        result.setFlameControlButtonPushed(flameControlButtonPushed);
+                    }
+
+                    if (mode.contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS)) {
+
                         watch.start();
                         FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
                         watch.stop();
                         log.debug("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
                         watch.reset();
-                    }
+                        result.setFlameTemperature(flameTemp);
 
-                    if(mode.contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS)){
                         watch.start();
                         InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
                         watch.stop();
-                        log.info("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
+                        log.debug("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
                         watch.reset();
+                        result.setInpotTemperature(inpotTemp);
 
 
                         watch.start();
                         ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
                         watch.stop();
-                        log.info("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
+                        log.debug("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
                         watch.reset();
+                        result.setControlCabinetTemperature(controlCabinetTemp);
 
                     }
 
-                    if(mode.contains(CollectionPublishMode.PUBLISH_TO_CALCULATION)){
+                    if (mode.contains(CollectionPublishMode.PUBLISH_TO_CALCULATION)) {
                         log.debug("publish to calc");
+                        bus.publish(PUBLISH_TO_CALCULATION_EVENT_NAME, result);
                     }
 
 
-                    if(mode.contains(CollectionPublishMode.PUBLISH_TO_UI)){
-                        log.info("publish to ui");
+                    if (mode.contains(CollectionPublishMode.PUBLISH_TO_UI)) {
+                        log.debug("publish to ui");
+                        bus.publish(PUBLISH_TO_UI_EVENT_NAME, result);
                     }
 
-                    if(mode.contains(CollectionPublishMode.PUBLISH_TO_PERSISTENCE)){
-                        log.info("publish to persistence");
+                    if (mode.contains(CollectionPublishMode.PUBLISH_TO_PERSISTENCE)) {
+                        log.debug("publish to persistence");
+                        bus.publish(PUBLISH_TO_PERSISTENCE_EVENT_NAME, result);
                     }
 
 
@@ -132,23 +158,23 @@ public class SensorCollectorService {
 
         long executionTime = it * config.getBaseCollectionIntervallInMS();
 
-        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getInputCollectionIntervallInMS(), executionTime)){
+        if (isModeAddable(config.getBaseCollectionIntervallInMS(), config.getInputCollectionIntervallInMS(), executionTime)) {
             result.add(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR);
         }
 
-        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getTemperatureCollectionIntervallInMS(), executionTime)){
+        if (isModeAddable(config.getBaseCollectionIntervallInMS(), config.getTemperatureCollectionIntervallInMS(), executionTime)) {
             result.add(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS);
         }
 
-        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getPersistenceIntervallInMS(), executionTime)){
+        if (isModeAddable(config.getBaseCollectionIntervallInMS(), config.getPersistenceIntervallInMS(), executionTime)) {
             result.add(CollectionPublishMode.PUBLISH_TO_PERSISTENCE);
         }
 
-        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getUiUpdateIntervallInMS(), executionTime)){
+        if (isModeAddable(config.getBaseCollectionIntervallInMS(), config.getUiUpdateIntervallInMS(), executionTime)) {
             result.add(CollectionPublishMode.PUBLISH_TO_UI);
         }
 
-        if(isModeAddable(config.getBaseCollectionIntervallInMS(), config.getCalculationIntervallInMS(), executionTime)){
+        if (isModeAddable(config.getBaseCollectionIntervallInMS(), config.getCalculationIntervallInMS(), executionTime)) {
             result.add(CollectionPublishMode.PUBLISH_TO_CALCULATION);
         }
 

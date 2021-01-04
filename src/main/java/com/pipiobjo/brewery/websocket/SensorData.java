@@ -1,21 +1,31 @@
 package com.pipiobjo.brewery.websocket;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import com.pipiobjo.brewery.services.collector.SensorCollectorService;
+import com.pipiobjo.brewery.services.model.CollectionResult;
+import io.quarkus.vertx.ConsumeEvent;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
+import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import javax.websocket.Session;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint("/chat/{username}")
+@Slf4j
+@ServerEndpoint("/brewery/sensors/")
 @ApplicationScoped
 public class SensorData {
     Map<String, Session> sessions = new ConcurrentHashMap<>();
+
+    @ConsumeEvent(value = SensorCollectorService.PUBLISH_TO_UI_EVENT_NAME, blocking = true)
+    public void updateUIEvent(CollectionResult event) {
+        log.info("receiving collection result: {}", event);
+    }
 
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
@@ -42,7 +52,7 @@ public class SensorData {
 
     private void broadcast(String message) {
         sessions.values().forEach(s -> {
-            s.getAsyncRemote().sendObject(message, result ->  {
+            s.getAsyncRemote().sendObject(message, result -> {
                 if (result.getException() != null) {
                     System.out.println("Unable to send message: " + result.getException());
                 }

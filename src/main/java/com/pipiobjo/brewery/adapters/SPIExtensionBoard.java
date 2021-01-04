@@ -51,7 +51,6 @@ public class SPIExtensionBoard {
     //modes cpha oder cpol
     boolean lsbFirst = false; // leastSignifactBit kommt am ende
     private MCP23S17 extensionBoard = null;
-//    private static final MCP23S17 extensionBoard = new MCP23S17(0,chipselect, freq); // working
 
 
     @PostConstruct
@@ -87,15 +86,16 @@ public class SPIExtensionBoard {
 
 // TODO migrate to collector service
 //    @Scheduled(every="2s", delayUnit = TimeUnit.MILLISECONDS)
-//    void increment() {
-//        byte register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
-//        if(extensionBoard.getBitinByte(register,2)){ // get 3 bit -> gpio_b_2
-//            log.info("button pushed");
-//        }else{
-////            log.info("button released");
-//        }
-//
-//    }
+    public boolean isFlameControlButtonPushed() {
+        byte register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
+        if(extensionBoard.getBitinByte(register,2)){ // get 3 bit -> gpio_b_2
+            log.info("button pushed");
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 
 
 
