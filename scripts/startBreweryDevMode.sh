@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 
 # define constants
 SCRIPTPATH="$(
@@ -60,7 +60,7 @@ BREWERY_PID_FILE=$BREWERY_BACKEND_HOME/pid
 echo "BREWERY_BACKEND_HOME=$BREWERY_BACKEND_HOME"
 
 cd $BREWERY_BACKEND_HOME
-./gradlew clean build
+./gradlew build
 
 #export QUARKUS_LAUNCH_DEVMODE=true
 #java -jar backend-0.0.1-SNAPSHOT-runner.jar
