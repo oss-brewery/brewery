@@ -5,7 +5,6 @@ import com.diozero.devices.Button;
 import com.diozero.util.SleepUtil;
 import com.pipiobjo.brewery.sensors.MCP23S17;
 import io.quarkus.runtime.ShutdownEvent;
-import io.quarkus.scheduler.Scheduled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,16 +85,17 @@ public class SPIExtensionBoard {
 
     }
 
-    @Scheduled(every="2s", delayUnit = TimeUnit.MILLISECONDS)
-    void increment() {
-        byte register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
-        if(extensionBoard.getBitinByte(register,2)){ // get 3 bit -> gpio_b_2
-            log.info("button pushed");
-        }else{
-//            log.info("button released");
-        }
-
-    }
+// TODO migrate to collector service
+//    @Scheduled(every="2s", delayUnit = TimeUnit.MILLISECONDS)
+//    void increment() {
+//        byte register = extensionBoard.getRegister(IOEXPr_1, GPIOB, (byte) 0x00);
+//        if(extensionBoard.getBitinByte(register,2)){ // get 3 bit -> gpio_b_2
+//            log.info("button pushed");
+//        }else{
+////            log.info("button released");
+//        }
+//
+//    }
 
 
 

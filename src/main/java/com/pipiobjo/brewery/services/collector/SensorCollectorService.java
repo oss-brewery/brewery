@@ -5,7 +5,6 @@ import com.pipiobjo.brewery.adapters.flametemp.FlameTemperature;
 import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
-import io.quarkus.scheduler.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
@@ -26,8 +25,6 @@ public class SensorCollectorService {
     InPotTemperatureAdapter inPotTemperatureAdapter;
     @Inject
     FlameTempSensor flameTempSensor;
-    @Inject
-    Scheduler scheduler;
     @Inject
     SensorCollectorServiceConfigProperties config;
     private Cancellable cancellable;

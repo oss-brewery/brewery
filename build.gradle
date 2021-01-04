@@ -9,18 +9,24 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.quarkus:quarkus-vertx'
     implementation 'com.diozero:diozero-core:0.14'
+    implementation 'io.quarkus:quarkus-vertx'
     implementation 'io.quarkus:quarkus-undertow-websockets'
     implementation 'io.quarkus:quarkus-config-yaml'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-resteasy-jsonb'
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+//    implementation 'io.quarkus:quarkus-smallrye-context-propagation'
+
+
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
     testImplementation 'org.powermock:powermock-core:2.0.9'
     testImplementation 'org.assertj:assertj-core:3.18.1'
 
+    // lombok
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
 

@@ -60,7 +60,7 @@ BREWERY_PID_FILE=$BREWERY_BACKEND_HOME/pid
 echo "BREWERY_BACKEND_HOME=$BREWERY_BACKEND_HOME"
 
 cd $BREWERY_BACKEND_HOME
-./mvnw clean package
+./gradlew clean build
 
 #export QUARKUS_LAUNCH_DEVMODE=true
 #java -jar backend-0.0.1-SNAPSHOT-runner.jar
@@ -70,7 +70,7 @@ chmod -R o+rw $BREWERY_BACKEND_HOME
 
 #JAVA_BIN=/home/ubuntu/graalvm/graalvm-ce-java11-20.2.0/bin/java
 #JAVA_BIN=/usr/lib/jvm/java-11-openjdk-arm64/bin/java
-EXECUTABLE_JAR_PATH=$BREWERY_BACKEND_HOME/target/quarkus-app/quarkus-run.jar
+EXECUTABLE_JAR_PATH=$BREWERY_BACKEND_HOME/build/quarkus-app/quarkus-run.jar
 #BREWERY_START_CMD="QUARKUS_LAUNCH_DEVMODE=true $JAVA_BIN -jar $EXECUTABLE_JAR_PATH 2>&1 & </dev/null"
 JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
 BREWERY_START_CMD="QUARKUS_LAUNCH_DEVMODE=true $JAVA_BIN $JAVA_OPTS -jar $EXECUTABLE_JAR_PATH"

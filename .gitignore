@@ -17,3 +17,5 @@ backend.iml
 /scripts/ControlDesign/*.svg
 
 .gradle/
+
+build/
