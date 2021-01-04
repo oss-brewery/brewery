@@ -61,7 +61,12 @@ public class SensorCollectorService {
 //    }
 
     public void stopCollecting() {
-        cancellable.cancel();
+        if(cancellable != null){
+            cancellable.cancel();
+            log.info("collecting stopped");
+        }else{
+            log.info("nothing to stop");
+        }
     }
 
     public void startCollecting() {
@@ -69,31 +74,47 @@ public class SensorCollectorService {
 
         this.cancellable = ticks.subscribe().with(
                 it -> {
-                    log.info("iteration {}", it);
+                    log.debug("iteration {}", it);
+                    StopWatch watch = new StopWatch();
                     List<CollectionPublishMode> mode = selectCollectionMode(it, config);
 
+                    if(mode.contains(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR)){
+                        watch.start();
+                        FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
+                        watch.stop();
+                        log.debug("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
+                        watch.reset();
+                    }
+
+                    if(mode.contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS)){
+                        watch.start();
+                        InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
+                        watch.stop();
+                        log.info("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
+                        watch.reset();
 
 
+                        watch.start();
+                        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
+                        watch.stop();
+                        log.info("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
+                        watch.reset();
 
-                    StopWatch watch = new StopWatch();
+                    }
 
-                    watch.start();
-                    InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
-                    watch.stop();
-                    log.info("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
-                    watch.reset();
+                    if(mode.contains(CollectionPublishMode.PUBLISH_TO_CALCULATION)){
+                        log.debug("publish to calc");
+                    }
 
-                    watch.start();
-                    FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
-                    watch.stop();
-                    log.info("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
-                    watch.reset();
 
-                    watch.start();
-                    ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
-                    watch.stop();
-                    log.info("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
-                    watch.reset();
+                    if(mode.contains(CollectionPublishMode.PUBLISH_TO_UI)){
+                        log.info("publish to ui");
+                    }
+
+                    if(mode.contains(CollectionPublishMode.PUBLISH_TO_PERSISTENCE)){
+                        log.info("publish to persistence");
+                    }
+
 
                 }
 
