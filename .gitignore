@@ -15,3 +15,5 @@ backend.iml
 
 *.pyc
 /scripts/ControlDesign/*.svg
+
+.gradle/
