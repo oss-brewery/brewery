@@ -18,6 +18,7 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,9 @@ public class SensorCollectorService {
     EventBus bus;
     @Inject
     SensorCollectorServiceConfigProperties config;
+
+    @Inject
+    PiCalculator piCalculator;
 
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Cancellable cancellable;
@@ -81,12 +85,13 @@ public class SensorCollectorService {
 
     public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
-
+        long targetTemp = 1000;
         this.cancellable = ticks.subscribe().with(
                 it -> {
                     log.debug("iteration {}", it);
                     StopWatch watch = new StopWatch();
                     List<CollectionPublishMode> mode = selectCollectionMode(it, config);
+
 
                     CollectionResult result = new CollectionResult();
 
@@ -107,6 +112,8 @@ public class SensorCollectorService {
                         log.debug("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
+
+                        long errorTemp = picalculation(it, targetTemp, flameTemp);
 
                         watch.start();
                         InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
@@ -146,6 +153,10 @@ public class SensorCollectorService {
 
         );
 
+    }
+
+    private long picalculation(Long iterator, long targetTemp, FlameTemperature flameTemp) {
+        return piCalculator.calculate(iterator, BigDecimal.valueOf(targetTemp), flameTemp.getTemperature().get());
     }
 
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {
