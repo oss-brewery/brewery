@@ -86,6 +86,9 @@ public class SensorCollectorService {
     public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
         long targetTemp = 1000;
+        if(this.cancellable != null){
+            log.info("collecting data is already running");
+        }
         this.cancellable = ticks.subscribe().with(
                 it -> {
                     log.debug("iteration {}", it);
@@ -147,12 +150,8 @@ public class SensorCollectorService {
                         log.debug("publish to persistence");
                         bus.publish(PUBLISH_TO_PERSISTENCE_EVENT_NAME, result);
                     }
-
-
                 }
-
         );
-
     }
 
     private long picalculation(Long iterator, long targetTemp, FlameTemperature flameTemp) {

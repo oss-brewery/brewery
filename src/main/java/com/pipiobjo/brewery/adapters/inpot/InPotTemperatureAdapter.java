@@ -48,19 +48,19 @@ public class InPotTemperatureAdapter {
             }
         });
 
-        if(bottomSensor == null){
+        if(bottomSensor.get() == null){
             log.error("No w1 bottom sensor for ID {} found", config.getW1TempBottomID());
         }
 
-        if(middleSensor == null){
+        if(middleSensor.get() == null){
             log.error("No w1 middle sensor for ID {} found", config.getW1TempMiddleID());
         }
 
-        if(topSensor == null){
+        if(topSensor.get() == null){
             log.error("No w1 middle sensor for ID {} found", config.getW1TempTopID());
         }
 
-        if(bottomSensor == null || middleSensor == null | topSensor == null){
+        if(bottomSensor.get() == null | middleSensor.get() == null | topSensor.get() == null){
             log.error("No inpot temp sensor is configured successfull. Available w1 sensors are: ");
             device.getTempSensors().forEach(s -> {
                 log.error("Sensor: type={}, serialNo={}, temp={}", s.getType(), s.getSerialNumber(), s.getTemperature());
