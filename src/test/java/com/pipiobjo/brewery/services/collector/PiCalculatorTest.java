@@ -11,20 +11,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PiCalculatorTest {
 
+
+
     @Test
     public void calculatePiAdjustment() throws Exception {
         PiCalculator calculator = new PiCalculator();
-
+        Long stepSize = 10L;
+        Long it = 1L;
 
         StopWatch stopWatch = new StopWatch();
+        SensorCollectorServiceConfigProperties config = new SensorCollectorServiceConfigProperties();
+        config.setBaseCollectionIntervallInMS(stepSize);
 
-        Long it = 1L;
+
         BigDecimal targetTemp = BigDecimal.valueOf(1000);
-        BigDecimal flameTemp = BigDecimal.valueOf(50);
+        BigDecimal flameTemp = BigDecimal.valueOf(0);
 
-        long adjustment = calculator.calculate(it, targetTemp, flameTemp);
+        for (it = 1L; it < 10L; it++) {
 
-        assertThat(adjustment).isEqualTo(0L);
+            BigDecimal adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp);
+            assertThat(adjustment).isEqualTo(BigDecimal.valueOf(stepSize*it));
+        }
+
     }
 
 }

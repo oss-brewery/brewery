@@ -113,7 +113,7 @@ public class SensorCollectorService {
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
 
-                        long errorTemp = picalculation(it, targetTemp, flameTemp);
+                        BigDecimal errorTemp = picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp);
 
                         watch.start();
                         InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
@@ -155,8 +155,8 @@ public class SensorCollectorService {
 
     }
 
-    private long picalculation(Long iterator, long targetTemp, FlameTemperature flameTemp) {
-        return piCalculator.calculate(iterator, BigDecimal.valueOf(targetTemp), flameTemp.getTemperature().get());
+    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp) {
+        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), flameTemp.getTemperature().get());
     }
 
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {
