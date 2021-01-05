@@ -10,18 +10,45 @@ import java.math.BigDecimal;
 @ApplicationScoped
 public class PiCalculator {
 
-    private static BigDecimal ConditionIntegrator = BigDecimal.valueOf(0);
+    private BigDecimal ConditionIntegrator = BigDecimal.valueOf(0); // Initial condition
+    private BigDecimal sum;                 // pGain and integration
+    private BigDecimal postSaturation;      // after saturation
+    private BigDecimal controlDifference;
+    private BigDecimal pGain;
+    private BigDecimal stepSizeBD;
+    private BigDecimal preSum;              // forecast for Anti-Wind-up
 
-    public BigDecimal calculate(Long stepSize, BigDecimal targetTemp, BigDecimal flameTemp) {
+    public BigDecimal calculate(Long stepSize, BigDecimal setpoint, BigDecimal feedback, BigDecimal KP,BigDecimal KI,BigDecimal upperLimit, BigDecimal lowerLimit) {
         // conversion
-        BigDecimal stepSizeBD = BigDecimal.valueOf(stepSize);
+        stepSizeBD = BigDecimal.valueOf(stepSize);
 
-        // numerical integration - forward euler
-        BigDecimal controlDifference = targetTemp.subtract(flameTemp);
-        BigDecimal tempSum = stepSizeBD.multiply(controlDifference).divide(BigDecimal.valueOf(1000));
-        ConditionIntegrator = ConditionIntegrator.add(tempSum);
+        controlDifference = setpoint.subtract(feedback);
 
+        pGain = controlDifference.multiply(KP);
+        preSum = pGain.add(ConditionIntegrator);
 
-        return ConditionIntegrator;
+        // Anti-Wind-up
+        if (preSum.compareTo(upperLimit)>=0|preSum.compareTo(lowerLimit)<=0) {
+            // upper or lower limit ist reached
+            ConditionIntegrator = ConditionIntegrator;
+        }else{
+            // limit NOT reached --> numerical integration - forward euler
+            ConditionIntegrator = ConditionIntegrator.add(stepSizeBD.multiply(controlDifference).multiply(KI).divide(BigDecimal.valueOf(1000)));
+        }
+
+        sum = pGain.add(ConditionIntegrator);
+        // saturation
+        if (sum.compareTo(upperLimit)>0) {
+            // upper limit ist reached
+            postSaturation = upperLimit;
+        }else if (sum.compareTo(lowerLimit)<0){
+            // lower limit ist reached
+            postSaturation = lowerLimit;
+        }else{
+            // limit NOT reached
+            postSaturation = sum;
+        }
+
+        return postSaturation;
     }
 }

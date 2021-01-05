@@ -85,7 +85,12 @@ public class SensorCollectorService {
 
     public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
-        long targetTemp = 1000;
+        long targetTemp = 1000;                             // set point
+        BigDecimal maxPercent= BigDecimal.valueOf(100);     // saturation limit up
+        BigDecimal minPercent= BigDecimal.valueOf(0);       // saturation limit low
+        BigDecimal KP= BigDecimal.valueOf(1);               // P-gain
+        BigDecimal KI= BigDecimal.valueOf(1);               // I-gain
+
         this.cancellable = ticks.subscribe().with(
                 it -> {
                     log.debug("iteration {}", it);
@@ -113,7 +118,7 @@ public class SensorCollectorService {
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
 
-                        BigDecimal errorTemp = picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp);
+                        BigDecimal errorTemp = picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
 
                         watch.start();
                         InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
@@ -155,8 +160,8 @@ public class SensorCollectorService {
 
     }
 
-    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp) {
-        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), flameTemp.getTemperature().get());
+    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp,BigDecimal KP,BigDecimal KI,BigDecimal maxPercent,BigDecimal minPercent) {
+        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), KP, KI, flameTemp.getTemperature().get(), maxPercent,minPercent);
     }
 
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {
