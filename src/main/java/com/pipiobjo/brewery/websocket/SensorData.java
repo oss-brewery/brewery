@@ -29,7 +29,7 @@ public class SensorData {
     }
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("username") String username) {
+    public void onOpen(Session session) {
         sessions.put(session.getId(), session);
     }
 
