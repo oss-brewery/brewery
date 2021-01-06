@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.rest;
 
-import com.pipiobjo.brewery.adapters.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

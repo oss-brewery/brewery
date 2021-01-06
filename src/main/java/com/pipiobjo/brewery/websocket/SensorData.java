@@ -25,36 +25,35 @@ public class SensorData {
     @ConsumeEvent(value = SensorCollectorService.PUBLISH_TO_UI_EVENT_NAME, blocking = true)
     public void updateUIEvent(CollectionResult event) {
         log.info("receiving collection result: {}", event);
+        broadcast(event);
     }
 
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
-        sessions.put(username, session);
-        broadcast("User " + username + " joined23");
+        sessions.put(session.getId(), session);
     }
 
     @OnClose
-    public void onClose(Session session, @PathParam("username") String username) {
-        sessions.remove(username);
-        broadcast("User " + username + " left");
+    public void onClose(Session session) {
+        sessions.remove(session.getId());
     }
 
     @OnError
-    public void onError(Session session, @PathParam("username") String username, Throwable throwable) {
-        sessions.remove(username);
-        broadcast("User " + username + " left on error: " + throwable);
+    public void onError(Session session, Throwable throwable) {
+        log.error("Session: {} contains errors:", session.getId(), throwable);
+        sessions.remove(session.getId());
     }
 
     @OnMessage
-    public void onMessage(String message, @PathParam("username") String username) {
-        broadcast(">> " + username + ": " + message);
+    public void onMessage(Session session, String message) {
+        log.info("Receiving msg: {}", message);
     }
 
-    private void broadcast(String message) {
+    private void broadcast(Object obj) {
         sessions.values().forEach(s -> {
-            s.getAsyncRemote().sendObject(message, result -> {
+            s.getAsyncRemote().sendObject(obj, result -> {
                 if (result.getException() != null) {
-                    System.out.println("Unable to send message: " + result.getException());
+                    log.error("Unable to send obj: " + result.getException());
                 }
             });
         });

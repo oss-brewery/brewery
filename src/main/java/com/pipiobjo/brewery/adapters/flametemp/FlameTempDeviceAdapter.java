@@ -2,7 +2,9 @@ package com.pipiobjo.brewery.adapters.flametemp;
 
 import com.diozero.api.SpiClockMode;
 import com.pipiobjo.brewery.sensors.MAX6675V12;
+import io.quarkus.arc.DefaultBean;
 import io.quarkus.runtime.ShutdownEvent;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
@@ -17,18 +19,20 @@ import java.util.Optional;
  * https://www.sparkfun.com/datasheets/IC/MAX6675.pdf
  */
 @Slf4j
+@RequiredArgsConstructor
+@DefaultBean
 @ApplicationScoped
-public class FlameTempSensor {
-
-    @Inject
-    FlameTempConfigProperties config;
-
-    static int controller = 0;
+public class FlameTempDeviceAdapter implements FlameTempAdapter {
+    private static final int controller = 0;
     //chiselect == cs // ss -> 0 / 1
-    static int chipselect = 1;
-    static int freq = 1000000;
+    private static final int chipselect = 1;
+    private static final int freq = 1000000;
     //modes cpha oder cpol
-    boolean lsbFirst = false; // leastSignifactBit kommt am ende
+    private static final boolean lsbFirst = false; // leastSignifactBit kommt am ende
+
+    private final FlameTempConfigProperties config;
+
+
     private MAX6675V12 tempSensor = null;
 
     @PostConstruct
@@ -40,6 +44,7 @@ public class FlameTempSensor {
     }
 
 
+    @Override
     public FlameTemperature getFlameTemp() {
         FlameTemperature result = new FlameTemperature();
         result.setTimestamp(OffsetDateTime.now());
