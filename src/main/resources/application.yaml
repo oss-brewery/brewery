@@ -28,3 +28,9 @@ brewery:
     calculation-intervall-in-ms: 150
     persistence-intervall-in-ms: 4000
 
+
+# mockDevices
+#"%mockDevices":
+#  brewery:
+#    inpot:
+#      use-mock: true

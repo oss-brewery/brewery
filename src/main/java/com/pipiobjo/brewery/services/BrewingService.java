@@ -1,6 +1,5 @@
 package com.pipiobjo.brewery.services;
 
-import com.pipiobjo.brewery.adapters.BreweryStartupButton;
 import com.pipiobjo.brewery.services.collector.SensorCollectorService;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import io.quarkus.vertx.ConsumeEvent;
@@ -35,11 +34,11 @@ public class BrewingService{
 
     }
 
-    @ConsumeEvent(value = BreweryStartupButton.BREWERY_STARTUP_EVENT_NAME, blocking = true)
-    public void consume(String event) {
-        log.info("Start Button is pushed ... now lets rule the brewing process");
-//        breweryStatusLED.doMagic();
-    }
+//    @ConsumeEvent(value = BreweryStartupButton.BREWERY_STARTUP_EVENT_NAME, blocking = true)
+//    public void consume(String event) {
+//        log.info("Start Button is pushed ... now lets rule the brewing process");
+////        breweryStatusLED.doMagic();
+//    }
 
     /**
      * Executing brewery self check. Includes checks for:

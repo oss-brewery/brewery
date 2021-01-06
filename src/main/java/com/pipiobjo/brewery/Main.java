@@ -3,7 +3,9 @@ package com.pipiobjo.brewery;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @QuarkusMain
 public class Main {
     /**
@@ -14,16 +16,13 @@ public class Main {
     }
 
     public static class MyApp implements QuarkusApplication {
-//        @Inject
-//        BrewingService brewingService;
 
         @Override
         public int run(String... args) throws Exception {
-            System.out.println("Do startup logic here" );
+            log.info("Do startup logic here");
 
-//            brewingService.init();
-            for (String arg: args) {
-                System.out.println("arg=" + arg);
+            for (String arg : args) {
+                log.info("arg={}", arg);
             }
             Quarkus.waitForExit();
             return 0;

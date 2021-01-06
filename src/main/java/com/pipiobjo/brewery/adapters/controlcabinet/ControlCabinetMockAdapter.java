@@ -9,8 +9,6 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 
 @Slf4j
-@ApplicationScoped
-@IfBuildProfile("mockDevices")
 public class ControlCabinetMockAdapter implements ControlCabinetAdapter{
     @Override
     public void checkConfiguration() {
