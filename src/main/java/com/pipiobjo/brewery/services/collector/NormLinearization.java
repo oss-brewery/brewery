@@ -3,55 +3,53 @@ package com.pipiobjo.brewery.services.collector;
 import com.pipiobjo.brewery.interpolable.InterpolatingDouble;
 import com.pipiobjo.brewery.interpolable.InterpolatingTreeMap;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @Data
 public class NormLinearization {
-    // make a linearization with f^-1
-    BigDecimal temp = BigDecimal.valueOf(0);
-    private static final double start = 0;
-    private static final double end = 10;
-    public BigDecimal TestValue = BigDecimal.valueOf(0);
-    private double[] measureingPoint;
-    private double[] measureingValue;
+    private BigDecimal inFun;
+    private InterpolatingDouble[] measureingPoint;
+    private InterpolatingDouble[] measureingValue;
     private int N;
 
     InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> map = new InterpolatingTreeMap<>();
 
+    public NormLinearization(double[] measureingPointInput, double[] measureingValueInput) {
+        setMap(measureingPointInput,measureingValueInput);
+    }
 
-    // constructor
-    public NormLinearization(int N) {
-        // N --> data points
-        InterpolatingDouble[] measureingPoint = new InterpolatingDouble[N];
-        this.N = N;
-        for (int i = (int) start; i < N; i++) {
-            measureingPoint[i] = new InterpolatingDouble(i * (end - start) / (N - 1));
-        }
-
-        // measuring value --> just an example function
-        InterpolatingDouble[] measureingValue = new InterpolatingDouble[N];
-        for (int i = (int) start; i < N; i++) {
-            measureingValue[i] = new InterpolatingDouble(Math.pow(measureingPoint[i].getValue(), 2));
-        }
-
+    private void setMap(double[] measureingPointInput, double[] measureingValueInput) {
         // map erstellen
-        for (int i = (int) start; i < N; i++) {
+        if (measureingValueInput.length!=measureingPointInput.length){
+            log.info("dimension not equal, N1={}", measureingPointInput.length,", N2={}", measureingValueInput.length);
+            return;
+        }
+
+        N = measureingValueInput.length;
+        InterpolatingDouble[] measureingPoint = new InterpolatingDouble[N];
+        InterpolatingDouble[] measureingValue = new InterpolatingDouble[N];
+
+        for (int i = 0; i < N; i++) {
+            measureingPoint[i] = new InterpolatingDouble(measureingPointInput[i]);
+        }
+
+        for (int i = 0; i < N; i++) {
+            measureingValue[i] = new InterpolatingDouble(measureingValueInput[i]);
+        };
+
+        for (int i = 0; i < N; i++) {
             // put(key,value) --> swapping map
             map.put(measureingValue[i], measureingPoint[i]);
         }
-
     }
 
     public BigDecimal calculation(BigDecimal input, BigDecimal normingFactor) {
-        temp = input.multiply(normingFactor);
-        /*
-        for(int i = (int)start; i < N; i++){
-            measureingValue[i].compareTo();
-        }*/
+        inFun = input.multiply(normingFactor);
+        InterpolatingDouble outValue = getMap().getInterpolated(new InterpolatingDouble(inFun.doubleValue()));
 
-        return temp;
+        return BigDecimal.valueOf(outValue.getValue());
     }
-
-
 }
