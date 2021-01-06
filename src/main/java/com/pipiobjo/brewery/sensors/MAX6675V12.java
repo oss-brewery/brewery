@@ -4,7 +4,7 @@ import com.diozero.api.SpiClockMode;
 import com.diozero.api.SpiDevice;
 import com.diozero.api.ThermometerInterface;
 import com.diozero.util.RuntimeIOException;
-import com.pipiobjo.brewery.adapters.flametemp.FlameTempSensor;
+import com.pipiobjo.brewery.adapters.flametemp.FlameTempDeviceAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ import java.math.RoundingMode;
  */
 public class MAX6675V12 implements ThermometerInterface {
     public static final BigDecimal MAX_TEMPRATURE = new BigDecimal(1023.75);
-    private static final Logger log = LoggerFactory.getLogger(FlameTempSensor.class);
+    private static final Logger log = LoggerFactory.getLogger(FlameTempDeviceAdapter.class);
     private static final int MAX_SPI_CLOCK_FREQUENCY = 4_300_000;
     // 12 bit range of sensor and tempratur range of 1024°C -> (2^12-1)÷1023.75
     private static final BigDecimal segmentationFactor = (new BigDecimal(2).pow(12).subtract(new BigDecimal(1))).divide(MAX_TEMPRATURE,8, RoundingMode.HALF_UP);

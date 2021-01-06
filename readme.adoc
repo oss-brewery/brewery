@@ -240,6 +240,15 @@ OpenJDK 64-Bit Server VM warning: forcing TieredStopAtLevel to full optimization
 
 Open http://brewery32:8080/swagger-ui
 
+
+
+=== How to use the MockAdapters
+
+QUARKUS_PROFILE=mockDevices
+
+
+
+
 === How to compile the system utils - optional if you use 64bit
 
 If you try to use diozero on a raspberry via 64 bit you have to recompile and link the systemutils this can be done with
@@ -279,3 +288,10 @@ ln -s $LIB_DIOZERO /usr/lib/libdiozero-system-utils.so
 
 
 
+== Links
+
+* https://www.geeksforgeeks.org/bitwise-operators-in-java/
+* Mutiny - reactiv programming with quarkus
+** https://quarkus.io/guides/getting-started-reactive#mutiny
+** http://smallrye.io/smallrye-mutiny/index.html
+* https://github.com/smallrye/smallrye-config

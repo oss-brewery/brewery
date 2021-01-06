@@ -1,7 +1,5 @@
-package com.pipiobjo.brewery.adapters;
+package com.pipiobjo.brewery.adapters.spiextensionboard;
 
-import com.diozero.api.GpioPullUpDown;
-import com.diozero.devices.Button;
 import com.diozero.util.SleepUtil;
 import com.pipiobjo.brewery.sensors.MCP23S17;
 import io.quarkus.runtime.ShutdownEvent;
@@ -11,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
-import java.util.concurrent.TimeUnit;
 
 /**
  * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf

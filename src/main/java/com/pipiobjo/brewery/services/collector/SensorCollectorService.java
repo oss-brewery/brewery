@@ -1,9 +1,9 @@
 package com.pipiobjo.brewery.services.collector;
 
-import com.pipiobjo.brewery.adapters.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetAdapter;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetTemperature;
-import com.pipiobjo.brewery.adapters.flametemp.FlameTempSensor;
+import com.pipiobjo.brewery.adapters.flametemp.FlameTempAdapter;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTemperature;
 import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
@@ -34,7 +34,7 @@ public class SensorCollectorService {
     @Inject
     InPotTemperatureAdapter inPotTemperatureAdapter;
     @Inject
-    FlameTempSensor flameTempSensor;
+    FlameTempAdapter flameTempAdapter;
     @Inject
     ControlCabinetAdapter controlCabinetAdapter;
     @Inject
@@ -66,7 +66,7 @@ public class SensorCollectorService {
         log.info("controlCabinetTemp={}", controlCabinetTemp);
         result.setControlCabinetTemperature(controlCabinetTemp);
 
-        FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
+        FlameTemperature flameTemp = flameTempAdapter.getFlameTemp();
         log.info("flameTemp={}", flameTemp);
         result.setFlameTemperature(flameTemp);
 
@@ -86,9 +86,9 @@ public class SensorCollectorService {
     public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
         long targetTemp = 1000;                             // set point
-        BigDecimal maxPercent= BigDecimal.valueOf(100);     // saturation limit up
-        BigDecimal minPercent= BigDecimal.valueOf(0);       // saturation limit low
-        BigDecimal KP= BigDecimal.valueOf(1);               // P-gain
+        if(this.cancellable != null){
+            log.info("collecting data is already running");
+        }
         BigDecimal KI= BigDecimal.valueOf(1);               // I-gain
 
         this.cancellable = ticks.subscribe().with(
@@ -112,7 +112,7 @@ public class SensorCollectorService {
                     if (mode.contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS)) {
 
                         watch.start();
-                        FlameTemperature flameTemp = flameTempSensor.getFlameTemp();
+                        FlameTemperature flameTemp = flameTempAdapter.getFlameTemp();
                         watch.stop();
                         log.debug("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
                         watch.reset();
@@ -152,12 +152,8 @@ public class SensorCollectorService {
                         log.debug("publish to persistence");
                         bus.publish(PUBLISH_TO_PERSISTENCE_EVENT_NAME, result);
                     }
-
-
                 }
-
         );
-
     }
 
     private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp,BigDecimal KP,BigDecimal KI,BigDecimal maxPercent,BigDecimal minPercent) {
