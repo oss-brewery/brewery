@@ -17,13 +17,13 @@ import java.math.RoundingMode;
  * https://datasheets.maximintegrated.com/en/ds/MAX6675.pdf
  */
 public class MAX6675V12 implements ThermometerInterface {
-    public static final BigDecimal MAX_TEMPRATURE = new BigDecimal(1023.75);
+    public static final BigDecimal MAX_TEMPRATURE = BigDecimal.valueOf(1023.75);
     private static final Logger log = LoggerFactory.getLogger(FlameTempDeviceAdapter.class);
     private static final int MAX_SPI_CLOCK_FREQUENCY = 4_300_000;
     // 12 bit range of sensor and tempratur range of 1024°C -> (2^12-1)÷1023.75
     private static final BigDecimal segmentationFactor = (new BigDecimal(2).pow(12).subtract(new BigDecimal(1))).divide(MAX_TEMPRATURE,8, RoundingMode.HALF_UP);
     // datasheet says always at the end
-    private static final boolean lsbFirst = false;
+    private static final boolean LSB_FIRST = false;
 
     private SpiDevice device;
 
@@ -39,7 +39,7 @@ public class MAX6675V12 implements ThermometerInterface {
             throw new UnsupportedOperationException("the given frequency is higher than supported max:" + MAX_SPI_CLOCK_FREQUENCY);
         }
         try{
-        device = new SpiDevice(controller, chipSelect, frequence, mode, lsbFirst);
+        device = new SpiDevice(controller, chipSelect, frequence, mode, LSB_FIRST);
         }catch (Exception e){
             log.error("Error while init temp sensor ", e);
             close();

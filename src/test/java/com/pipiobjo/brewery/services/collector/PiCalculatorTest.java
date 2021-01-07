@@ -14,7 +14,7 @@ class PiCalculatorTest {
 
 
     @Test
-    public void calculatePiAdjustment() throws Exception {
+    void calculatePiAdjustment() throws Exception {
         PiCalculator calculator = new PiCalculator();
         PiCalculator calculator2 = new PiCalculator();
 

@@ -89,7 +89,10 @@ public class SensorCollectorService {
         if(this.cancellable != null){
             log.info("collecting data is already running");
         }
-        BigDecimal KI= BigDecimal.valueOf(1);               // I-gain
+        BigDecimal ki= BigDecimal.valueOf(1);               // I-gain
+        BigDecimal kp= BigDecimal.valueOf(1);               // P-gain
+        BigDecimal minPercent = BigDecimal.valueOf(0);
+        BigDecimal maxPercent = BigDecimal.valueOf(100);
 
         this.cancellable = ticks.subscribe().with(
                 it -> {
@@ -118,7 +121,7 @@ public class SensorCollectorService {
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
 
-                        BigDecimal errorTemp = picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+                        picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, kp, ki, maxPercent, minPercent);
 
                         watch.start();
                         InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
@@ -156,8 +159,8 @@ public class SensorCollectorService {
         );
     }
 
-    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp,BigDecimal KP,BigDecimal KI,BigDecimal maxPercent,BigDecimal minPercent) {
-        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), KP, KI, flameTemp.getTemperature().get(), maxPercent,minPercent);
+    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp,BigDecimal kp,BigDecimal ki,BigDecimal maxPercent,BigDecimal minPercent) {
+        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), kp, ki, flameTemp.getTemperature().get(), maxPercent,minPercent);
     }
 
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {

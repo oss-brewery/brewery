@@ -18,7 +18,7 @@ public class MCP23S17  implements SensorInterface {
     private static final int MAX_SPI_CLOCK_FREQUENCY = 12_500_000;
 
     // datasheet says always at the end
-    private static final boolean lsbFirst = false;
+    private static final boolean LSB_FIRST = false;
 
     private SpiDevice device;
 
@@ -33,10 +33,9 @@ public class MCP23S17  implements SensorInterface {
             throw new UnsupportedOperationException("the given frequency is higher than supported max:" + MAX_SPI_CLOCK_FREQUENCY);
         }
         try{
-        device = new SpiDevice(controller, chipSelect, frequence, SpiClockMode.MODE_0, lsbFirst);
+        device = new SpiDevice(controller, chipSelect, frequence, SpiClockMode.MODE_0, LSB_FIRST);
         }catch (Exception e){
             log.error("Error while init device ", e);
-//            device.close();
             throw e;
         }
     }
@@ -61,16 +60,16 @@ public class MCP23S17  implements SensorInterface {
     public byte setBitinByte(byte register, boolean value,int bitNum) throws RuntimeIOException {
         if (value) {
             // set high
-            return (byte) (register | ((byte) 0x01<<bitNum));
+            return (byte) (register&0xff | ((byte) 0x01<<bitNum));
         }
         else {
             // set low
-            return (byte) (register & ~((byte) 0x01<<bitNum));
+            return (byte) (register&0xff & ~((byte) 0x01<<bitNum));
         }
     }
 
     public boolean getBitinByte(byte Register,int bitNum) throws RuntimeIOException {
-        if ((byte) (Register & ((byte) 0x01<<bitNum))>0) {
+        if ((byte) (Register&0xff & ((byte) 0x01<<bitNum))>0) {
             // get high
             return true;
         }

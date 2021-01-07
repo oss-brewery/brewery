@@ -13,7 +13,7 @@ public class NormLinearization {
     private BigDecimal inFun;
     private InterpolatingDouble[] measureingPoint;
     private InterpolatingDouble[] measureingValue;
-    private int N;
+    private int n;
 
     InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> map = new InterpolatingTreeMap<>();
 
@@ -28,19 +28,19 @@ public class NormLinearization {
             return;
         }
 
-        N = measureingValueInput.length;
-        InterpolatingDouble[] measureingPoint = new InterpolatingDouble[N];
-        InterpolatingDouble[] measureingValue = new InterpolatingDouble[N];
+        n = measureingValueInput.length;
+        measureingPoint = new InterpolatingDouble[n];
+        measureingValue = new InterpolatingDouble[n];
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             measureingPoint[i] = new InterpolatingDouble(measureingPointInput[i]);
         }
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             measureingValue[i] = new InterpolatingDouble(measureingValueInput[i]);
-        };
+        }
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             // put(key,value) --> swapping map
             map.put(measureingValue[i], measureingPoint[i]);
         }
