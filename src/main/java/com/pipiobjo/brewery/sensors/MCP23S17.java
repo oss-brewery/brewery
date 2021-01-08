@@ -7,8 +7,6 @@ import com.diozero.util.RuntimeIOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigInteger;
-
 /**
  * MCP23S17 Version 1.0
  * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
@@ -49,12 +47,9 @@ public class MCP23S17  implements SensorInterface {
         }
     }
 
-    public void setRegister(byte deviceOpcode, byte Register, byte spiMCP_Data) throws RuntimeIOException {
-        byte[] write = new byte[]{deviceOpcode,Register,spiMCP_Data};
-        byte[] bytes = device.writeAndRead(write);
-        BigInteger binaryValue = new BigInteger(bytes);
-
-
+    public void setRegister(byte deviceOpcode, byte register, byte spiMCPData) throws RuntimeIOException {
+        byte[] write = new byte[]{deviceOpcode,register,spiMCPData};
+        device.writeAndRead(write);
     }
 
     public byte setBitinByte(byte register, boolean value,int bitNum) throws RuntimeIOException {
@@ -68,39 +63,24 @@ public class MCP23S17  implements SensorInterface {
         }
     }
 
-    public boolean getBitinByte(byte Register,int bitNum) throws RuntimeIOException {
-        if ((byte) (Register&0xff & ((byte) 0x01<<bitNum))>0) {
-            // get high
-            return true;
-        }
-        else {
-            // get low
-            return false;
-        }
+    public boolean getBitinByte(byte register,int bitNum) throws RuntimeIOException {
+        return ((byte) (register&0xff & ((byte) 0x01<<bitNum))>0);
     }
 
     /**
      *
      * @param deviceOpcode
-     * @param Register
-     * @param spiMCP_Data
+     * @param register
+     * @param spiMCPData
      * @return return the third byte of the byte[]
      * @throws RuntimeIOException
      */
-    public byte getRegister(byte deviceOpcode, byte Register, byte spiMCP_Data) throws RuntimeIOException {
-        byte[] write = new byte[]{deviceOpcode,Register,spiMCP_Data};
+    public byte getRegister(byte deviceOpcode, byte register, byte spiMCPData) throws RuntimeIOException {
+        byte[] write = new byte[]{deviceOpcode,register,spiMCPData};
         byte[] bytes = device.writeAndRead(write);
         return bytes[2];
 
 
     }
 
-
-
-
-    private byte[] readData(){
-        byte[] write = new byte[]{0x0000, 0x0000};
-        byte[] read =device.writeAndRead(write);
-        return read;
-    }
 }

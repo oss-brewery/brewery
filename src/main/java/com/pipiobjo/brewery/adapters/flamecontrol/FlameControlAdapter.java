@@ -9,5 +9,5 @@ public interface FlameControlAdapter {
 
     public void flameOneStepLower();
 
-    public void isFlameOn();
+    public boolean isFlameOn();
 }

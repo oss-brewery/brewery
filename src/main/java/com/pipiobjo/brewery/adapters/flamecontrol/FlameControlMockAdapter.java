@@ -22,7 +22,7 @@ public class FlameControlMockAdapter implements FlameControlAdapter{
     }
 
     @Override
-    public void isFlameOn() {
-
+    public boolean isFlameOn() {
+        return false;
     }
 }

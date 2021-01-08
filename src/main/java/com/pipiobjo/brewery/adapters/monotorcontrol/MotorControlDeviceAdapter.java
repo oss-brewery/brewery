@@ -13,28 +13,33 @@ public class MotorControlDeviceAdapter implements MotorControlAdapter{
     @Inject
     SPIExtensionBoard spiExtensionBoard;
 
-
     @Override
     public long getMaxPosition() {
-        log.info("getMaxPosition");
+        long motorPositionIncMax = spiExtensionBoard.getMotorPositionIncMax();
+        log.info("getMaxPosition: {}", motorPositionIncMax);
         return 0;
     }
 
     @Override
     public long getMinPosition() {
-        log.info("getMinPosition");
+        long motorPositionIncMin = spiExtensionBoard.getMotorPositionIncMin();
+        log.info("getMinPosition: {}", motorPositionIncMin);
         return 0;
     }
 
     @Override
     public long getCurrentPosition() {
-
-        log.info("current {} {}", 12, 13);
+        long motorPositionInc = spiExtensionBoard.getMotorPositionInc();
+        log.info("current {}", motorPositionInc);
         return 0;
     }
 
     @Override
     public boolean moveToPosition(long targetPosition) {
+        long controlDifference = targetPosition - getCurrentPosition();
+        log.info("drive steps: {}", controlDifference);
+        spiExtensionBoard.motorControl(controlDifference);
+        getCurrentPosition();
         return false;
     }
 }

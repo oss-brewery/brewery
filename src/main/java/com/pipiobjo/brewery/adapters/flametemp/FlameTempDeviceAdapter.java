@@ -13,12 +13,6 @@ import java.util.Optional;
  */
 @Slf4j
 public class FlameTempDeviceAdapter implements FlameTempAdapter {
-    private static final int controller = 0;
-    //chiselect == cs // ss -> 0 / 1
-    private static final int chipselect = 1;
-    private static final int freq = 1000000;
-    //modes cpha oder cpol
-    private static final boolean lsbFirst = false; // leastSignifactBit kommt am ende
 
     private MAX6675V12 tempSensor = null;
     private FlameTempConfigProperties config;
