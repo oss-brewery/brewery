@@ -24,7 +24,7 @@ public class InPotTemperatureAdapterConfig {
     @IfBuildProfile("mockDevices")
     public InPotTemperatureAdapter provideMock(){
             log.info("Selecting mocking device for inpot temperatures, profile={}, launchMode={}", activeProfile, launchMode);
-            return new InputTemperatureMockAdapter();
+            return new InPotTemperatureMockAdapter();
     }
 
 

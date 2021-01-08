@@ -244,6 +244,7 @@ Open http://brewery32:8080/swagger-ui
 
 === How to use the MockAdapters
 
+
 QUARKUS_PROFILE=mockDevices
 
 
