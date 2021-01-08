@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
-public class InputTemperatureMockAdapter implements InPotTemperatureAdapter {
+public class InPotTemperatureMockAdapter implements InPotTemperatureAdapter {
 
     private AtomicInteger counter = new AtomicInteger(0);
 

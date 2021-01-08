@@ -1,9 +1,5 @@
 package com.pipiobjo.brewery.adapters.controlcabinet;
 
-import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
-import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureConfigProperties;
-import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureDeviceAdapter;
-import com.pipiobjo.brewery.adapters.inpot.InputTemperatureMockAdapter;
 import io.quarkus.arc.DefaultBean;
 import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
