@@ -12,6 +12,31 @@ import org.slf4j.LoggerFactory;
  * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
  */
 public class MCP23S17  implements SensorInterface {
+    // Const for MCP23S17
+    // Slaveadresse des MCP23S17
+    public static final byte IOEXP_W = 0b01000000;  // Opcode write
+    //private static final byte IOEXP_R = 0b01000001;  // Opcode read
+
+    // first MCP23S17 with Adrr. 0bxxxx001x
+    public static final byte IOEXP_W_1 = 0b01000010;  // Opcode write
+    public static final byte IOEXP_R_1 = 0b01000011;  // Opcode read
+
+    // second MCP23S17 with Adrr. 0bxxxx010x
+    public static final byte IOEXP_W_2 = 0b01000100;  // Opcode write
+    public static final byte IOEXP_R_2 = 0b01000101;  // Opcode read
+
+    // Adressen der Register
+    //private static final byte IODIRA = 0x00;   // Port A direction
+    public static final byte IODIRB = 0x01;   // Port B direction
+    //private static final byte GPIOA = 0x12;    // Port A input
+    public static final byte GPIOB = 0x13;    // Port B input
+    //private static final byte OLATA = 0x14;    // Port A output
+    public static final byte OLATB = 0x15;    // Port B output
+    public static final byte IOCON = 0x0A;    // Port A configuration
+    //static byte IOCON = 0x0A;    // Port B configuration
+
+
+
     private static final Logger log = LoggerFactory.getLogger(MCP23S17.class);
     private static final int MAX_SPI_CLOCK_FREQUENCY = 12_500_000;
 
@@ -75,8 +100,8 @@ public class MCP23S17  implements SensorInterface {
      * @return return the third byte of the byte[]
      * @throws RuntimeIOException
      */
-    public byte getRegister(byte deviceOpcode, byte register, byte spiMCPData) throws RuntimeIOException {
-        byte[] write = new byte[]{deviceOpcode,register,spiMCPData};
+    public byte getRegister(byte deviceOpcode, byte register) throws RuntimeIOException {
+        byte[] write = new byte[]{deviceOpcode,register,(byte) 0x00};
         byte[] bytes = device.writeAndRead(write);
         return bytes[2];
 
