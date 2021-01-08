@@ -2,20 +2,18 @@ package com.pipiobjo.brewery.services.collector;
 
 import com.pipiobjo.brewery.interpolable.InterpolatingDouble;
 import com.pipiobjo.brewery.interpolable.InterpolatingTreeMap;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 
 @Slf4j
-@Data
 public class NormLinearization {
-    private BigDecimal inFun;
+
     private InterpolatingDouble[] measureingPoint;
     private InterpolatingDouble[] measureingValue;
     private int n;
 
-    InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> map = new InterpolatingTreeMap<>();
+    private InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> map = new InterpolatingTreeMap<>();
 
     public NormLinearization(double[] measureingPointInput, double[] measureingValueInput) {
         setMap(measureingPointInput,measureingValueInput);
@@ -47,8 +45,8 @@ public class NormLinearization {
     }
 
     public BigDecimal calculation(BigDecimal input, BigDecimal normingFactor) {
-        inFun = input.multiply(normingFactor);
-        InterpolatingDouble outValue = getMap().getInterpolated(new InterpolatingDouble(inFun.doubleValue()));
+        BigDecimal inFun = input.multiply(normingFactor);
+        InterpolatingDouble outValue = map.getInterpolated(new InterpolatingDouble(inFun.doubleValue()));
 
         return BigDecimal.valueOf(outValue.getValue());
     }
