@@ -1,9 +1,6 @@
 package com.pipiobjo.brewery.adapters.flamecontrol;
 
-public class FlameControlAdapterDevice implements FlameControlAdapter {
-
-
-
+public class FlameControlMockAdapter implements FlameControlAdapter{
     @Override
     public void turnOff() {
 
