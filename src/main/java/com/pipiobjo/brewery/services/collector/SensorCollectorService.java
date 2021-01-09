@@ -9,6 +9,7 @@ import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
+import io.quarkus.runtime.ShutdownEvent;
 import io.reactivex.disposables.CompositeDisposable;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -219,7 +221,9 @@ public class SensorCollectorService {
 
         return false;
     }
-
+    void onStop(@Observes ShutdownEvent ev) {
+        stopCollecting();
+    }
 
 }
 
