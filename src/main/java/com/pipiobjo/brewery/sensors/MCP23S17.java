@@ -15,7 +15,7 @@ public class MCP23S17  implements SensorInterface {
     // Const for MCP23S17
     // Slaveadresse des MCP23S17
     public static final byte IOEXP_W = 0b01000000;  // Opcode write
-    //private static final byte IOEXP_R = 0b01000001;  // Opcode read
+    public static final byte IOEXP_R = 0b01000001;  // Opcode read
 
     // first MCP23S17 with Adrr. 0bxxxx001x
     public static final byte IOEXP_W_1 = 0b01000010;  // Opcode write
@@ -26,14 +26,14 @@ public class MCP23S17  implements SensorInterface {
     public static final byte IOEXP_R_2 = 0b01000101;  // Opcode read
 
     // Adressen der Register
-    //private static final byte IODIRA = 0x00;   // Port A direction
+    public static final byte IODIRA = 0x00;   // Port A direction
     public static final byte IODIRB = 0x01;   // Port B direction
-    //private static final byte GPIOA = 0x12;    // Port A input
+    public static final byte GPIOA = 0x12;    // Port A input
     public static final byte GPIOB = 0x13;    // Port B input
-    //private static final byte OLATA = 0x14;    // Port A output
+    public static final byte OLATA = 0x14;    // Port A output
     public static final byte OLATB = 0x15;    // Port B output
     public static final byte IOCON = 0x0A;    // Port A configuration
-    //static byte IOCON = 0x0A;    // Port B configuration
+    //public byte IOCON = 0x0A;    // Port B configuration
 
 
 
