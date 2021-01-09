@@ -175,11 +175,18 @@ graalvm https://github.com/graalvm/graalvm-ce-builds/releases/tag/vm-20.3.0
 /mnt/usb/repos/brewery-backend/scripts/./startBreweryDevMode.sh
 ```
 
-For having a simple-to-use alias you can create them.
+For having a simple-to-use alias you can create them in script.
+```bash
+sudo nano /etc/bash.bashrc
+
+```
+adding following lines in the script
 ```bash
 alias brewerySetup='/mnt/usb/repos/brewery-backend/scripts/./setupBrewery.sh'
 alias breweryDev='/mnt/usb/repos/brewery-backend/scripts/./startBreweryDevMode.sh'
 ```
+workaround on windows --> using WSL
+
 
 So from now on you can start your developing with an alias on your raspberry pi and then from your IntelliJ.
 ```bash

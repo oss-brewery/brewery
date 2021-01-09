@@ -7,18 +7,41 @@ import com.diozero.util.RuntimeIOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigInteger;
-
 /**
  * MCP23S17 Version 1.0
  * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
  */
 public class MCP23S17  implements SensorInterface {
+    // Const for MCP23S17
+    // Slaveadresse des MCP23S17
+    public static final byte IOEXP_W = 0b01000000;  // Opcode write
+    public static final byte IOEXP_R = 0b01000001;  // Opcode read
+
+    // first MCP23S17 with Adrr. 0bxxxx001x
+    public static final byte IOEXP_W_1 = 0b01000010;  // Opcode write
+    public static final byte IOEXP_R_1 = 0b01000011;  // Opcode read
+
+    // second MCP23S17 with Adrr. 0bxxxx010x
+    public static final byte IOEXP_W_2 = 0b01000100;  // Opcode write
+    public static final byte IOEXP_R_2 = 0b01000101;  // Opcode read
+
+    // Adressen der Register
+    public static final byte IODIRA = 0x00;   // Port A direction
+    public static final byte IODIRB = 0x01;   // Port B direction
+    public static final byte GPIOA = 0x12;    // Port A input
+    public static final byte GPIOB = 0x13;    // Port B input
+    public static final byte OLATA = 0x14;    // Port A output
+    public static final byte OLATB = 0x15;    // Port B output
+    public static final byte IOCON = 0x0A;    // Port A configuration
+    //public byte IOCON = 0x0A;    // Port B configuration
+
+
+
     private static final Logger log = LoggerFactory.getLogger(MCP23S17.class);
     private static final int MAX_SPI_CLOCK_FREQUENCY = 12_500_000;
 
     // datasheet says always at the end
-    private static final boolean lsbFirst = false;
+    private static final boolean LSB_FIRST = false;
 
     private SpiDevice device;
 
@@ -33,10 +56,9 @@ public class MCP23S17  implements SensorInterface {
             throw new UnsupportedOperationException("the given frequency is higher than supported max:" + MAX_SPI_CLOCK_FREQUENCY);
         }
         try{
-        device = new SpiDevice(controller, chipSelect, frequence, SpiClockMode.MODE_0, lsbFirst);
+        device = new SpiDevice(controller, chipSelect, frequence, SpiClockMode.MODE_0, LSB_FIRST);
         }catch (Exception e){
             log.error("Error while init device ", e);
-//            device.close();
             throw e;
         }
     }
@@ -50,58 +72,40 @@ public class MCP23S17  implements SensorInterface {
         }
     }
 
-    public void setRegister(byte deviceOpcode, byte Register, byte spiMCP_Data) throws RuntimeIOException {
-        byte[] write = new byte[]{deviceOpcode,Register,spiMCP_Data};
-        byte[] bytes = device.writeAndRead(write);
-        BigInteger binaryValue = new BigInteger(bytes);
-
-
+    public void setRegister(byte deviceOpcode, byte register, byte spiMCPData) throws RuntimeIOException {
+        byte[] write = new byte[]{deviceOpcode,register,spiMCPData};
+        device.writeAndRead(write);
     }
 
     public byte setBitinByte(byte register, boolean value,int bitNum) throws RuntimeIOException {
         if (value) {
             // set high
-            return (byte) (register | ((byte) 0x01<<bitNum));
+            return (byte) (register&0xff | ((byte) 0x01<<bitNum));
         }
         else {
             // set low
-            return (byte) (register & ~((byte) 0x01<<bitNum));
+            return (byte) (register&0xff & ~((byte) 0x01<<bitNum));
         }
     }
 
-    public boolean getBitinByte(byte Register,int bitNum) throws RuntimeIOException {
-        if ((byte) (Register & ((byte) 0x01<<bitNum))>0) {
-            // get high
-            return true;
-        }
-        else {
-            // get low
-            return false;
-        }
+    public boolean getBitinByte(byte register,int bitNum) throws RuntimeIOException {
+        return ((byte) (register&0xff & ((byte) 0x01<<bitNum))>0);
     }
 
     /**
      *
      * @param deviceOpcode
-     * @param Register
-     * @param spiMCP_Data
+     * @param register
+     * @param spiMCPData
      * @return return the third byte of the byte[]
      * @throws RuntimeIOException
      */
-    public byte getRegister(byte deviceOpcode, byte Register, byte spiMCP_Data) throws RuntimeIOException {
-        byte[] write = new byte[]{deviceOpcode,Register,spiMCP_Data};
+    public byte getRegister(byte deviceOpcode, byte register) throws RuntimeIOException {
+        byte[] write = new byte[]{deviceOpcode,register,(byte) 0x00};
         byte[] bytes = device.writeAndRead(write);
         return bytes[2];
 
 
     }
 
-
-
-
-    private byte[] readData(){
-        byte[] write = new byte[]{0x0000, 0x0000};
-        byte[] read =device.writeAndRead(write);
-        return read;
-    }
 }

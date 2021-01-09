@@ -31,6 +31,7 @@ public class SensorData {
     @OnOpen
     public void onOpen(Session session) {
         sessions.put(session.getId(), session);
+        session.getAsyncRemote().sendText("CONNECT");
     }
 
     @OnClose

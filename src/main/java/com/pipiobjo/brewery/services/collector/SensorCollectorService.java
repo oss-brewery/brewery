@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.services.collector;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetAdapter;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetTemperature;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTempAdapter;
@@ -38,7 +38,7 @@ public class SensorCollectorService {
     @Inject
     ControlCabinetAdapter controlCabinetAdapter;
     @Inject
-    SPIExtensionBoard extensionBoard;
+    SPIExtensionBoardAdapter extensionBoard;
     @Inject
     EventBus bus;
     @Inject
@@ -85,10 +85,15 @@ public class SensorCollectorService {
 
     public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
-        long targetTemp = 1000;
+        long targetTemp = 1000;                             // set point
         if(this.cancellable != null){
             log.info("collecting data is already running");
         }
+        BigDecimal ki= BigDecimal.valueOf(1);               // I-gain
+        BigDecimal kp= BigDecimal.valueOf(1);               // P-gain
+        BigDecimal minPercent = BigDecimal.valueOf(0);
+        BigDecimal maxPercent = BigDecimal.valueOf(100);
+
         this.cancellable = ticks.subscribe().with(
                 it -> {
                     log.debug("iteration {}", it);
@@ -116,7 +121,7 @@ public class SensorCollectorService {
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
 
-                        long errorTemp = picalculation(it, targetTemp, flameTemp);
+                        picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, kp, ki, maxPercent, minPercent);
 
                         watch.start();
                         InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
@@ -154,8 +159,8 @@ public class SensorCollectorService {
         );
     }
 
-    private long picalculation(Long iterator, long targetTemp, FlameTemperature flameTemp) {
-        return piCalculator.calculate(iterator, BigDecimal.valueOf(targetTemp), flameTemp.getTemperature().get());
+    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp,BigDecimal kp,BigDecimal ki,BigDecimal maxPercent,BigDecimal minPercent) {
+        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), kp, ki, flameTemp.getTemperature().get(), maxPercent,minPercent);
     }
 
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {

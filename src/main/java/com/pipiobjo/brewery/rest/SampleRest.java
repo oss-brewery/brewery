@@ -1,6 +1,7 @@
 package com.pipiobjo.brewery.rest;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardDeviceAdapter;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -18,7 +19,7 @@ public class SampleRest {
 //    FlameTempSensor flameTempSensor;
 
     @Inject
-    SPIExtensionBoard spiExtensionBoard;
+    SPIExtensionBoardAdapter spiExtensionBoard;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -30,7 +31,7 @@ public class SampleRest {
 //        breweryStatusLED.doMagic();
 
 
-        spiExtensionBoard.spi();
+//        spiExtensionBoard.spi();
 
 
 
