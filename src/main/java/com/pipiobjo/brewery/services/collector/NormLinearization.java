@@ -16,10 +16,10 @@ public class NormLinearization {
     private InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> map = new InterpolatingTreeMap<>();
 
     public NormLinearization(double[] measureingPointInput, double[] measureingValueInput) {
-        setMap(measureingPointInput,measureingValueInput);
+        generateMap(measureingPointInput,measureingValueInput);
     }
 
-    private void setMap(double[] measureingPointInput, double[] measureingValueInput) {
+    private void generateMap(double[] measureingPointInput, double[] measureingValueInput) {
         // map erstellen
         if (measureingValueInput.length!=measureingPointInput.length){
             log.info("dimension not equal, N1={}", measureingPointInput.length,", N2={}", measureingValueInput.length);
@@ -49,5 +49,9 @@ public class NormLinearization {
         InterpolatingDouble outValue = map.getInterpolated(new InterpolatingDouble(inFun.doubleValue()));
 
         return BigDecimal.valueOf(outValue.getValue());
+    }
+
+    public InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> getMap(){
+        return map;
     }
 }
