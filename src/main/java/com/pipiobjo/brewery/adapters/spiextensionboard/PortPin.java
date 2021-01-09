@@ -1,8 +1,10 @@
 package com.pipiobjo.brewery.adapters.spiextensionboard;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class PortPin {
     private int mcpNumber;
     private char port;

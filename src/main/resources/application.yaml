@@ -27,6 +27,33 @@ brewery:
     ui-update-intervall-in-ms: 2000
     calculation-intervall-in-ms: 150
     persistence-intervall-in-ms: 4000
+  spi:
+    extensionboard:
+      led1:
+        mcpNumber: 2
+        port: B
+        pin: 1
+      beep:
+        mcpNumber: 2
+        port: B
+        pin: 1
+      gfa230-v-relais:
+        mcpNumber: 1
+        port: B
+        pin: 1
+      motor1Pul:
+        mcpNumber: 1
+        port: B
+        pin: 3
+      motor1Dir:
+        mcpNumber: 1
+        port: B
+        pin: 5
+      motor1En:
+        mcpNumber: 1
+        port: B
+        pin: 7
+
 
 
 # mockDevices

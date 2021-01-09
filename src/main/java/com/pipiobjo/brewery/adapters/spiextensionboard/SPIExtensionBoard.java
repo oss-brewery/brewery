@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -50,23 +51,24 @@ public class SPIExtensionBoard {
             device.setRegister(MCP23S17.IOEXP_W, MCP23S17.IOCON, (byte) 0b00001000);
 
             log.info("define output pins");
+            Map<SPIExtensionBoardAdapterConfigProperties.GPIOMCP, PortPin> gpiomcpMap = config.getGPIOMCPMap();
             AtomicReference<Byte> tempregister = new AtomicReference<>((byte) 0);
-            List<PortPin> mcp1portA = config.getPortpinmap().values().stream()
+            List<PortPin> mcp1portA = gpiomcpMap.values().stream()
                     .filter(portPin -> portPin.getMcpNumber() == 1)
                     .filter(portPin -> portPin.getPort() == 'A')
                     .collect(Collectors.toList());
 
-            List<PortPin> mcp1portB = config.getPortpinmap().values().stream()
+            List<PortPin> mcp1portB = gpiomcpMap.values().stream()
                     .filter(portPin -> portPin.getMcpNumber() == 1)
                     .filter(portPin -> portPin.getPort() == 'B')
                     .collect(Collectors.toList());
 
-            List<PortPin> mcp2portA = config.getPortpinmap().values().stream()
+            List<PortPin> mcp2portA = gpiomcpMap.values().stream()
                     .filter(portPin -> portPin.getMcpNumber() == 2)
                     .filter(portPin -> portPin.getPort() == 'A')
                     .collect(Collectors.toList());
 
-            List<PortPin> mcp2portB = config.getPortpinmap().values().stream()
+            List<PortPin> mcp2portB = gpiomcpMap.values().stream()
                     .filter(portPin -> portPin.getMcpNumber() == 2)
                     .filter(portPin -> portPin.getPort() == 'B')
                     .collect(Collectors.toList());
@@ -107,7 +109,6 @@ public class SPIExtensionBoard {
     }
 
 
-    // TODO migrate to collector service
     public boolean isFlameControlButtonPushed() {
         byte register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.GPIOB);
         if (device.getBitinByte(register, 2)) { // get 3 bit -> gpio_b_2
@@ -133,9 +134,9 @@ public class SPIExtensionBoard {
     private void beep(long periods) {
         for (long i = 0; i < periods; i++) {
             // single step
-            setRegisterOutput(config.getPortpinmap().get("beep"), true);
+            setRegisterOutput(config.getBeep(), true);
             SleepUtil.sleepMillis(periodLenght / 2);
-            setRegisterOutput(config.getPortpinmap().get("beep"),false);
+            setRegisterOutput(config.getBeep(),false);
             SleepUtil.sleepMillis(periodLenght / 2);
         }
     }
@@ -157,25 +158,25 @@ public class SPIExtensionBoard {
 
         log.info("start motor");
         // enable drive
-        setRegisterOutput(config.getPortpinmap().get("motor1En"), false);
+        setRegisterOutput(config.getMotor1En(), false);
 
         // set cycle direction
-        setRegisterOutput(config.getPortpinmap().get("motor1Dir"), dir);
+        setRegisterOutput(config.getMotor1Dir(), dir);
 
         // step control
         long periodLenghtMotor = 100; // ms
         for (int i = 0; i < deltaPosition; i++) {
             // single step
             // set pull high
-            setRegisterOutput(config.getPortpinmap().get("motor1Pul"), true);
+            setRegisterOutput(config.getMotor1Pul(), true);
             SleepUtil.sleepMillis(periodLenghtMotor / 2);
             // set pull low
-            setRegisterOutput(config.getPortpinmap().get("motor1Pul"), false);
+            setRegisterOutput(config.getMotor1Pul(), false);
             SleepUtil.sleepMillis(periodLenghtMotor / 2);
         }
 
         // optional disable STO - motor is  not locked
-        setRegisterOutput(config.getPortpinmap().get("motor1En"), true);
+        setRegisterOutput(config.getMotor1En(), true);
 
         log.info("end motor");
     }
@@ -183,15 +184,15 @@ public class SPIExtensionBoard {
     private void blinkLED() {
         // write output - switch LED on
         log.info("write values");
-        setRegisterOutput(config.getPortpinmap().get("led1"), true);
+        setRegisterOutput(config.getLed1(), true);
 
         // switch LED off
         SleepUtil.sleepSeconds(5);
-        setRegisterOutput(config.getPortpinmap().get("led1"), false);
+        setRegisterOutput(config.getLed1(), false);
 
         // switch LED on again
         SleepUtil.sleepSeconds(5);
-        setRegisterOutput(config.getPortpinmap().get("led1"), true);
+        setRegisterOutput(config.getLed1(), true);
         SleepUtil.sleepSeconds(5);
     }
 
@@ -203,13 +204,13 @@ public class SPIExtensionBoard {
 
     public void turn230VRelaisOn() {
         // write relais 230V on, switch to 0 -> negative switch logic
-        setRegisterOutput(config.getPortpinmap().get("gfa230VRelais"), false);
+        setRegisterOutput(config.getGfa230VRelais(), false);
 
     }
 
     public void turn230VRelaisOff() {
         // write relais 230V off, switch to 1 -> negative switch logik
-        setRegisterOutput(config.getPortpinmap().get("gfa230VRelais"), true);
+        setRegisterOutput(config.getGfa230VRelais(), true);
     }
 
     private void setRegisterOutput(PortPin element, boolean value) {
