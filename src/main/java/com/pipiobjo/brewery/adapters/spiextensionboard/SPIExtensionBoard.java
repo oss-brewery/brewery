@@ -58,7 +58,7 @@ public class SPIExtensionBoard {
 
             tempregister = device.setBitinByte(tempregister, false, config.getLEDPort());  // set as output
 
-            
+
 
             tempregister = device.setBitinByte(tempregister, false, 1);  // set as output
             tempregister = device.setBitinByte(tempregister, false, 3);  // set as output
@@ -218,7 +218,7 @@ public class SPIExtensionBoard {
         }
 
         byte tempData = device.getRegister(opCodeRead, registerRead);
-        tempData = device.setBitinByte(tempData, value, config.LED1.getPin()); // TODO How to Inject private?
+        tempData = device.setBitinByte(tempData, value, element.getPin()); // TODO How to Inject private?
         device.setRegister(opCodeWrite, registerWrite, tempData);
     }
 
