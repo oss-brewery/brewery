@@ -4,6 +4,8 @@ import com.pipiobjo.brewery.services.collector.SensorCollectorService;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import io.quarkus.vertx.ConsumeEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.h2.mvstore.MVMap;
+import org.h2.mvstore.MVStore;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -18,7 +20,11 @@ public class SensorDataPersistenceService {
     public SensorDataPersistenceService(SensorDataPersistenceConfigProperties config){
         this.config = config;
 
-//        MVStoreBuilder
+        MVStore mvStore = new MVStore.Builder().fileName("filename").open();
+        MVMap<Object, Object> sensorRecording = mvStore.openMap("sensorRecording");
+        sensorRecording.put("", "");
+
+        mvStore.close();
     }
 
     @ConsumeEvent(value = SensorCollectorService.PUBLISH_TO_PERSISTENCE_EVENT_NAME, blocking = true)

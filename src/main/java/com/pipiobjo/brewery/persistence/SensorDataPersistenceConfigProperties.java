@@ -6,5 +6,5 @@ import java.io.File;
 
 @ConfigProperties(prefix = "brewery.sensor.datarecording")
 public class SensorDataPersistenceConfigProperties {
-    File storageDirectory;
+//    File storageDirectory;
 }
