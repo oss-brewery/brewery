@@ -1,5 +1,6 @@
 package com.pipiobjo.brewery.rest;
 
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardDeviceAdapter;
 
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ public class SampleRest {
 //    FlameTempSensor flameTempSensor;
 
     @Inject
-    SPIExtensionBoardDeviceAdapter spiExtensionBoard;
+    SPIExtensionBoardAdapter spiExtensionBoard;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)

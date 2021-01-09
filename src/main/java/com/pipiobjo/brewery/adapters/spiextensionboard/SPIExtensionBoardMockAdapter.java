@@ -1,14 +1,9 @@
 package com.pipiobjo.brewery.adapters.spiextensionboard;
 
-import io.quarkus.arc.profile.IfBuildProfile;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.enterprise.context.ApplicationScoped;
-
 @Slf4j
-@ApplicationScoped
-@IfBuildProfile("mockDevices")
-public class SPIExtensionBoardMockAdapter implements SPIExtensionBoardAdapter{
+public class SPIExtensionBoardMockAdapter implements SPIExtensionBoardAdapter {
     @Override
     public boolean isFlameControlButtonPushed() {
         return false;
@@ -45,32 +40,13 @@ public class SPIExtensionBoardMockAdapter implements SPIExtensionBoardAdapter{
     }
 
     @Override
-    public long getMotorPositionInc() {
-        return 0;
+    public void close() {
+
     }
 
     @Override
-    public long getMotorPositionIncMin() {
-        return 0;
-    }
-
-    @Override
-    public long getMotorPositionIncMax() {
-        return 0;
-    }
-
-    @Override
-    public long getPeriodLenght() {
-        return 0;
-    }
-
-    @Override
-    public long getTargetTemp() {
-        return 0;
-    }
-
-    @Override
-    public boolean isFlameIsOn() {
+    public boolean isFlameOn() {
         return false;
     }
+
 }

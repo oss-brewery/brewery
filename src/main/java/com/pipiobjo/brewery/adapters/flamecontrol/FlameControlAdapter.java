@@ -5,9 +5,9 @@ public interface FlameControlAdapter {
 
     public void turnOn();
 
-    public void flameOneStepHigher();
+    public void increaseFlameByOneStep();
 
-    public void flameOneStepLower();
+    public void decreaseFlameByOneStep();
 
     public boolean isFlameOn();
 }

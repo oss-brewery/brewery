@@ -24,21 +24,19 @@ public class FlameControlAdapterDevice implements FlameControlAdapter {
     }
 
     @Override
-    public void flameOneStepHigher() {
-        spiExtensionBoard.setTargetTempAdd(+50L);
-        log.info("new target temperature ist = {}", spiExtensionBoard.getTargetTemp());
+    public void increaseFlameByOneStep() {
+        log.info("decrease temperature");
     }
 
     @Override
-    public void flameOneStepLower() {
-        spiExtensionBoard.setTargetTempAdd(-50L);
-        log.info("new target temperature ist = {}", spiExtensionBoard.getTargetTemp());
+    public void decreaseFlameByOneStep() {
+        log.info("decrease flame temperature");
     }
 
     @Override
     public boolean isFlameOn() {
         log.info("Check if flame is 'ON' ");
-        return spiExtensionBoard.isFlameIsOn();
+        return spiExtensionBoard.isFlameOn();
 
     }
 }

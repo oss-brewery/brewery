@@ -15,15 +15,7 @@ public interface SPIExtensionBoardAdapter {
 
     void turn230VRelaisOff();
 
-    long getMotorPositionInc();
+    void close();
 
-    long getMotorPositionIncMin();
-
-    long getMotorPositionIncMax();
-
-    long getPeriodLenght();
-
-    long getTargetTemp();
-
-    boolean isFlameIsOn();
+    boolean isFlameOn();
 }

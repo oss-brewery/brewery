@@ -12,12 +12,12 @@ public class FlameControlMockAdapter implements FlameControlAdapter{
     }
 
     @Override
-    public void flameOneStepHigher() {
+    public void increaseFlameByOneStep() {
 
     }
 
     @Override
-    public void flameOneStepLower() {
+    public void decreaseFlameByOneStep() {
 
     }
 

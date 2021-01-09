@@ -44,6 +44,7 @@ public class SensorDataTest {
             assertThat(MESSAGES.poll(2, TimeUnit.SECONDS)).contains("CONNECT");
             session.getAsyncRemote().sendText("hello world");
         }
+        sensorCollectorService.stopCollecting();
     }
 
     @ClientEndpoint
