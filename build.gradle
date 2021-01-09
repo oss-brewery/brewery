@@ -25,6 +25,7 @@ dependencies {
 
 
     testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito'
     testImplementation 'io.rest-assured:rest-assured'
     testImplementation 'org.powermock:powermock-core:2.0.9'
     testImplementation 'org.assertj:assertj-core:3.18.1'
