@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.adapters.flamecontrol;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardDeviceAdapter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
@@ -9,7 +9,7 @@ import javax.inject.Inject;
 public class FlameControlAdapterDevice implements FlameControlAdapter {
 
     @Inject
-    SPIExtensionBoard spiExtensionBoard;
+    SPIExtensionBoardDeviceAdapter spiExtensionBoard;
 
     @Override
     public void turnOff() {

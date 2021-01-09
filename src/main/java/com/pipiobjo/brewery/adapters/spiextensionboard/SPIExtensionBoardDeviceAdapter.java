@@ -2,6 +2,7 @@ package com.pipiobjo.brewery.adapters.spiextensionboard;
 
 import com.diozero.util.SleepUtil;
 import com.pipiobjo.brewery.sensors.MCP23S17;
+import io.quarkus.arc.DefaultBean;
 import io.quarkus.runtime.ShutdownEvent;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +19,10 @@ import java.util.stream.Collectors;
  * https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
  */
 @Slf4j
+@DefaultBean
 @ApplicationScoped
 @Data
-public class SPIExtensionBoard {
+public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter {
 
     @Inject
     SPIExtensionBoardAdapterConfigProperties config;
@@ -41,7 +43,7 @@ public class SPIExtensionBoard {
     private long targetTemp;
     private boolean flameIsOn;
 
-    public SPIExtensionBoard(){
+    public SPIExtensionBoardDeviceAdapter() {
         if (device == null) {
             log.info("init extension board device");
             device = new MCP23S17(config.getControllerId(), config.getChipselect(), config.getFreq());
@@ -100,7 +102,7 @@ public class SPIExtensionBoard {
 
             motorPositionInc = 0L;
             motorPositionIncMin = 0L;
-            motorPositionIncMax = MOTOR_INC_PER_REV*49/10;
+            motorPositionIncMax = MOTOR_INC_PER_REV * 49 / 10;
 
             targetTemp = 600;
             flameIsOn = false;
@@ -109,6 +111,7 @@ public class SPIExtensionBoard {
     }
 
 
+    @Override
     public boolean isFlameControlButtonPushed() {
         byte register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.GPIOB);
         if (device.getBitinByte(register, 2)) { // get 3 bit -> gpio_b_2
@@ -121,14 +124,19 @@ public class SPIExtensionBoard {
     }
 
 
-    public void spi() {
-
+    @Override
+    public void beepOn() {
         beep(50);
-        motorControl(10);
-        blinkLED();
-        toggle230VRelais();
+    }
 
+    @Override
+    public void beepOff() {
+        //TODO
+    }
 
+    @Override
+    public void beepForMilliSeconds(long milliseconds) {
+        beep(milliseconds / periodLenght);
     }
 
     private void beep(long periods) {
@@ -136,25 +144,14 @@ public class SPIExtensionBoard {
             // single step
             setRegisterOutput(config.getBeep(), true);
             SleepUtil.sleepMillis(periodLenght / 2);
-            setRegisterOutput(config.getBeep(),false);
+            setRegisterOutput(config.getBeep(), false);
             SleepUtil.sleepMillis(periodLenght / 2);
         }
     }
 
-    public void beepOn() {
-        beep(50);
-    }
-
-    public void beepOff() {
-        //TODO
-    }
-
-    public void beepForMilliSeconds (long milliseconds) {
-        beep(milliseconds/periodLenght);
-    }
-
+    @Override
     public void motorControl(long deltaPosition) {
-        boolean dir = deltaPosition>= 0L;
+        boolean dir = deltaPosition >= 0L;
 
         log.info("start motor");
         // enable drive
@@ -181,33 +178,35 @@ public class SPIExtensionBoard {
         log.info("end motor");
     }
 
-    private void blinkLED() {
-        // write output - switch LED on
-        log.info("write values");
-        setRegisterOutput(config.getLed1(), true);
+//    private void blinkLED() {
+//        // write output - switch LED on
+//        log.info("write values");
+//        setRegisterOutput(config.getLed1(), true);
+//
+//        // switch LED off
+//        SleepUtil.sleepSeconds(5);
+//        setRegisterOutput(config.getLed1(), false);
+//
+//        // switch LED on again
+//        SleepUtil.sleepSeconds(5);
+//        setRegisterOutput(config.getLed1(), true);
+//        SleepUtil.sleepSeconds(5);
+//    }
+//
+//    private void toggle230VRelais() {
+//        turn230VRelaisOn();
+//        SleepUtil.sleepSeconds(5);
+//        turn230VRelaisOff();
+//    }
 
-        // switch LED off
-        SleepUtil.sleepSeconds(5);
-        setRegisterOutput(config.getLed1(), false);
-
-        // switch LED on again
-        SleepUtil.sleepSeconds(5);
-        setRegisterOutput(config.getLed1(), true);
-        SleepUtil.sleepSeconds(5);
-    }
-
-    private void toggle230VRelais() {
-        turn230VRelaisOn();
-        SleepUtil.sleepSeconds(5);
-        turn230VRelaisOff();
-    }
-
+    @Override
     public void turn230VRelaisOn() {
         // write relais 230V on, switch to 0 -> negative switch logic
         setRegisterOutput(config.getGfa230VRelais(), false);
 
     }
 
+    @Override
     public void turn230VRelaisOff() {
         // write relais 230V off, switch to 1 -> negative switch logik
         setRegisterOutput(config.getGfa230VRelais(), true);
@@ -216,27 +215,27 @@ public class SPIExtensionBoard {
     private void setRegisterOutput(PortPin element, boolean value) {
         byte opCodeRead;
         byte opCodeWrite;
-        if (element.getMcpNumber()==1){
-            opCodeRead=MCP23S17.IOEXP_R_1;
-            opCodeWrite=MCP23S17.IOEXP_W_1;
-        }else if(element.getMcpNumber()==2){
-            opCodeRead=MCP23S17.IOEXP_R_2;
-            opCodeWrite=MCP23S17.IOEXP_W_2;
-        }else {
+        if (element.getMcpNumber() == 1) {
+            opCodeRead = MCP23S17.IOEXP_R_1;
+            opCodeWrite = MCP23S17.IOEXP_W_1;
+        } else if (element.getMcpNumber() == 2) {
+            opCodeRead = MCP23S17.IOEXP_R_2;
+            opCodeWrite = MCP23S17.IOEXP_W_2;
+        } else {
             log.error("undefined MCP!");
-            opCodeRead=MCP23S17.IOEXP_R;    // TODO default --> how to manage?
-            opCodeWrite=MCP23S17.IOEXP_W;
+            opCodeRead = MCP23S17.IOEXP_R;    // TODO default --> how to manage?
+            opCodeWrite = MCP23S17.IOEXP_W;
         }
 
         byte registerRead;
         byte registerWrite;
-        if (element.getPort()=='A') {
+        if (element.getPort() == 'A') {
             registerRead = MCP23S17.GPIOA;
             registerWrite = MCP23S17.OLATA;
-        }else if (element.getPort()=='B'){
+        } else if (element.getPort() == 'B') {
             registerRead = MCP23S17.GPIOB;
             registerWrite = MCP23S17.OLATB;
-        }else {
+        } else {
             log.error("undefined port!");
             registerRead = MCP23S17.GPIOA;  // TODO default --> how to manage?
             registerWrite = MCP23S17.OLATA;
@@ -249,14 +248,14 @@ public class SPIExtensionBoard {
 
 
     public void setTargetTempAdd(long deltaTargetTemp) {
-        targetTemp+= deltaTargetTemp;
+        targetTemp += deltaTargetTemp;
     }
 
-    public void turnOnFlameControl(){
+    public void turnOnFlameControl() {
         //TODO
     }
 
-    public void turnOffFlameControl(){
+    public void turnOffFlameControl() {
         //TODO
     }
 

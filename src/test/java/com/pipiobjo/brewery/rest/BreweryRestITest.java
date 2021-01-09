@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.rest;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.TestProfile;
 import io.quarkus.test.junit.mockito.InjectMock;
@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 public class BreweryRestITest {
 
     @InjectMock
-    SPIExtensionBoard spiExtensionBoard;
+    SPIExtensionBoardAdapter spiExtensionBoard;
 
 //    @BeforeEach
 //    public void setup() {

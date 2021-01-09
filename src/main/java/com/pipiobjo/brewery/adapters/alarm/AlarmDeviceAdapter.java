@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.adapters.alarm;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 public class AlarmDeviceAdapter implements AlarmAdapter{
 
     @Inject
-    SPIExtensionBoard spiExtensionBoard;
+    SPIExtensionBoardAdapter spiExtensionBoard;
 
     @Override
     public void turnAlarmOn() {

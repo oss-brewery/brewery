@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.services.collector;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoard;
+import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetAdapter;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetTemperature;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTempAdapter;
@@ -38,7 +38,7 @@ public class SensorCollectorService {
     @Inject
     ControlCabinetAdapter controlCabinetAdapter;
     @Inject
-    SPIExtensionBoard extensionBoard;
+    SPIExtensionBoardAdapter extensionBoard;
     @Inject
     EventBus bus;
     @Inject
