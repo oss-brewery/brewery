@@ -58,7 +58,7 @@ public class SPIExtensionBoard {
 
             tempregister = device.setBitinByte(tempregister, false, config.getLEDPort());  // set as output
 
-
+            
 
             tempregister = device.setBitinByte(tempregister, false, 1);  // set as output
             tempregister = device.setBitinByte(tempregister, false, 3);  // set as output
@@ -109,15 +109,9 @@ public class SPIExtensionBoard {
         byte register;
         for (long i = 0; i < periods; i++) {
             // single step
-            // set pull high
-            register = device.getRegister(MCP23S17.IOEXP_R_2, MCP23S17.OLATB);
-            register = device.setBitinByte(register, true, 1);
-            device.setRegister(MCP23S17.IOEXP_W_2, MCP23S17.OLATB, register);
+            setRegisterOutput(config.beep,true);
             SleepUtil.sleepMillis(periodLenght / 2);
-            // set pull low
-            register = device.getRegister(MCP23S17.IOEXP_R_2, MCP23S17.OLATB);
-            register = device.setBitinByte(register, false, 1);
-            device.setRegister(MCP23S17.IOEXP_W_2, MCP23S17.OLATB, register);
+            setRegisterOutput(config.beep,false);
             SleepUtil.sleepMillis(periodLenght / 2);
         }
     }
@@ -138,38 +132,26 @@ public class SPIExtensionBoard {
         boolean dir = deltaPosition>= 0L;
 
         log.info("start motor");
-        // motor controller
-        // enable driver
-        byte register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.OLATB);
-        register = device.setBitinByte(register, false, 7);
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+        // enable drive
+        setRegisterOutput(config.motor1En, false);
 
         // set cycle direction
-        // open - right
-        register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.OLATB);
-        register = device.setBitinByte(register, dir, 5);
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+        setRegisterOutput(config.motor1Dir, dir);
 
         // step control
         long periodLenghtMotor = 100; // ms
         for (int i = 0; i < deltaPosition; i++) {
             // single step
             // set pull high
-            register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.OLATB);
-            register = device.setBitinByte(register, true, 3);
-            device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+            setRegisterOutput(config.motor1Pul, true);
             SleepUtil.sleepMillis(periodLenghtMotor / 2);
             // set pull low
-            register = device.setBitinByte(register, false, 3);
-            device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+            setRegisterOutput(config.motor1Pul, false);
             SleepUtil.sleepMillis(periodLenghtMotor / 2);
         }
 
         // optional disable STO - motor is  not locked
-        register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.OLATB);
-        register = device.setBitinByte(register, true, 7);
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
-
+        setRegisterOutput(config.motor1En, true);
 
         log.info("end motor");
     }
@@ -177,22 +159,15 @@ public class SPIExtensionBoard {
     private void blinkLED() {
         // write output - switch LED on
         log.info("write values");
-        byte register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.OLATB);
-        register = device.setBitinByte(register, true, 0);
-        register = device.setBitinByte(register, true, config.getLEDPort());
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+        setRegisterOutput(config.led1, true);
 
         // switch LED off
         SleepUtil.sleepSeconds(5);
-        register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.OLATB);
-        register = device.setBitinByte(register, false, config.getLEDPort());
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+        setRegisterOutput(config.led1, false);
 
         // switch LED on again
         SleepUtil.sleepSeconds(5);
-        register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.OLATB);
-        register = device.setBitinByte(register, true, config.getLEDPort());
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+        setRegisterOutput(config.led1, true);
         SleepUtil.sleepSeconds(5);
     }
 
@@ -203,20 +178,50 @@ public class SPIExtensionBoard {
     }
 
     public void turn230VRelaisOn() {
-        byte register;// write relais 230V on, switch to 0 -> negative switch logik
-        register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.GPIOB);
-        register = device.setBitinByte(register, false, 1);
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+        // write relais 230V on, switch to 0 -> negative switch logik
+        setRegisterOutput(config.gfa230VRelais, false);
 
     }
 
     public void turn230VRelaisOff() {
-        byte register;// write relais 230V on, switch to 0 -> negative switch logik
-        // write relais 230V off, switch to 1
-        register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.GPIOB);
-        register = device.setBitinByte(register, true, 1);
-        device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.OLATB, register);
+        // write relais 230V off, switch to 1 -> negative switch logik
+        setRegisterOutput(config.gfa230VRelais, true);
     }
+
+    private void setRegisterOutput(PortPin element, boolean value) {
+        byte opCodeRead;
+        byte opCodeWrite;
+        if (element.getMcpNumber()==1){
+            opCodeRead=MCP23S17.IOEXP_R_1;
+            opCodeWrite=MCP23S17.IOEXP_W_1;
+        }else if(element.getMcpNumber()==2){
+            opCodeRead=MCP23S17.IOEXP_R_2;
+            opCodeWrite=MCP23S17.IOEXP_W_2;
+        }else {
+            log.error("undefined MCP!");
+            opCodeRead=MCP23S17.IOEXP_R;    // TODO default --> how to manage?
+            opCodeWrite=MCP23S17.IOEXP_W;
+        }
+
+        byte registerRead;
+        byte registerWrite;
+        if (element.getPort()=='A') {
+            registerRead = MCP23S17.GPIOA;
+            registerWrite = MCP23S17.OLATA;
+        }else if (element.getPort()=='B'){
+            registerRead = MCP23S17.GPIOB;
+            registerWrite = MCP23S17.OLATB;
+        }else {
+            log.error("undefined port!");
+            registerRead = MCP23S17.GPIOA;  // TODO default --> how to manage?
+            registerWrite = MCP23S17.OLATA;
+        }
+
+        byte tempData = device.getRegister(opCodeRead, registerRead);
+        tempData = device.setBitinByte(tempData, value, config.LED1.getPin()); // TODO How to Inject private?
+        device.setRegister(opCodeWrite, registerWrite, tempData);
+    }
+
 
     public void setTargetTempAdd(long deltaTargetTemp) {
         targetTemp+= deltaTargetTemp;
