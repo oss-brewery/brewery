@@ -128,3 +128,21 @@ else
   echo "Unsupported OS $SYSTEM_ARCH"
   exit -1
 fi
+
+####
+#### preparing for config
+REPOS_HOME=$SCRIPTPATH/../..
+##REPOS_HOME="/mnt/usb/repos"
+if [ -d "$REPOS_HOME/config" ]; then
+  echo "is already existing dir: ${REPOS_HOME}/config/..."
+else
+  echo "making dir for config"
+  mkdir $REPOS_HOME/config
+fi
+
+if [ -f "$REPOS_HOME/config/application.yaml" ]; then
+  echo "is already existing a file: ${REPOS_HOME}/config/application.yaml"
+else
+  echo "making a copy from git src"
+  cp $REPOS_HOME/brewery-backend/src/main/resources/application.yaml $REPOS_HOME/config
+fi
