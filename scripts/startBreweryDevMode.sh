@@ -63,7 +63,7 @@ echo "BREWERY_BACKEND_HOME=$BREWERY_BACKEND_HOME"
 
 # adding the local config to src for making the build
 echo "copy from config to src"
-cp $REPOS_HOME32/config/application.yaml $REPOS_HOME32/brewery-backend/src/main/resources/
+cp $REPOS_HOME/config/application.yaml $REPOS_HOME/brewery-backend/src/main/resources/
 echo "start build"
 
 cd $BREWERY_BACKEND_HOME
