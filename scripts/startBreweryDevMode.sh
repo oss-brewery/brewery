@@ -61,13 +61,16 @@ REPOS_HOME=$SCRIPTPATH/../..
 
 echo "BREWERY_BACKEND_HOME=$BREWERY_BACKEND_HOME"
 
-# adding the local config to src for making the build
-echo "copy from config to src"
-cp $REPOS_HOME/config/application.yaml $REPOS_HOME/brewery-backend/src/main/resources/
-echo "start build"
-
 cd $BREWERY_BACKEND_HOME
 ./gradlew build
+
+# adding the local config to the build
+if [ ! -d "$REPOS_HOME/brewery-backend/build/classes/java/main/config" ]; then
+    mkdir $REPOS_HOME/brewery-backend/build/classes/java/main/config
+  fi
+
+cp $REPOS_HOME/config/application.yaml $REPOS_HOME/brewery-backend/build/classes/java/main/config/
+echo "config can be change in the file $REPOS_HOME/brewery-backend/build/classes/java/main/config/application.yaml"
 
 #export QUARKUS_LAUNCH_DEVMODE=true
 #java -jar backend-0.0.1-SNAPSHOT-runner.jar

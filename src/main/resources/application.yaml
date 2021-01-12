@@ -31,9 +31,9 @@ brewery:
   spi:
     extensionboard:
       led1:
-        mcp-number: 2
+        mcp-number: 1
         port: B
-        pin: 1
+        pin: 0
       beep:
         mcp-number: 2
         port: B
@@ -54,8 +54,6 @@ brewery:
         mcp-number: 1
         port: B
         pin: 7
-
-
 
 # mockDevices
 #"%mockDevices":
