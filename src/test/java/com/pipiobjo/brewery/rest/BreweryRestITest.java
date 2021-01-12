@@ -16,15 +16,11 @@ import static org.hamcrest.Matchers.is;
 @TestProfile(BreweryBasicITestProfile.class)
 public class BreweryRestITest {
 
-    @InjectMock
-    SPIExtensionBoardAdapter spiExtensionBoard;
-
 //    @BeforeEach
 //    public void setup() {
 //        Mockito.when(spiExtensionBoard.spi()).thenReturn();
 //    }
 
-    @Disabled
     @Test
     public void testHelloEndpoint() {
         given()
