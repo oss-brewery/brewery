@@ -65,12 +65,12 @@ cd $BREWERY_BACKEND_HOME
 ./gradlew build
 
 # adding the local config to the build
-if [ ! -d "$REPOS_HOME/brewery-backend/build/classes/java/main/config" ]; then
-    mkdir $REPOS_HOME/brewery-backend/build/classes/java/main/config
+if [ ! -d "$REPOS_HOME/brewery-backend/build/quarkus-app/config" ]; then
+    mkdir $REPOS_HOME/brewery-backend/build/quarkus-app/config
   fi
 
-cp $REPOS_HOME/config/application.yaml $REPOS_HOME/brewery-backend/build/classes/java/main/config/
-echo "config can be change in the file $REPOS_HOME/brewery-backend/build/classes/java/main/config/application.yaml"
+cp $REPOS_HOME/config/application.yaml $REPOS_HOME/brewery-backend/build/quarkus-app/config/
+echo "config can be change in the file $REPOS_HOME/brewery-backend/build/quarkus-app/config/application.yaml"
 
 #export QUARKUS_LAUNCH_DEVMODE=true
 #java -jar backend-0.0.1-SNAPSHOT-runner.jar
@@ -80,6 +80,7 @@ chmod -R o+rw $BREWERY_BACKEND_HOME
 
 #JAVA_BIN=/home/ubuntu/graalvm/graalvm-ce-java11-20.2.0/bin/java
 #JAVA_BIN=/usr/lib/jvm/java-11-openjdk-arm64/bin/java
+cd $BREWERY_BACKEND_HOME/build/quarkus-app/
 EXECUTABLE_JAR_PATH=$BREWERY_BACKEND_HOME/build/quarkus-app/quarkus-run.jar
 #BREWERY_START_CMD="QUARKUS_LAUNCH_DEVMODE=true $JAVA_BIN -jar $EXECUTABLE_JAR_PATH 2>&1 & </dev/null"
 JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
