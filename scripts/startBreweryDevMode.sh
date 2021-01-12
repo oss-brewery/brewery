@@ -12,6 +12,7 @@ JAVA_BIN32=$JAVA_HOME32/bin/java
 
 JAVA_HOME64=$SCRIPTPATH/../../java/graalvm-ce-java11-20.2.0
 JAVA_BIN64=$JAVA_HOME64/bin/java
+
 #BREWERY_USER=brewery
 BREWERY_USER=pi
 
@@ -56,8 +57,14 @@ echo "SCRIPTPATH=$SCRIPTPATH"
 
 BREWERY_BACKEND_HOME="$SCRIPTPATH/.."
 BREWERY_PID_FILE=$BREWERY_BACKEND_HOME/pid
+REPOS_HOME=$SCRIPTPATH/../..
 
 echo "BREWERY_BACKEND_HOME=$BREWERY_BACKEND_HOME"
+
+# adding the local config to src for making the build
+echo "copy from config to src"
+cp $REPOS_HOME/config/application.yaml $REPOS_HOME/brewery-backend/src/main/resources/
+echo "start build"
 
 cd $BREWERY_BACKEND_HOME
 ./gradlew build
