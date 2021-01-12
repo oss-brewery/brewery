@@ -4,6 +4,7 @@ import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.TestProfile;
 import io.quarkus.test.junit.mockito.InjectMock;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,7 @@ public class BreweryRestITest {
 //        Mockito.when(spiExtensionBoard.spi()).thenReturn();
 //    }
 
+    @Disabled
     @Test
     public void testHelloEndpoint() {
         given()
