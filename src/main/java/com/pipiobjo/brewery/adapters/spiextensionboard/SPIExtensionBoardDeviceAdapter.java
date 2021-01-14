@@ -44,7 +44,7 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
             device.setRegister(MCP23S17.IOEXP_W, MCP23S17.IOCON, (byte) 0b00001000);
 
             log.info("define output pins");
-            Map<SPIExtensionBoardAdapterConfigProperties.GPIOMCP, PortPinConfigProperties> gpiomcpMap = config.getGPIOMCPMap();
+            Map<SPIExtensionBoardAdapterConfigProperties.GPIOMCP, PortPinConfigProperties> gpiomcpMap = config.getGPOMCPMap();
             AtomicReference<Byte> tempregister = new AtomicReference<>((byte) 0);
             List<PortPinConfigProperties> mcp1portA = gpiomcpMap.values().stream()
                     .filter(portPin -> portPin.getMcpNumber().get() == 1)
@@ -90,6 +90,7 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
                 tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.getPin().get()));  // set as output
             });
             device.setRegister(MCP23S17.IOEXP_W_2, MCP23S17.IODIRB, tempregister.get());
+            //TODO check if Iiput and output are defined for the PortPin
 
             motorPositionInc = 0L;
             motorPositionIncMin = 0L;
@@ -103,8 +104,7 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
 
     @Override
     public boolean isFlameControlButtonPushed() {
-        byte register = device.getRegister(MCP23S17.IOEXP_R_1, MCP23S17.GPIOB);
-        if (device.getBitinByte(register, 2)) { // get 3 bit -> gpio_b_2
+        if (getInputValue(config.getFlameControlButton())) {
             log.info("button pushed");
             flameIsOn = false;
             return true;
@@ -252,6 +252,31 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
         byte tempData = device.getRegister(opCodeRead, registerRead);
         tempData = device.setBitinByte(tempData, value, element.getPin().get()); // TODO How to Inject private?
         device.setRegister(opCodeWrite, registerWrite, tempData);
+    }
+
+    private boolean getInputValue(PortPinConfigProperties element) {
+        byte opCodeRead;
+        if (element.getMcpNumber().get() == 1) {
+            opCodeRead = MCP23S17.IOEXP_R_1;
+        } else if (element.getMcpNumber().get() == 2) {
+            opCodeRead = MCP23S17.IOEXP_R_2;
+        } else {
+            log.error("undefined MCP!");
+            opCodeRead = MCP23S17.IOEXP_R;    // TODO default --> how to manage?
+        }
+
+        byte registerRead;
+        if (element.getPort().get() == 'A') {
+            registerRead = MCP23S17.GPIOA;
+        } else if (element.getPort().get() == 'B') {
+            registerRead = MCP23S17.GPIOB;
+        } else {
+            log.error("undefined port!");
+            registerRead = MCP23S17.GPIOA;  // TODO default --> how to manage?
+        }
+
+        byte tempData = device.getRegister(opCodeRead, registerRead);
+        return device.getBitinByte(tempData, element.getPin().get());
     }
 
 

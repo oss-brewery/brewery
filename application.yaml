@@ -55,11 +55,6 @@ brewery:
           mcp-number: 1
           port: B
           pin: 7
-      in:
-        flameControlButton:
-          mcp-number: 1
-          port: B
-          pin: 2
 
 # mockDevices
 #"%mockDevices":

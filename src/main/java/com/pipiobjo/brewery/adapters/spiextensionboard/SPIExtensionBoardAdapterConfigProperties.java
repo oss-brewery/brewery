@@ -7,18 +7,17 @@ import lombok.Data;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Data
 @ApplicationScoped
 //@ConfigProperties(prefix = "brewery.spi.extensionboard")
 public class SPIExtensionBoardAdapterConfigProperties {
 
-    public static enum GPIOMCP {
+    public enum GPIOMCP {
         LED1, BEEP, GFA_230V_RELAIS,
         MOTOR1_PUL, MOTOR1_DIR, MOTOR1_EN,
         MOTOR2_PUL, MOTOR2_DIR, MOTOR2_EN,
-        ;
+        FLAME_CONTROL_BUTTON;
     }
 
 
@@ -26,35 +25,35 @@ public class SPIExtensionBoardAdapterConfigProperties {
     int chipselect = 0;             // chip select == cs // ss -> 0 / 1
     int freq = 12_500_000 - 1000;   // why -1000?
 
-    @ConfigPrefix("brewery.spi.extensionboard.led1")
+    @ConfigPrefix("brewery.spi.extensionboard.out.led1")
     PortPinConfigProperties led1;
 
-    @ConfigPrefix("brewery.spi.extensionboard.beep")
+    @ConfigPrefix("brewery.spi.extensionboard.out.beep")
     PortPinConfigProperties beep;
 
-    @ConfigPrefix("brewery.spi.extensionboard.gfa230-v-relais")
+    @ConfigPrefix("brewery.spi.extensionboard.out.gfa230-v-relais")
     PortPinConfigProperties gfa230VRelais;
 
-    @ConfigPrefix("brewery.spi.extensionboard.motor1-pul")
+    @ConfigPrefix("brewery.spi.extensionboard.out.motor1-pul")
     PortPinConfigProperties motor1Pul;
 
-    @ConfigPrefix("brewery.spi.extensionboard.motor1-dir")
+    @ConfigPrefix("brewery.spi.extensionboard.out.motor1-dir")
     PortPinConfigProperties motor1Dir;
 
-    @ConfigPrefix("brewery.spi.extensionboard.motor1-en")
+    @ConfigPrefix("brewery.spi.extensionboard.out.motor1-en")
     PortPinConfigProperties motor1En;
 
-    @ConfigPrefix("brewery.spi.extensionboard.motor2-dir")
+    @ConfigPrefix("brewery.spi.extensionboard.out.motor2-dir")
     PortPinConfigProperties motor2Dir;
 
-    @ConfigPrefix("brewery.spi.extensionboard.motor2-en")
+    @ConfigPrefix("brewery.spi.extensionboard.out.motor2-en")
     PortPinConfigProperties motor2En;
 
-    @ConfigPrefix("brewery.spi.extensionboard.motor2-pul")
+    @ConfigPrefix("brewery.spi.extensionboard.out.motor2-pul")
     PortPinConfigProperties motor2Pul;
 
 
-    public Map<GPIOMCP, PortPinConfigProperties>getGPIOMCPMap(){
+    public Map<GPIOMCP, PortPinConfigProperties>getGPOMCPMap(){
         Map<GPIOMCP, PortPinConfigProperties> result = new HashMap<>();
         result.put(GPIOMCP.LED1,led1);
         result.put(GPIOMCP.BEEP,beep);
@@ -67,6 +66,17 @@ public class SPIExtensionBoardAdapterConfigProperties {
         result.put(GPIOMCP.MOTOR2_DIR,motor2Dir);
         result.put(GPIOMCP.MOTOR2_EN,motor2En);
 
+
+        return result;
+
+    }
+
+    @ConfigPrefix("brewery.spi.extensionboard.in.flameControlButton")
+    PortPinConfigProperties flameControlButton;
+
+    public Map<GPIOMCP, PortPinConfigProperties>getGPIMCPMap(){
+        Map<GPIOMCP, PortPinConfigProperties> result = new HashMap<>();
+        result.put(GPIOMCP.FLAME_CONTROL_BUTTON,flameControlButton);
 
         return result;
 
