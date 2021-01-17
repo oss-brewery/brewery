@@ -21,3 +21,5 @@ backend.iml
 build/
 
 out/
+
+**/.pylint.d/**.stats
