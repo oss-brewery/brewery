@@ -283,11 +283,55 @@ ln -s $LIB_DIOZERO /usr/lib/libdiozero-system-utils.so
 
 === Diozero Lib abstraction layer to interact with hardware
 
+* http://rtd.diozero.com/en/latest/
 * https://github.com/mattjlewis/diozero
+* https://gitlab.com/rogers.paul.work/diozero/-/tree/master
 * https://mvnrepository.com/artifact/com.diozero/diozero/0.13
 * https://oss.sonatype.org/index.html#nexus-search;gav~com.diozero~~~~
 
 
+=== H2 mvstore
+
+Using mvstore to save sensor data for every brewing session
+
+http://www.h2database.com/html/mvstore.html
+
+
+== TODOs
+
+=== Build via Github Actions
+
+https://github.com/uraimo/run-on-arch-action
+
+
+==== How can we run as non root user?
+
+https://stackoverflow.com/a/30940526/6834656
+https://github.com/eclipse/mraa/issues/802
+
+
+
+=== Do we want to provide a DEB package?
+http://blog.wenzlaff.de/?p=8626[Using jdep to analyze deps]
+http://blog.wenzlaff.de/?p=12315[Creating linux deb packages]
+
+
+=== Replace Thread.sleep()
+
+[source=java]
+----
+
+CountDownLatch siteWasRenderedLatch = new CountDownLatch(1);
+boolean siteWasRendered = siteWasRenderedLatch.await(10,TimeUnit.SECONDS);
+
+----
+
+===CVE Check
+
+.owasp dependency check
+
+* https://plugins.gradle.org/plugin/org.owasp.dependencycheck
+* https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
 
 == Links
 
@@ -296,3 +340,25 @@ ln -s $LIB_DIOZERO /usr/lib/libdiozero-system-utils.so
 ** https://quarkus.io/guides/getting-started-reactive#mutiny
 ** http://smallrye.io/smallrye-mutiny/index.html
 * https://github.com/smallrye/smallrye-config
+* Quarkus Testing
+** https://quarkus.io/blog/mocking/[Mocking]
+* Android Things https://github.com/androidthings
+** https://developer.android.com/things/sdk/pio/spi[SPI Sample]
+** https://proandroiddev.com/android-things-analog-i-o-and-pwm-spi-i%C2%B2c-tutorial-with-the-raspberry-pi-5bbc957099da[SPI, i²c on raspi3]
+*** https://github.com/NickCapurso/AndroidThings-RaspPi-AnalogReadWrite[github repo]
+** https://code.tutsplus.com/tutorials/android-things-peripheral-inputoutput--cms-27891
+* Sensors with Java ME
+** https://www.oracle.com/technical-resources/articles/java/cruz-gpio.html
+* udev device handling
+** http://www.vorkon.de/SU1210.001/drittanbieter/Dokumentation/openSUSE_11.4/manual/cha.udev.html[udev basics]
+**http://reactivated.net/writing_udev_rules.html#syntax[udev basics]
+* Pi4j
+** https://webtechie.be/post/2020-10-10-pi4j-on-raspberry-pi-4/
+** https://github.com/Pi4J/pi4j-docker
+* wiringpi
+** http://wiringpi.com/wiringpi-deprecated/[deprecated]
+** http://wiringpi.com/wiringpi-updated-to-2-52-for-the-raspberry-pi-4b/
+* diozero
+** https://github.diozero.com/
+** https://github.com/mattjlewis/pigpioj[java wrapper für pigpio]
+** http://abyz.me.uk/rpi/pigpio/

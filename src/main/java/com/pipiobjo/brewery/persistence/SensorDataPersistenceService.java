@@ -29,6 +29,6 @@ public class SensorDataPersistenceService {
 
     @ConsumeEvent(value = SensorCollectorService.PUBLISH_TO_PERSISTENCE_EVENT_NAME, blocking = true)
     public void updateUIEvent(CollectionResult event) {
-        log.info("receiving collection result: {}", event);
+        log.debug("receiving collection result: {}", event);
     }
 }

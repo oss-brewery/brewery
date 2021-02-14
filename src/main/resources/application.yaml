@@ -4,6 +4,9 @@ quarkus:
   live-reload:
     password: changeit
     url: http://brewery:8080
+  http:
+    cors: true
+#      origins: http://192.168.2.149:4000/
 
 #quarkus.package.type=mutable-jar
 #quarkus.live-reload.password=changeit

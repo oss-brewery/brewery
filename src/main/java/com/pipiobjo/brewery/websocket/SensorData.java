@@ -32,7 +32,7 @@ public class SensorData {
 
     @ConsumeEvent(value = SensorCollectorService.PUBLISH_TO_UI_EVENT_NAME, blocking = true)
     public void updateUIEvent(CollectionResult event) {
-        log.info("receiving collection result: {}", event);
+        log.debug("receiving collection result: {}", event);
         WebsocketMessage msg = new WebsocketMessage();
         msg.setMessageType(WebsocketMessage.MESSAGE_TYPES.UPDATING_SENSOR_DATA);
         msg.setBody(jsonb.toJson(event));

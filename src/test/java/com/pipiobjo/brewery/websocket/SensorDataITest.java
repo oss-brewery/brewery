@@ -55,7 +55,6 @@ public class SensorDataITest {
             CollectionResult body = jsonb.fromJson(resultJson, CollectionResult.class);
             assertThat(body).isNotNull();
 
-//            session.getAsyncRemote().sendText("hello world");
         }
         sensorCollectorService.stopCollecting();
     }

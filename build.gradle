@@ -1,11 +1,16 @@
 plugins {
     id 'java'
     id 'io.quarkus'
+    id 'org.owasp.dependencycheck'
+    id "com.github.ben-manes.versions"
 }
+
+
 
 repositories {
     mavenLocal()
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -48,6 +53,7 @@ java {
 }
 
 compileJava {
+    dependsOn(tasks.findByPath('dependencyCheckAnalyze')) // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
     options.encoding = 'UTF-8'
     options.compilerArgs << '-parameters'
 }
