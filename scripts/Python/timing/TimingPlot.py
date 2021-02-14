@@ -36,4 +36,12 @@ for rr in a:
 plt.scatter(a,x);
 plt.scatter(a,(t-0.05));
 plt.grid(1)
-plt.show
+plt.show()
+
+fileName='TimingPlotExample.svg'
+
+# save plot as ''
+if isinstance(fileName,str):
+    plt.savefig(fname=fileName)
+else:
+    print('file was not saved')

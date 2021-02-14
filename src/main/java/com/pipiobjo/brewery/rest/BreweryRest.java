@@ -1,8 +1,11 @@
 package com.pipiobjo.brewery.rest;
 
+import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureConfigProperties;
+import com.pipiobjo.brewery.adapters.spiextensionboard.PortPinConfigProperties;
 import com.pipiobjo.brewery.rest.model.BrewReceipt;
 import com.pipiobjo.brewery.services.BrewingService;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
+import io.quarkus.arc.config.ConfigPrefix;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,5 +68,16 @@ public class BreweryRest {
         brewingService.stopCollecting();
     }
 
+    @Inject
+    InPotTemperatureConfigProperties inPotTemperatureConfigProperties;
+
+    @POST
+    @Path("/testFun")
+    public void startTestFun(){
+    log.info("a function for testing");
+    log.info(inPotTemperatureConfigProperties.getW1TempBottomID());
+    log.info("end of testing");
+
+    }
 
 }

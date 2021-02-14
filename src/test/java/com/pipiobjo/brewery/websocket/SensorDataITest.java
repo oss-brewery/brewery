@@ -2,6 +2,7 @@ package com.pipiobjo.brewery.websocket;
 
 import com.pipiobjo.brewery.rest.BreweryBasicITestProfile;
 import com.pipiobjo.brewery.services.collector.SensorCollectorService;
+import com.pipiobjo.brewery.services.collector.SensorCollectorServiceConfigProperties;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.websocket.model.WebsocketMessage;
 import io.quarkus.test.common.http.TestHTTPResource;
@@ -40,12 +41,17 @@ public class SensorDataITest {
     @Inject
     SensorCollectorService sensorCollectorService;
 
+    @Inject
+    SensorCollectorServiceConfigProperties sensorCollectorServiceConfigProperties;
+
     @Test
     public void testWebsocketChat() throws Exception {
         sensorCollectorService.startCollecting();
 
         try (Session session = ContainerProvider.getWebSocketContainer().connectToServer(Client.class, uri)) {
-            WebsocketMessage msg = MESSAGES.poll(2, TimeUnit.SECONDS);
+            WebsocketMessage msg = MESSAGES.poll(
+                    sensorCollectorServiceConfigProperties.getUiUpdateIntervallInMS()+2000,
+                    TimeUnit.MILLISECONDS);
             assertThat(msg).isNotNull();
             WebsocketMessage.MESSAGE_TYPES messageType = msg.getMessageType();
             assertThat(messageType).isNotNull();

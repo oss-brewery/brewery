@@ -1,17 +1,10 @@
-package com.pipiobjo.brewery.services.collector;
+package com.pipiobjo.brewery.interpolable;
 
-import com.pipiobjo.brewery.interpolable.InterpolatingDouble;
-import com.pipiobjo.brewery.interpolable.InterpolatingTreeMap;
 import lombok.extern.slf4j.Slf4j;
-
 import java.math.BigDecimal;
 
 @Slf4j
 public class NormLinearization {
-
-    private InterpolatingDouble[] measureingPoint;
-    private InterpolatingDouble[] measureingValue;
-    private int n;
 
     private InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> map = new InterpolatingTreeMap<>();
 
@@ -26,9 +19,9 @@ public class NormLinearization {
             return;
         }
 
-        n = measureingValueInput.length;
-        measureingPoint = new InterpolatingDouble[n];
-        measureingValue = new InterpolatingDouble[n];
+        int n = measureingValueInput.length;
+        InterpolatingDouble[] measureingPoint = new InterpolatingDouble[n];
+        InterpolatingDouble[] measureingValue = new InterpolatingDouble[n];
 
         for (int i = 0; i < n; i++) {
             measureingPoint[i] = new InterpolatingDouble(measureingPointInput[i]);

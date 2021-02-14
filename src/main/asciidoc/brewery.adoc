@@ -19,6 +19,11 @@ image::../../../media/MCP23S17_Dual_Platine_V2_Steckplatine.svg[Embedded,1000,op
 
 image::../../../media/MCP23S17_Dual_Platine_V2_Schaltplan.svg[Embedded,1000,opts=inline]
 
+== Target Temperature
+This will be an example for a trajectory for the target temperature
+
+image::../../../scripts/Python/setpoint/TrajcetorieTemperature.svg[Embedded,1000,opts=inline]
+
 == Step sequence "brewery"
 First concept of a step sequence for the brewery. +
 Is made for discussion. +

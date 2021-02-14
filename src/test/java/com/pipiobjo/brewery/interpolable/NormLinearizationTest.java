@@ -1,7 +1,5 @@
 package com.pipiobjo.brewery.interpolable;
 
-import com.pipiobjo.brewery.interpolable.InterpolatingDouble;
-import com.pipiobjo.brewery.services.collector.NormLinearization;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
