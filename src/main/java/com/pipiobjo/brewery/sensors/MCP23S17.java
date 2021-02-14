@@ -1,9 +1,9 @@
 package com.pipiobjo.brewery.sensors;
 
-import com.diozero.api.SensorInterface;
+import com.diozero.devices.SensorInterface;
 import com.diozero.api.SpiClockMode;
 import com.diozero.api.SpiDevice;
-import com.diozero.util.RuntimeIOException;
+import com.diozero.api.RuntimeIOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

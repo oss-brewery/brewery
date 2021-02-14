@@ -1,8 +1,8 @@
 plugins {
     id 'java'
     id 'io.quarkus'
-    id 'org.owasp.dependencycheck'
-    id "com.github.ben-manes.versions"
+    id 'org.owasp.dependencycheck' version "6.1.1"
+    id "com.github.ben-manes.versions" version "0.36.0"
 }
 
 
@@ -13,8 +13,12 @@ repositories {
     jcenter()
 }
 
+ext{
+    lombokVersion = '1.18.18'
+}
+
 dependencies {
-    implementation 'com.diozero:diozero-core:0.14'
+    implementation 'com.diozero:diozero-core:1.1.2'
     // stopwatch
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
 
@@ -34,14 +38,14 @@ dependencies {
     testImplementation 'io.quarkus:quarkus-junit5-mockito'
     testImplementation 'io.rest-assured:rest-assured'
     testImplementation 'org.powermock:powermock-core:2.0.9'
-    testImplementation 'org.assertj:assertj-core:3.18.1'
+    testImplementation 'org.assertj:assertj-core:3.19.0'
 
     // lombok
-    compileOnly 'org.projectlombok:lombok:1.18.16'
-    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.16'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 
 group 'com.pipiobjo.brewery'

@@ -218,7 +218,7 @@ check for: (Quarkus Main Thread) Profile dev activated. Live Coding activated.
 On the development maschine activate hot code deployment
 
 ```bash
-mvnw quarkus:remote-dev -Dquarkus.live-reload.url=http://brewery:8080 -f pom.xml
+./gradlew quarkusRemoteDev -Dquarkus.live-reload.url=http://brewery:8080
 
 ```
 
@@ -332,6 +332,29 @@ boolean siteWasRendered = siteWasRenderedLatch.await(10,TimeUnit.SECONDS);
 
 * https://plugins.gradle.org/plugin/org.owasp.dependencycheck
 * https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
+
+[source=bash]
+----
+./gradlew dependencyCheckAnalyze
+----
+
+Open /build/reports/dependency-check-report.html
+
+
+=== Howto Update dependency versions
+
+Using gradle plugin https://github.com/ben-manes/gradle-versions-plugin
+
+[source=bash]
+----
+./gradlew dependencyUpdates -Drevision=release -DoutputFormatter=html
+----
+
+And open build/dependencyUpdates/report.html
+
+Do a full build
+
+// TODO create checkliste for basic hardware usecases
 
 == Links
 
