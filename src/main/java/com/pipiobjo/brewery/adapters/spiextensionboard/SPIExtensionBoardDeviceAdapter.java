@@ -47,47 +47,47 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
             Map<SPIExtensionBoardAdapterConfigProperties.GPIOMCP, PortPinConfigProperties> gpiomcpMap = config.getGPOMCPMap();
             AtomicReference<Byte> tempregister = new AtomicReference<>((byte) 0);
             List<PortPinConfigProperties> mcp1portA = gpiomcpMap.values().stream()
-                    .filter(portPin -> portPin.getMcpNumber().get() == 1)
-                    .filter(portPin -> portPin.getPort().get() == 'A')
+                    .filter(portPin -> portPin.mcpNumber.get() == 1)
+                    .filter(portPin -> portPin.port.get() == 'A')
                     .collect(Collectors.toList());
 
             List<PortPinConfigProperties> mcp1portB = gpiomcpMap.values().stream()
-                    .filter(portPin -> portPin.getMcpNumber().get() == 1)
-                    .filter(portPin -> portPin.getPort().get() == 'B')
+                    .filter(portPin -> portPin.mcpNumber.get() == 1)
+                    .filter(portPin -> portPin.port.get() == 'B')
                     .collect(Collectors.toList());
 
             List<PortPinConfigProperties> mcp2portA = gpiomcpMap.values().stream()
-                    .filter(portPin -> portPin.getMcpNumber().get() == 2)
-                    .filter(portPin -> portPin.getPort().get() == 'A')
+                    .filter(portPin -> portPin.mcpNumber.get() == 2)
+                    .filter(portPin -> portPin.port.get() == 'A')
                     .collect(Collectors.toList());
 
             List<PortPinConfigProperties> mcp2portB = gpiomcpMap.values().stream()
-                    .filter(portPin -> portPin.getMcpNumber().get() == 2)
-                    .filter(portPin -> portPin.getPort().get() == 'B')
+                    .filter(portPin -> portPin.mcpNumber.get() == 2)
+                    .filter(portPin -> portPin.port.get() == 'B')
                     .collect(Collectors.toList());
 
 
             tempregister.set((byte) 0xFF); // all as input --> default
             mcp1portA.forEach(portPin -> {
-                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.getPin().get()));  // set as output
+                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.pin.get()));  // set as output
             });
             device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.IODIRA, tempregister.get());
 
             tempregister.set((byte) 0xFF); // all as input --> default
             mcp1portB.forEach(portPin -> {
-                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.getPin().get()));  // set as output
+                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.pin.get()));  // set as output
             });
             device.setRegister(MCP23S17.IOEXP_W_1, MCP23S17.IODIRB, tempregister.get());
 
             tempregister.set((byte) 0xFF); // all as input --> default
             mcp2portA.forEach(portPin -> {
-                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.getPin().get()));  // set as output
+                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.pin.get()));  // set as output
             });
             device.setRegister(MCP23S17.IOEXP_W_2, MCP23S17.IODIRA, tempregister.get());
 
             tempregister.set((byte) 0xFF); // all as input --> default
             mcp2portB.forEach(portPin -> {
-                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.getPin().get()));  // set as output
+                tempregister.set(device.setBitinByte(tempregister.get(), false, portPin.pin.get()));  // set as output
             });
             device.setRegister(MCP23S17.IOEXP_W_2, MCP23S17.IODIRB, tempregister.get());
             //TODO check if Iiput and output are defined for the PortPin
@@ -223,10 +223,10 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
     private void setRegisterOutput(PortPinConfigProperties element, boolean value) {
         byte opCodeRead;
         byte opCodeWrite;
-        if (element.getMcpNumber().get() == 1) {
+        if (element.mcpNumber.get() == 1) {
             opCodeRead = MCP23S17.IOEXP_R_1;
             opCodeWrite = MCP23S17.IOEXP_W_1;
-        } else if (element.getMcpNumber().get() == 2) {
+        } else if (element.mcpNumber.get() == 2) {
             opCodeRead = MCP23S17.IOEXP_R_2;
             opCodeWrite = MCP23S17.IOEXP_W_2;
         } else {
@@ -237,10 +237,10 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
 
         byte registerRead;
         byte registerWrite;
-        if (element.getPort().get() == 'A') {
+        if (element.port.get() == 'A') {
             registerRead = MCP23S17.GPIOA;
             registerWrite = MCP23S17.OLATA;
-        } else if (element.getPort().get() == 'B') {
+        } else if (element.port.get() == 'B') {
             registerRead = MCP23S17.GPIOB;
             registerWrite = MCP23S17.OLATB;
         } else {
@@ -250,15 +250,15 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
         }
 
         byte tempData = device.getRegister(opCodeRead, registerRead);
-        tempData = device.setBitinByte(tempData, value, element.getPin().get()); // TODO How to Inject private?
+        tempData = device.setBitinByte(tempData, value, element.pin.get()); // TODO How to Inject private?
         device.setRegister(opCodeWrite, registerWrite, tempData);
     }
 
     private boolean getInputValue(PortPinConfigProperties element) {
         byte opCodeRead;
-        if (element.getMcpNumber().get() == 1) {
+        if (element.mcpNumber.get() == 1) {
             opCodeRead = MCP23S17.IOEXP_R_1;
-        } else if (element.getMcpNumber().get() == 2) {
+        } else if (element.mcpNumber.get() == 2) {
             opCodeRead = MCP23S17.IOEXP_R_2;
         } else {
             log.error("undefined MCP!");
@@ -266,9 +266,9 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
         }
 
         byte registerRead;
-        if (element.getPort().get() == 'A') {
+        if (element.port.get() == 'A') {
             registerRead = MCP23S17.GPIOA;
-        } else if (element.getPort().get() == 'B') {
+        } else if (element.port.get() == 'B') {
             registerRead = MCP23S17.GPIOB;
         } else {
             log.error("undefined port!");
@@ -276,7 +276,7 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
         }
 
         byte tempData = device.getRegister(opCodeRead, registerRead);
-        return device.getBitinByte(tempData, element.getPin().get());
+        return device.getBitinByte(tempData, element.pin.get());
     }
 
 

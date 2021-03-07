@@ -10,7 +10,6 @@ import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import io.quarkus.runtime.ShutdownEvent;
-import io.reactivex.disposables.CompositeDisposable;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
 import io.vertx.core.eventbus.EventBus;
@@ -49,7 +48,6 @@ public class SensorCollectorService {
     @Inject
     PiCalculator piCalculator;
 
-    private final CompositeDisposable disposables = new CompositeDisposable();
     private Cancellable cancellable;
 
     public SelfCheckResult executeSelfCheck() {

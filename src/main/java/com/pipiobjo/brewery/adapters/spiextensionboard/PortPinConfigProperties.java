@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.util.Optional;
 
-@Data
 @ConfigProperties(failOnMismatchingMember = false)
 public class PortPinConfigProperties {
     public Optional<Integer> mcpNumber;
