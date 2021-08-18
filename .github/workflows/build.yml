@@ -4,6 +4,7 @@
 name: Java CI with Gradle
 
 on:
+  # for manually triggering - only works if branch is default branch
   workflow_dispatch:
 
 jobs:
