@@ -34,6 +34,8 @@ jobs:
           run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
+            export JAVA_HOME=$PWD
+            export PATH=$JAVA_HOME/bin:$PATH
             chmod +x gradlew
             ./gradlew build
 
