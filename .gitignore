@@ -12,7 +12,7 @@ backend.iml
 .idea/
 
 **.pyc
-/venv/
+/venv
 *.pyc
 /scripts/ControlDesign/*.svg
 
