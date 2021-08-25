@@ -4,14 +4,13 @@
 name: Java CI with Gradle
 
 on:
-  # for manually triggering - only works if branch is default branch
-  workflow_dispatch:
+  push:
 
 jobs:
   build:
 
     runs-on: ubuntu-20.04
-    name: Build on ubuntu-20.04 armv7
+    name: Build on ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -22,21 +21,4 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build 
-      
-    - uses: uraimo/run-on-arch-action@v2.0.5
-      name: Run commands
-      id: runcmd
-      with:
-        arch: armv7
-        distro: ubuntu20.04
-
-        # Set an output parameter `uname` for use in subsequent steps
-        run: |
-          uname -a
-          echo ::set-output name=uname::$(uname -a)
-
-    - name: Get the output
-      # Echo the `uname` output parameter from the `runcmd` step test
-      run: |
-        echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
+      run: ./gradlew build
