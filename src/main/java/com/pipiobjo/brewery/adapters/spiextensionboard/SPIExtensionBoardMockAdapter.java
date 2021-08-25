@@ -1,5 +1,6 @@
 package com.pipiobjo.brewery.adapters.spiextensionboard;
 
+import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -46,7 +47,7 @@ public class SPIExtensionBoardMockAdapter implements SPIExtensionBoardAdapter {
 
     @Override
     public boolean isFlameOn() {
-        return false;
+        return BreweryHardwareSimulation.isFlameIsOn();
     }
 
 }

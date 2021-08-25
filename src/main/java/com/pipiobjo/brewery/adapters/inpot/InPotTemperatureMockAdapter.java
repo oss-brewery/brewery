@@ -1,5 +1,6 @@
 package com.pipiobjo.brewery.adapters.inpot;
 
+import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -18,14 +19,13 @@ public class InPotTemperatureMockAdapter implements InPotTemperatureAdapter {
     }
 
     @Override
-    public InpotTemperature getTemparatures() {
-        int c = counter.getAndIncrement();
+    public InpotTemperature getTemperatures() {
         InpotTemperature result = new InpotTemperature();
         result.setTimestamp(OffsetDateTime.now());
 
-        result.setBottom(Optional.of(BigDecimal.valueOf(12 + c)));
-        result.setMiddle(Optional.of(BigDecimal.valueOf(11 + c)));
-        result.setTop(Optional.of(BigDecimal.valueOf(10 + c)));
+        result.setBottom(Optional.of(BreweryHardwareSimulation.getInPotTempBottom()));
+        result.setMiddle(Optional.of(BreweryHardwareSimulation.getInPotTempMiddle()));
+        result.setTop(Optional.of(BreweryHardwareSimulation.getInPotTempTop()));
 
         return result;
     }

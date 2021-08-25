@@ -1,7 +1,9 @@
 package com.pipiobjo.brewery.adapters.flametemp;
 
+import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Optional;
@@ -12,7 +14,7 @@ public class FlameTempMockAdapter implements FlameTempAdapter{
     public FlameTemperature getFlameTemp() {
         FlameTemperature result = new FlameTemperature();
         result.setTimestamp(OffsetDateTime.now());
-        result.setTemperature(Optional.of(BigDecimal.valueOf(400)));
+        result.setTemperature(Optional.of(BreweryHardwareSimulation.getFlameTemp()));
         return result;
     }
 

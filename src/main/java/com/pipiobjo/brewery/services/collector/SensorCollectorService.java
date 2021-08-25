@@ -9,6 +9,7 @@ import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
+import com.pipiobjo.brewery.services.simulation.SimulationAdapter;
 import io.quarkus.runtime.ShutdownEvent;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
@@ -44,6 +45,9 @@ public class SensorCollectorService {
     EventBus bus;
     @Inject
     SensorCollectorServiceConfigProperties config;
+    @Inject
+    SimulationAdapter simulationAdapter;
+
 
     @Inject
     PiCalculator piCalculator;
@@ -57,7 +61,7 @@ public class SensorCollectorService {
         SelfCheckResult result = new SelfCheckResult();
 
         inPotTemperatureAdapter.checkConfiguration();
-        InpotTemperature inpotTemp = this.inPotTemperatureAdapter.getTemparatures();
+        InpotTemperature inpotTemp = this.inPotTemperatureAdapter.getTemperatures();
         log.info("inpotTemp={}", inpotTemp);
         result.setInpotTemperature(inpotTemp);
 
@@ -124,7 +128,7 @@ public class SensorCollectorService {
                         picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, kp, ki, maxPercent, minPercent);
 
                         watch.start();
-                        InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
+                        InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemperatures();
                         watch.stop();
                         log.debug("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
                         watch.reset();
@@ -142,6 +146,7 @@ public class SensorCollectorService {
 
                     if (mode.contains(CollectionPublishMode.PUBLISH_TO_CALCULATION)) {
                         log.debug("publish to calc");
+                        simulationAdapter.calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));
                         bus.publish(PUBLISH_TO_CALCULATION_EVENT_NAME, result);
                     }
 
