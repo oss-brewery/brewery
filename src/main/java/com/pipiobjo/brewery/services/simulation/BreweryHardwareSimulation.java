@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Data
@@ -67,12 +68,12 @@ public class BreweryHardwareSimulation {
         airTemp = pt1SysAirTemp.getX();
     }
 
-    private static void calculateInPot(BigDecimal stepSizeBD, BigDecimal input)
+    private static void calculateInPot(BigDecimal stepSizeBD, BigDecimal inputTempBurnerKelvin)
     {
-        BigDecimal inputCalc = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW);
-        inputCalc = inputCalc.add(input);
-        inputCalc = inputCalc.subtract(tempBrewKelvin);
-        pt1SysInPot.calculate(stepSizeBD, inputCalc);
+        BigDecimal inputRateOfHeatFlow1 = inputTempBurnerKelvin.divide(THERMAL_RESISTOR_BURNER_2_BREW,15, RoundingMode.HALF_DOWN);
+        BigDecimal inputRateOfHeatFlow2 = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW,15, RoundingMode.HALF_DOWN);
+        BigDecimal inputRateOfHeatFlow = inputRateOfHeatFlow1.add(inputRateOfHeatFlow2);
+        pt1SysInPot.calculate(stepSizeBD, inputRateOfHeatFlow);
         tempBrewKelvin = pt1SysInPot.getX().multiply(THERMAL_RESISTOR_AIR_2_BREW);
 
         inPotTempBottom = tempBrewKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS).add(BigDecimal.valueOf(-1));
