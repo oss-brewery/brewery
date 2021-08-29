@@ -1,16 +1,41 @@
 package com.pipiobjo.brewery.services.simulation;
 
+import io.quarkus.arc.Lock;
+import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.Startup;
+import io.vertx.core.eventbus.EventBus;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 @Data
+@Slf4j
 @ApplicationScoped
+@IfBuildProfile("mockDevices")
 public class BreweryHardwareSimulation {
+
+//    @Inject
+//    public BreweryHardwareSimulation(){}
+
+    @PostConstruct
+    void init(){
+        log.info("post construct for HardwareSimulation");
+    }
+
+    @PreDestroy
+    void preDestroy(){
+        log.info("pre destroy for HardwareSimulation");
+    }
 
     private BigDecimal controlCabinetAirTemp = BigDecimal.ZERO;
     private BigDecimal airTemp = BigDecimal.ZERO;
@@ -93,6 +118,9 @@ public class BreweryHardwareSimulation {
     }
 
     public void calculate(BigDecimal stepSizeBD){
+        // input
+//        testvar = bus.localConsumer(TEST_EVENT_BUS);
+
         calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
         calculateAirTemp(stepSizeBD, inputAirTemp);
         calculateInPot(stepSizeBD, tempBurnerKelvin);

@@ -7,20 +7,22 @@ import javax.inject.Inject;
 
 public class FlameControlMockAdapter implements FlameControlAdapter{
 
-    @Inject
-    BreweryHardwareSimulation breweryHardwareSimulation;
+//    @Inject
+//    BreweryHardwareSimulation breweryHardwareSimulation;
 
     public FlameControlMockAdapter() {
     }
 
     @Override
     public void turnOff() {
-        breweryHardwareSimulation.setFlameIsOn(false);
+
+//        breweryHardwareSimulation.setFlameIsOn(false);
     }
 
     @Override
     public void turnOn() {
-        breweryHardwareSimulation.setFlameIsOn(true);
+
+//        breweryHardwareSimulation.setFlameIsOn(true);
     }
 
     @Override
@@ -35,6 +37,7 @@ public class FlameControlMockAdapter implements FlameControlAdapter{
 
     @Override
     public boolean isFlameOn() {
-        return breweryHardwareSimulation.isFlameIsOn();
+        return false;
+//        return breweryHardwareSimulation.isFlameIsOn();
     }
 }

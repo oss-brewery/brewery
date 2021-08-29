@@ -15,7 +15,6 @@ import javax.inject.Inject;
 
 @Slf4j
 @Startup
-@ApplicationScoped
 public class FlameTempAdapterConfig {
     @Inject
     FlameTempConfigProperties config;

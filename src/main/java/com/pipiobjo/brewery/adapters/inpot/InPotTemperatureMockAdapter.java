@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class InPotTemperatureMockAdapter implements InPotTemperatureAdapter {
 
-    @Inject
-    BreweryHardwareSimulation breweryHardwareSimulation;
+//    @Inject
+//    BreweryHardwareSimulation breweryHardwareSimulation;
 
     private AtomicInteger counter = new AtomicInteger(0);
 
@@ -27,9 +27,9 @@ public class InPotTemperatureMockAdapter implements InPotTemperatureAdapter {
         InpotTemperature result = new InpotTemperature();
         result.setTimestamp(OffsetDateTime.now());
 
-        result.setBottom(Optional.of(breweryHardwareSimulation.getInPotTempBottom()));
-        result.setMiddle(Optional.of(breweryHardwareSimulation.getInPotTempMiddle()));
-        result.setTop(Optional.of(breweryHardwareSimulation.getInPotTempTop()));
+//        result.setBottom(Optional.of(breweryHardwareSimulation.getInPotTempBottom()));
+//        result.setMiddle(Optional.of(breweryHardwareSimulation.getInPotTempMiddle()));
+//        result.setTop(Optional.of(breweryHardwareSimulation.getInPotTempTop()));
 
         return result;
     }
