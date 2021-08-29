@@ -9,7 +9,7 @@ public class SimulationMockAdapter implements SimulationAdapter {
     BreweryHardwareSimulation breweryHardwareSimulation;
 
     public void  calculate(BigDecimal stepSizeBD){
-        BreweryHardwareSimulation.calculate(stepSizeBD);
+        breweryHardwareSimulation.calculate(stepSizeBD);
     }
 }
 

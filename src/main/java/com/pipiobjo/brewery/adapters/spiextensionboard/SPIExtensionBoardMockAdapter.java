@@ -3,8 +3,14 @@ package com.pipiobjo.brewery.adapters.spiextensionboard;
 import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.inject.Inject;
+
 @Slf4j
 public class SPIExtensionBoardMockAdapter implements SPIExtensionBoardAdapter {
+
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
+
     @Override
     public boolean isFlameControlButtonPushed() {
         return false;
@@ -47,7 +53,7 @@ public class SPIExtensionBoardMockAdapter implements SPIExtensionBoardAdapter {
 
     @Override
     public boolean isFlameOn() {
-        return BreweryHardwareSimulation.isFlameIsOn();
+        return breweryHardwareSimulation.isFlameIsOn();
     }
 
 }

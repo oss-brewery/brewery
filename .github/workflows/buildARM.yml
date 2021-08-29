@@ -5,6 +5,8 @@ name: Java CI with Gradle and ARM
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   build_arm:

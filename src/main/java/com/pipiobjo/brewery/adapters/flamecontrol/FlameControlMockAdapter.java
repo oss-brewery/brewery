@@ -3,18 +3,24 @@ package com.pipiobjo.brewery.adapters.flamecontrol;
 import com.pipiobjo.brewery.services.collector.SensorCollectorServiceConfigProperties;
 import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 
+import javax.inject.Inject;
+
 public class FlameControlMockAdapter implements FlameControlAdapter{
+
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
+
     public FlameControlMockAdapter() {
     }
 
     @Override
     public void turnOff() {
-        BreweryHardwareSimulation.setFlameIsOn(false);
+        breweryHardwareSimulation.setFlameIsOn(false);
     }
 
     @Override
     public void turnOn() {
-        BreweryHardwareSimulation.setFlameIsOn(true);
+        breweryHardwareSimulation.setFlameIsOn(true);
     }
 
     @Override
@@ -29,6 +35,6 @@ public class FlameControlMockAdapter implements FlameControlAdapter{
 
     @Override
     public boolean isFlameOn() {
-        return BreweryHardwareSimulation.isFlameIsOn();
+        return breweryHardwareSimulation.isFlameIsOn();
     }
 }

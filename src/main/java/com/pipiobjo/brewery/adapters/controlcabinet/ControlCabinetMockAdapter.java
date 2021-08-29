@@ -13,6 +13,8 @@ import java.util.Optional;
 @Slf4j
 public class ControlCabinetMockAdapter implements ControlCabinetAdapter{
 
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
 
     public ControlCabinetMockAdapter(SensorCollectorServiceConfigProperties configMock) {
 
@@ -24,11 +26,11 @@ public class ControlCabinetMockAdapter implements ControlCabinetAdapter{
     }
 
     @Override
-    public ControlCabinetTemperature getTemparatures() {
+    public ControlCabinetTemperature getTemperatures() {
         ControlCabinetTemperature result = new ControlCabinetTemperature();
         result.setTimestamp(OffsetDateTime.now());
-        result.setAirTemp(Optional.of(BreweryHardwareSimulation.getAirTemp()));
-        result.setControlCabinetAirTemp(Optional.of(BreweryHardwareSimulation.getControlCabinetAirTemp()));
+        result.setAirTemp(Optional.of(breweryHardwareSimulation.getAirTemp()));
+        result.setControlCabinetAirTemp(Optional.of(breweryHardwareSimulation.getControlCabinetAirTemp()));
         return result;
     }
 }

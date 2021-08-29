@@ -10,11 +10,15 @@ import java.util.Optional;
 
 @Slf4j
 public class FlameTempMockAdapter implements FlameTempAdapter{
+
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
+
     @Override
     public FlameTemperature getFlameTemp() {
         FlameTemperature result = new FlameTemperature();
         result.setTimestamp(OffsetDateTime.now());
-        result.setTemperature(Optional.of(BreweryHardwareSimulation.getFlameTemp()));
+        result.setTemperature(Optional.of(breweryHardwareSimulation.getFlameTemp()));
         return result;
     }
 

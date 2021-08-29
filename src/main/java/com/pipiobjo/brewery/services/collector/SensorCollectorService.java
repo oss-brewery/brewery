@@ -66,7 +66,7 @@ public class SensorCollectorService {
         result.setInpotTemperature(inpotTemp);
 
         controlCabinetAdapter.checkConfiguration();
-        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
+        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemperatures();
         log.info("controlCabinetTemp={}", controlCabinetTemp);
         result.setControlCabinetTemperature(controlCabinetTemp);
 
@@ -136,7 +136,7 @@ public class SensorCollectorService {
 
 
                         watch.start();
-                        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
+                        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemperatures();
                         watch.stop();
                         log.debug("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
                         watch.reset();

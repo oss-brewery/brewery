@@ -1,28 +1,28 @@
 package com.pipiobjo.brewery.services.simulation;
 
+import io.quarkus.runtime.Startup;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
+import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 @Data
+@ApplicationScoped
 public class BreweryHardwareSimulation {
 
+    private BigDecimal controlCabinetAirTemp = BigDecimal.ZERO;
+    private BigDecimal airTemp = BigDecimal.ZERO;
+    private BigDecimal flameTemp = BigDecimal.ZERO;
+    private BigDecimal inPotTempBottom = BigDecimal.ZERO;
+    private BigDecimal inPotTempMiddle = BigDecimal.ZERO;
+    private BigDecimal inPotTempTop = BigDecimal.ZERO;
 
-    @Getter private static BigDecimal controlCabinetAirTemp = BigDecimal.ZERO;
-    @Getter private static BigDecimal airTemp = BigDecimal.ZERO;
-    @Getter private static BigDecimal flameTemp = BigDecimal.ZERO;
-    @Getter private static BigDecimal inPotTempBottom = BigDecimal.ZERO;
-    @Getter private static BigDecimal inPotTempMiddle = BigDecimal.ZERO;
-    @Getter private static BigDecimal inPotTempTop = BigDecimal.ZERO;
+    private boolean flameIsOn = false;
 
-    @Getter @Setter private static boolean flameIsOn = false;
-
-    private static BigDecimal tempBrewKelvin = BigDecimal.valueOf(275);
-    private static BigDecimal tempBurnerKelvin = BigDecimal.valueOf(900);
+    private BigDecimal tempBrewKelvin = BigDecimal.valueOf(275);
+    private BigDecimal tempBurnerKelvin = BigDecimal.valueOf(900);
 
     private static final BigDecimal DIFFERENCE_KELVIN_CELSIUS = BigDecimal.valueOf(273);
     private static final BigDecimal THERMAL_RESISTOR_AIR_2_BREW = BigDecimal.valueOf(0.0005);
@@ -35,40 +35,40 @@ public class BreweryHardwareSimulation {
     private static final BigDecimal THERMAL_CAPACITY_CEREALS = THERMAL_CAPACITY_COEFFICIENT_CEREALS.multiply(WEIGHT_CEREALS);
     private static final BigDecimal THERMAL_CAPACITY_BREW = THERMAL_CAPACITY_WATER.add(THERMAL_CAPACITY_CEREALS);
 
-    private static Pt1Sys pt1SysCabinetAirTemp = new Pt1Sys(
+    private Pt1Sys pt1SysCabinetAirTemp = new Pt1Sys(
             BigDecimal.valueOf(15), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
 
-    private static Pt1Sys pt1SysAirTemp = new Pt1Sys(
+    private Pt1Sys pt1SysAirTemp = new Pt1Sys(
             BigDecimal.valueOf(20), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
 
-    private static Pt1Sys pt1SysInPot = new Pt1Sys(
+    private Pt1Sys pt1SysInPot = new Pt1Sys(
             BigDecimal.valueOf(100), BigDecimal.valueOf(1), tempBrewKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW));
 
     // for manual setting values
-    private static BigDecimal tempAmbientAirKelvin = BigDecimal.valueOf(290);
-    private static BigDecimal inputCabinetAirTemp = BigDecimal.ZERO;
-    private static BigDecimal inputAirTemp = BigDecimal.ZERO;
-    private static int cycleCount = 0;
-    private static int cycleCountModulo = 300;
-    private static int maxRandom = 100;
-    private static int minRandom = 0;
-    private static int randomNumber;
+    private BigDecimal tempAmbientAirKelvin = BigDecimal.valueOf(290);
+    private BigDecimal inputCabinetAirTemp = BigDecimal.ZERO;
+    private BigDecimal inputAirTemp = BigDecimal.ZERO;
+    private int cycleCount = 0;
+    private int cycleCountModulo = 300;
+    private int maxRandom = 100;
+    private int minRandom = 0;
+    private int randomNumber;
 
-    private BreweryHardwareSimulation(){}
+//    private BreweryHardwareSimulation(){}
 
-    private static void calculateCabinetAirTemp(BigDecimal stepSizeBD, BigDecimal input)
+    private void calculateCabinetAirTemp(BigDecimal stepSizeBD, BigDecimal input)
     {
         pt1SysCabinetAirTemp.calculate(stepSizeBD, input);
-        controlCabinetAirTemp = pt1SysCabinetAirTemp.getX();
+        controlCabinetAirTemp =pt1SysCabinetAirTemp.getX();
     }
 
-    private static void calculateAirTemp(BigDecimal stepSizeBD, BigDecimal input)
+    private void calculateAirTemp(BigDecimal stepSizeBD, BigDecimal input)
     {
         pt1SysAirTemp.calculate(stepSizeBD, input);
         airTemp = pt1SysAirTemp.getX();
     }
 
-    private static void calculateInPot(BigDecimal stepSizeBD, BigDecimal inputTempBurnerKelvin)
+    private void calculateInPot(BigDecimal stepSizeBD, BigDecimal inputTempBurnerKelvin)
     {
         BigDecimal inputRateOfHeatFlow1 = inputTempBurnerKelvin.divide(THERMAL_RESISTOR_BURNER_2_BREW,15, RoundingMode.HALF_DOWN);
         BigDecimal inputRateOfHeatFlow2 = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW,15, RoundingMode.HALF_DOWN);
@@ -81,7 +81,7 @@ public class BreweryHardwareSimulation {
         inPotTempTop = tempBrewKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS).add(BigDecimal.valueOf(1));
     }
 
-    private static void calculateFlameTemp()
+    private void calculateFlameTemp()
     {
         if (flameIsOn){
             flameTemp = tempBurnerKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
@@ -92,7 +92,7 @@ public class BreweryHardwareSimulation {
 
     }
 
-    public static void calculate(BigDecimal stepSizeBD){
+    public void calculate(BigDecimal stepSizeBD){
         calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
         calculateAirTemp(stepSizeBD, inputAirTemp);
         calculateInPot(stepSizeBD, tempBurnerKelvin);
