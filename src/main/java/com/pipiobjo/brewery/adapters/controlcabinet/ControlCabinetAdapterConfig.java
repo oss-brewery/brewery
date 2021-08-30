@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.adapters.controlcabinet;
 
-import com.pipiobjo.brewery.services.collector.SensorCollectorServiceConfigProperties;
+import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.arc.DefaultBean;
 import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
@@ -22,14 +22,15 @@ public class ControlCabinetAdapterConfig {
     String activeProfile = ProfileManager.getActiveProfile();
     String launchMode = LaunchMode.current().name();
     ControlCabinetAdapter adapter = null;
+
     @Inject
-    SensorCollectorServiceConfigProperties configMock;
+    BreweryHardwareSimulation breweryHardwareSimulation;
 
     @Produces
     @IfBuildProfile("mockDevices")
     public ControlCabinetAdapter provideMock(){
         log.info("Selecting mocking device for control cabinet temperatures, profile={}, launchMode={}", activeProfile, launchMode);
-        adapter = new ControlCabinetMockAdapter(configMock);
+        adapter = new ControlCabinetMockAdapter(breweryHardwareSimulation);
         return adapter;
     }
 

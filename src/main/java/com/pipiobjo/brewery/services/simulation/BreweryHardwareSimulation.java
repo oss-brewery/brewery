@@ -10,9 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.concurrent.ThreadLocalRandom;
@@ -21,20 +18,15 @@ import java.util.concurrent.ThreadLocalRandom;
 @Data
 @Slf4j
 @ApplicationScoped
-@IfBuildProfile("mockDevices")
 public class BreweryHardwareSimulation {
-
-//    @Inject
-//    public BreweryHardwareSimulation(){}
-
     @PostConstruct
     void init(){
-        log.info("post construct for HardwareSimulation");
+        log.info("post construct for BreweryHardwareSimulation");
     }
 
     @PreDestroy
     void preDestroy(){
-        log.info("pre destroy for HardwareSimulation");
+        log.info("pre destroy for BreweryHardwareSimulation");
     }
 
     private BigDecimal controlCabinetAirTemp = BigDecimal.ZERO;
@@ -79,8 +71,6 @@ public class BreweryHardwareSimulation {
     private int minRandom = 0;
     private int randomNumber;
 
-//    private BreweryHardwareSimulation(){}
-
     private void calculateCabinetAirTemp(BigDecimal stepSizeBD, BigDecimal input)
     {
         pt1SysCabinetAirTemp.calculate(stepSizeBD, input);
@@ -118,9 +108,6 @@ public class BreweryHardwareSimulation {
     }
 
     public void calculate(BigDecimal stepSizeBD){
-        // input
-//        testvar = bus.localConsumer(TEST_EVENT_BUS);
-
         calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
         calculateAirTemp(stepSizeBD, inputAirTemp);
         calculateInPot(stepSizeBD, tempBurnerKelvin);

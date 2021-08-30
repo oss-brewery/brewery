@@ -1,6 +1,6 @@
 package com.pipiobjo.brewery.adapters.flamecontrol;
 
-import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetConfigProperties;
+import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.arc.DefaultBean;
 import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
@@ -21,11 +21,14 @@ public class FlameControlAdapterConfig {
     String launchMode = LaunchMode.current().name();
     FlameControlAdapter adapter = null;
 
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
+
     @Produces
     @IfBuildProfile("mockDevices")
     public FlameControlAdapter provideMock(){
         log.info("Selecting mocking device for flame control, profile={}, launchMode={}", activeProfile, launchMode);
-        adapter = new FlameControlMockAdapter();
+        adapter = new FlameControlMockAdapter(breweryHardwareSimulation);
         return adapter;
     }
 

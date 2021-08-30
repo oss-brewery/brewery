@@ -1,5 +1,6 @@
 package com.pipiobjo.brewery.adapters.spiextensionboard;
 
+import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.arc.DefaultBean;
 import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
@@ -24,11 +25,14 @@ public class SPIExtensionBoardAdapterConfig {
     String launchMode = LaunchMode.current().name();
     SPIExtensionBoardAdapter adapter;
 
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
+
     @Produces
     @IfBuildProfile("mockDevices")
     public SPIExtensionBoardAdapter provideMock() {
         log.info("Selecting mocking device for spiextensionboard, profile={}, launchMode={}", activeProfile, launchMode);
-        adapter = new SPIExtensionBoardMockAdapter();
+        adapter = new SPIExtensionBoardMockAdapter(breweryHardwareSimulation);
         return adapter;
     }
 

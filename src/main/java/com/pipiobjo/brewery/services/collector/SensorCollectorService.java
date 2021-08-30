@@ -10,9 +10,8 @@ import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
-import com.pipiobjo.brewery.services.simulation.SimulationAdapter;
-import com.pipiobjo.brewery.services.simulation.TempClass;
 import io.quarkus.runtime.ShutdownEvent;
+import io.quarkus.runtime.configuration.ProfileManager;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
 import io.vertx.core.eventbus.EventBus;
@@ -35,8 +34,8 @@ public class SensorCollectorService {
     public static final String PUBLISH_TO_PERSISTENCE_EVENT_NAME = "BREWERY_PUBLISH_TO_PERSISTENCE_EVENT_NAME";
     public static final String START_SELFCHECK = "START_SELFCHECK_SENSOR_DATA_COLLECTION";
 
-//    @Inject
-//    BreweryHardwareSimulation breweryHardwareSimulation;
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
     @Inject
     InPotTemperatureAdapter inPotTemperatureAdapter;
     @Inject
@@ -50,11 +49,6 @@ public class SensorCollectorService {
     EventBus bus;
     @Inject
     SensorCollectorServiceConfigProperties config;
-    @Inject
-    TempClass tempClass;
-
-//    @Inject
-//    SimulationAdapter simulationAdapter;
 
     @Inject
     PiCalculator piCalculator;
@@ -127,7 +121,6 @@ public class SensorCollectorService {
 
                         watch.start();
                         FlameTemperature flameTemp = flameTempAdapter.getFlameTemp();
-                        tempClass.testMethode();
                         watch.stop();
                         log.debug("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
                         watch.reset();
@@ -154,9 +147,11 @@ public class SensorCollectorService {
 
                     if (mode.contains(CollectionPublishMode.PUBLISH_TO_CALCULATION)) {
                         log.debug("publish to calc");
-//                        simulationAdapter.calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));
-//                        breweryHardwareSimulation.calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));
                         bus.publish(PUBLISH_TO_CALCULATION_EVENT_NAME, result);
+
+                        if (ProfileManager.getActiveProfile().equals("mockDevices")){
+                            breweryHardwareSimulation.calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));
+                        }
                     }
 
 

@@ -1,5 +1,6 @@
 package com.pipiobjo.brewery.adapters.inpot;
 
+import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.arc.DefaultBean;
 import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
@@ -20,11 +21,14 @@ public class InPotTemperatureAdapterConfig {
     String activeProfile = ProfileManager.getActiveProfile();
     String launchMode = LaunchMode.current().name();
 
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
+
     @Produces
     @IfBuildProfile("mockDevices")
     public InPotTemperatureAdapter provideMock(){
             log.info("Selecting mocking device for inpot temperatures, profile={}, launchMode={}", activeProfile, launchMode);
-            return new InPotTemperatureMockAdapter();
+            return new InPotTemperatureMockAdapter(breweryHardwareSimulation);
     }
 
 
