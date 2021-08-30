@@ -1,9 +1,8 @@
 package com.pipiobjo.brewery.services.simulation;
 
-import io.quarkus.arc.Lock;
 import io.quarkus.arc.profile.IfBuildProfile;
-import io.quarkus.runtime.Startup;
-import io.vertx.core.eventbus.EventBus;
+import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.subscription.Cancellable;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,54 +11,43 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 @Data
 @Slf4j
+@IfBuildProfile("mockDevices")
 @ApplicationScoped
 public class BreweryHardwareSimulation {
-    @PostConstruct
-    void init(){
-        log.info("post construct for BreweryHardwareSimulation");
-    }
-
-    @PreDestroy
-    void preDestroy(){
-        log.info("pre destroy for BreweryHardwareSimulation");
-    }
-
-    private BigDecimal controlCabinetAirTemp = BigDecimal.ZERO;
-    private BigDecimal airTemp = BigDecimal.ZERO;
-    private BigDecimal flameTemp = BigDecimal.ZERO;
-    private BigDecimal inPotTempBottom = BigDecimal.ZERO;
-    private BigDecimal inPotTempMiddle = BigDecimal.ZERO;
-    private BigDecimal inPotTempTop = BigDecimal.ZERO;
-
-    private boolean flameIsOn = false;
-
-    private BigDecimal tempBrewKelvin = BigDecimal.valueOf(275);
-    private BigDecimal tempBurnerKelvin = BigDecimal.valueOf(900);
-
+    // define calculation constants
     private static final BigDecimal DIFFERENCE_KELVIN_CELSIUS = BigDecimal.valueOf(273);
+
     private static final BigDecimal THERMAL_RESISTOR_AIR_2_BREW = BigDecimal.valueOf(0.0005);
     private static final BigDecimal THERMAL_RESISTOR_BURNER_2_BREW = BigDecimal.valueOf(0.0035);
+
     private static final BigDecimal WEIGHT_WATER = BigDecimal.valueOf(55);
     private static final BigDecimal WEIGHT_CEREALS = BigDecimal.valueOf(40);
+
     private static final BigDecimal THERMAL_CAPACITY_COEFFICIENT_WATER = BigDecimal.valueOf(4184);
     private static final BigDecimal THERMAL_CAPACITY_COEFFICIENT_CEREALS = BigDecimal.valueOf(1500);
     private static final BigDecimal THERMAL_CAPACITY_WATER = THERMAL_CAPACITY_COEFFICIENT_WATER.multiply(WEIGHT_WATER);
     private static final BigDecimal THERMAL_CAPACITY_CEREALS = THERMAL_CAPACITY_COEFFICIENT_CEREALS.multiply(WEIGHT_CEREALS);
     private static final BigDecimal THERMAL_CAPACITY_BREW = THERMAL_CAPACITY_WATER.add(THERMAL_CAPACITY_CEREALS);
 
-    private Pt1Sys pt1SysCabinetAirTemp = new Pt1Sys(
-            BigDecimal.valueOf(15), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
-
-    private Pt1Sys pt1SysAirTemp = new Pt1Sys(
-            BigDecimal.valueOf(20), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
-
-    private Pt1Sys pt1SysInPot = new Pt1Sys(
-            BigDecimal.valueOf(100), BigDecimal.valueOf(1), tempBrewKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW));
+    // define init values for devices
+    private BigDecimal controlCabinetAirTemp = BigDecimal.ZERO;
+    private BigDecimal airTemp = BigDecimal.ZERO;
+    private BigDecimal flameTemp = BigDecimal.ZERO;
+    private BigDecimal inPotTempBottom = BigDecimal.ZERO;
+    private BigDecimal inPotTempMiddle = BigDecimal.ZERO;
+    private BigDecimal inPotTempTop = BigDecimal.ZERO;
+    private boolean flameIsOn = false;
+    private BigDecimal tempBrewKelvin = BigDecimal.valueOf(275);
+    private BigDecimal tempBurnerKelvin = BigDecimal.valueOf(900);
+    private Pt1Sys pt1SysCabinetAirTemp = new Pt1Sys( BigDecimal.valueOf(15), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
+    private Pt1Sys pt1SysAirTemp = new Pt1Sys(BigDecimal.valueOf(20), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
+    private Pt1Sys pt1SysInPot = new Pt1Sys(BigDecimal.valueOf(100), BigDecimal.valueOf(1), tempBrewKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW));
 
     // for manual setting values
     private BigDecimal tempAmbientAirKelvin = BigDecimal.valueOf(290);
@@ -70,23 +58,67 @@ public class BreweryHardwareSimulation {
     private int maxRandom = 100;
     private int minRandom = 0;
     private int randomNumber;
+    private Cancellable cancellable;
 
-    private void calculateCabinetAirTemp(BigDecimal stepSizeBD, BigDecimal input)
-    {
-        pt1SysCabinetAirTemp.calculate(stepSizeBD, input);
-        controlCabinetAirTemp =pt1SysCabinetAirTemp.getX();
+    @PostConstruct
+    void init() {
+        log.info("post construct for BreweryHardwareSimulation");
+
+        Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(100));
+        if(this.cancellable != null){
+            log.info("collecting data is already running");
+        }
+
+        this.cancellable = ticks.subscribe().with( it -> {
+            this.calculate(BigDecimal.valueOf(it));
+        });
+
     }
 
-    private void calculateAirTemp(BigDecimal stepSizeBD, BigDecimal input)
-    {
+    @PreDestroy
+    void preDestroy() {
+        log.info("pre destroy for BreweryHardwareSimulation");
+        if (cancellable != null) {
+            cancellable.cancel();
+            log.info("collecting stopped");
+        } else {
+            log.info("nothing to stop");
+        }
+
+    }
+
+
+    private void calculate(BigDecimal stepSizeBD) {
+        calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
+        calculateAirTemp(stepSizeBD, inputAirTemp);
+        calculateInPot(stepSizeBD, tempBurnerKelvin);
+        calculateFlameTemp();
+
+        // manual setting values
+        if (cycleCount % cycleCountModulo == 0) {
+            randomNumber = ThreadLocalRandom.current().nextInt(minRandom, maxRandom + 1);
+            inputAirTemp = BigDecimal.valueOf(randomNumber);
+            randomNumber = ThreadLocalRandom.current().nextInt(minRandom, maxRandom + 1);
+            inputCabinetAirTemp = BigDecimal.valueOf(randomNumber);
+            setFlameIsOn(!isFlameIsOn());
+        }
+        cycleCount++;
+    }
+
+
+    private void calculateCabinetAirTemp(BigDecimal stepSizeBD, BigDecimal input) {
+        pt1SysCabinetAirTemp.calculate(stepSizeBD, input);
+        controlCabinetAirTemp = pt1SysCabinetAirTemp.getX();
+    }
+
+    private void calculateAirTemp(BigDecimal stepSizeBD, BigDecimal input) {
         pt1SysAirTemp.calculate(stepSizeBD, input);
         airTemp = pt1SysAirTemp.getX();
     }
 
-    private void calculateInPot(BigDecimal stepSizeBD, BigDecimal inputTempBurnerKelvin)
-    {
-        BigDecimal inputRateOfHeatFlow1 = inputTempBurnerKelvin.divide(THERMAL_RESISTOR_BURNER_2_BREW,15, RoundingMode.HALF_DOWN);
-        BigDecimal inputRateOfHeatFlow2 = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW,15, RoundingMode.HALF_DOWN);
+    private void calculateInPot(BigDecimal stepSizeBD, BigDecimal inputTempBurnerKelvin) {
+        BigDecimal inputRateOfHeatFlow1 = inputTempBurnerKelvin.divide(THERMAL_RESISTOR_BURNER_2_BREW, 15, RoundingMode.HALF_DOWN);
+        BigDecimal inputRateOfHeatFlow2 = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW, 15, RoundingMode.HALF_DOWN);
         BigDecimal inputRateOfHeatFlow = inputRateOfHeatFlow1.add(inputRateOfHeatFlow2);
         pt1SysInPot.calculate(stepSizeBD, inputRateOfHeatFlow);
         tempBrewKelvin = pt1SysInPot.getX().multiply(THERMAL_RESISTOR_AIR_2_BREW);
@@ -96,33 +128,15 @@ public class BreweryHardwareSimulation {
         inPotTempTop = tempBrewKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS).add(BigDecimal.valueOf(1));
     }
 
-    private void calculateFlameTemp()
-    {
-        if (flameIsOn){
+    private void calculateFlameTemp() {
+        if (flameIsOn) {
             flameTemp = tempBurnerKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
-        }
-        else{
+        } else {
             flameTemp = tempAmbientAirKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
         }
 
     }
 
-    public void calculate(BigDecimal stepSizeBD){
-        calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
-        calculateAirTemp(stepSizeBD, inputAirTemp);
-        calculateInPot(stepSizeBD, tempBurnerKelvin);
-        calculateFlameTemp();
-
-        // manual setting values
-        if (cycleCount % cycleCountModulo == 0){
-            randomNumber = ThreadLocalRandom.current().nextInt(minRandom, maxRandom + 1);
-            inputAirTemp = BigDecimal.valueOf(randomNumber);
-            randomNumber = ThreadLocalRandom.current().nextInt(minRandom, maxRandom + 1);
-            inputCabinetAirTemp = BigDecimal.valueOf(randomNumber);
-            setFlameIsOn(!isFlameIsOn());
-        }
-        cycleCount++;
-    }
 
 
 }

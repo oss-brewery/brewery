@@ -149,9 +149,10 @@ public class SensorCollectorService {
                         log.debug("publish to calc");
                         bus.publish(PUBLISH_TO_CALCULATION_EVENT_NAME, result);
 
-                        if (ProfileManager.getActiveProfile().equals("mockDevices")){
-                            breweryHardwareSimulation.calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));
-                        }
+//                        if (ProfileManager.getActiveProfile().equals("mockDevices")){
+//                            breweryHardwareSimulation.calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));
+//                        }
+
                     }
 
 
