@@ -1,21 +1,33 @@
 package com.pipiobjo.brewery.adapters.flametemp;
 
 import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
+import io.quarkus.arc.profile.IfBuildProfile;
+import io.quarkus.runtime.LaunchMode;
+import io.quarkus.runtime.configuration.ProfileManager;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-@Slf4j
 @Data
+@Slf4j
+@ApplicationScoped
+@IfBuildProfile("mockDevices")
 public class FlameTempMockAdapter implements FlameTempAdapter{
 
-    BreweryHardwareSimulation breweryHardwareSimulation = null;
+    @Inject
+    BreweryHardwareSimulation breweryHardwareSimulation;
 
-    public FlameTempMockAdapter(BreweryHardwareSimulation breweryHardwareSimulation){
-        this.breweryHardwareSimulation = breweryHardwareSimulation;
+    @PostConstruct
+    void init() {
+        String activeProfile = ProfileManager.getActiveProfile();
+        String launchMode = LaunchMode.current().name();
+        log.info("Selecting mocking device for flame temperatures, profile={}, launchMode={}", activeProfile, launchMode);
     }
 
     @Override

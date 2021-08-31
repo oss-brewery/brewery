@@ -17,19 +17,10 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class InPotTemperatureAdapterConfig {
 
-    @Inject InPotTemperatureConfigProperties config;
+    @Inject
+    InPotTemperatureConfigProperties config;
     String activeProfile = ProfileManager.getActiveProfile();
     String launchMode = LaunchMode.current().name();
-
-    @Inject
-    BreweryHardwareSimulation breweryHardwareSimulation;
-
-    @Produces
-    @IfBuildProfile("mockDevices")
-    public InPotTemperatureAdapter provideMock(){
-            log.info("Selecting mocking device for inpot temperatures, profile={}, launchMode={}", activeProfile, launchMode);
-            return new InPotTemperatureMockAdapter(breweryHardwareSimulation);
-    }
 
 
     @Produces

@@ -21,6 +21,8 @@ import java.util.concurrent.ThreadLocalRandom;
 @ApplicationScoped
 public class BreweryHardwareSimulation {
     // define calculation constants
+    private static final long SIMULATION_TICK_TIME_MS = 100;
+
     private static final BigDecimal DIFFERENCE_KELVIN_CELSIUS = BigDecimal.valueOf(273);
 
     private static final BigDecimal THERMAL_RESISTOR_AIR_2_BREW = BigDecimal.valueOf(0.0005);
@@ -62,15 +64,15 @@ public class BreweryHardwareSimulation {
 
     @PostConstruct
     void init() {
-        log.info("post construct for BreweryHardwareSimulation");
+        log.info("simulation is starting with tick time: {}ms", SIMULATION_TICK_TIME_MS);
 
-        Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(100));
+        Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(SIMULATION_TICK_TIME_MS));
         if(this.cancellable != null){
-            log.info("collecting data is already running");
+            log.info("simulation is already running");
         }
 
         this.cancellable = ticks.subscribe().with( it -> {
-            this.calculate(BigDecimal.valueOf(it));
+            this.calculate(BigDecimal.valueOf(SIMULATION_TICK_TIME_MS));
         });
 
     }
@@ -80,7 +82,7 @@ public class BreweryHardwareSimulation {
         log.info("pre destroy for BreweryHardwareSimulation");
         if (cancellable != null) {
             cancellable.cancel();
-            log.info("collecting stopped");
+            log.info("simulation stopped");
         } else {
             log.info("nothing to stop");
         }

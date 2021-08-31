@@ -25,18 +25,6 @@ public class SPIExtensionBoardAdapterConfig {
     String launchMode = LaunchMode.current().name();
     SPIExtensionBoardAdapter adapter;
 
-    @Inject
-    BreweryHardwareSimulation breweryHardwareSimulation;
-
-    @Produces
-    @IfBuildProfile("mockDevices")
-    public SPIExtensionBoardAdapter provideMock() {
-        log.info("Selecting mocking device for spiextensionboard, profile={}, launchMode={}", activeProfile, launchMode);
-        adapter = new SPIExtensionBoardMockAdapter(breweryHardwareSimulation);
-        return adapter;
-    }
-
-
     @Produces
     @DefaultBean
     public SPIExtensionBoardAdapter provideDevice() {

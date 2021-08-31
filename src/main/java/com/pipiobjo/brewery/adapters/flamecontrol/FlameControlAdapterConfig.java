@@ -21,18 +21,6 @@ public class FlameControlAdapterConfig {
     String launchMode = LaunchMode.current().name();
     FlameControlAdapter adapter = null;
 
-    @Inject
-    BreweryHardwareSimulation breweryHardwareSimulation;
-
-    @Produces
-    @IfBuildProfile("mockDevices")
-    public FlameControlAdapter provideMock(){
-        log.info("Selecting mocking device for flame control, profile={}, launchMode={}", activeProfile, launchMode);
-        adapter = new FlameControlMockAdapter(breweryHardwareSimulation);
-        return adapter;
-    }
-
-
     @Produces
     @DefaultBean
     public FlameControlAdapter provideDevice() {

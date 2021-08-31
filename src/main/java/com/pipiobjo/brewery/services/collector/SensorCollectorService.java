@@ -35,11 +35,8 @@ public class SensorCollectorService {
     public static final String START_SELFCHECK = "START_SELFCHECK_SENSOR_DATA_COLLECTION";
 
     @Inject
-    BreweryHardwareSimulation breweryHardwareSimulation;
-    @Inject
     InPotTemperatureAdapter inPotTemperatureAdapter;
     @Inject
-    @ApplicationScoped
     FlameTempAdapter flameTempAdapter;
     @Inject
     ControlCabinetAdapter controlCabinetAdapter;
@@ -148,11 +145,6 @@ public class SensorCollectorService {
                     if (mode.contains(CollectionPublishMode.PUBLISH_TO_CALCULATION)) {
                         log.debug("publish to calc");
                         bus.publish(PUBLISH_TO_CALCULATION_EVENT_NAME, result);
-
-//                        if (ProfileManager.getActiveProfile().equals("mockDevices")){
-//                            breweryHardwareSimulation.calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));
-//                        }
-
                     }
 
 
