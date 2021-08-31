@@ -56,7 +56,7 @@ public class BreweryHardwareSimulation {
     private BigDecimal inputCabinetAirTemp = BigDecimal.ZERO;
     private BigDecimal inputAirTemp = BigDecimal.ZERO;
     private int cycleCount = 0;
-    private int cycleCountModulo = 300;
+    private int cycleCountModulo = 1000;
     private int maxRandom = 100;
     private int minRandom = 0;
     private int randomNumber;
@@ -93,7 +93,7 @@ public class BreweryHardwareSimulation {
     private void calculate(BigDecimal stepSizeBD) {
         calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
         calculateAirTemp(stepSizeBD, inputAirTemp);
-        calculateInPot(stepSizeBD, tempBurnerKelvin);
+        calculateInPot(stepSizeBD, flameTemp.add(DIFFERENCE_KELVIN_CELSIUS));
         calculateFlameTemp();
 
         // manual setting values
