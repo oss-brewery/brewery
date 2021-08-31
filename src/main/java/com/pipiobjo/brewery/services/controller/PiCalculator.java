@@ -1,7 +1,6 @@
 package com.pipiobjo.brewery.services.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 
 @Slf4j

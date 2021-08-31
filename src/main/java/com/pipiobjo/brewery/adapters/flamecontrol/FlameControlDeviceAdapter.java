@@ -4,6 +4,7 @@ import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardDeviceAd
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 
 @Slf4j
 public class FlameControlDeviceAdapter implements FlameControlAdapter {
@@ -34,6 +35,11 @@ public class FlameControlDeviceAdapter implements FlameControlAdapter {
     @Override
     public void decreaseFlameByOneStep() {
         log.info("decrease flame temperature");
+    }
+
+    @Override
+    public void setPointTempCelsius(BigDecimal setPoint){
+        log.info("setPoint is {}°C", setPoint.toString());
     }
 
     @Override

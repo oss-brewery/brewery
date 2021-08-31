@@ -4,7 +4,6 @@ import com.diozero.api.SpiClockMode;
 import com.pipiobjo.brewery.sensors.MAX6675V12;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Optional;

@@ -2,7 +2,6 @@ package com.pipiobjo.brewery.services;
 
 import com.pipiobjo.brewery.services.collector.SensorCollectorService;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
-import io.quarkus.vertx.ConsumeEvent;
 import io.vertx.core.eventbus.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +18,6 @@ public class BrewingService{
 
     @Inject
     SensorCollectorService sensorCollectorService;
-//    @Inject
-//    protected BreweryStartupButton breweryStartupButton;
-
-//    @Inject
-//    protected FlameTempSensor flameTempSensor;
-
-//    @Inject
-//    protected BreweryStatusLED breweryStatusLED;
 
     public void init() {
         log.info("init brewing service");

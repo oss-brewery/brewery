@@ -42,9 +42,10 @@ class PiCalculatorTest {
 
         // Test saturation upper
         for (it = 10L; it < 901L; it++) {
-            assertThat(adjustment).isNotEqualTo(maxPercent);
+            assertThat(adjustment).isLessThanOrEqualTo(maxPercent);
             adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         }
+        adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp.add(BigDecimal.ONE), flameTemp, KP, KI, maxPercent, minPercent);
         assertThat(adjustment).isEqualTo(maxPercent);
 
         // Test for numerical integration --> second Instance
@@ -69,6 +70,7 @@ class PiCalculatorTest {
             assertThat(adjustment).isNotEqualTo(minPercent);
             adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         }
+        adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp.add(BigDecimal.ONE), KP, KI, maxPercent, minPercent);
         assertThat(adjustment).isEqualTo(minPercent);
 
         // Test Anti-Wind-up lower limit

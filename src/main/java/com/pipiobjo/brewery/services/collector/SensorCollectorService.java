@@ -9,9 +9,7 @@ import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
-import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.runtime.ShutdownEvent;
-import io.quarkus.runtime.configuration.ProfileManager;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
 import io.vertx.core.eventbus.EventBus;
@@ -21,7 +19,6 @@ import org.apache.commons.lang3.time.StopWatch;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +43,6 @@ public class SensorCollectorService {
     EventBus bus;
     @Inject
     SensorCollectorServiceConfigProperties config;
-
-    @Inject
-    PiCalculator piCalculator;
 
     private Cancellable cancellable;
 
@@ -87,14 +81,9 @@ public class SensorCollectorService {
 
     public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
-        long targetTemp = 1000;                             // set point
         if(this.cancellable != null){
             log.info("collecting data is already running");
         }
-        BigDecimal ki= BigDecimal.valueOf(1);               // I-gain
-        BigDecimal kp= BigDecimal.valueOf(1);               // P-gain
-        BigDecimal minPercent = BigDecimal.valueOf(0);
-        BigDecimal maxPercent = BigDecimal.valueOf(100);
 
         this.cancellable = ticks.subscribe().with(
                 it -> {
@@ -122,8 +111,6 @@ public class SensorCollectorService {
                         log.debug("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
-
-                        picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, kp, ki, maxPercent, minPercent);
 
                         watch.start();
                         InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemperatures();
@@ -159,10 +146,6 @@ public class SensorCollectorService {
                     }
                 }
         );
-    }
-
-    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp,BigDecimal kp,BigDecimal ki,BigDecimal maxPercent,BigDecimal minPercent) {
-        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), kp, ki, flameTemp.getTemperature().get(), maxPercent,minPercent);
     }
 
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {

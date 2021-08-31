@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.math.BigDecimal;
 
 @Slf4j
 @ApplicationScoped
@@ -45,6 +46,11 @@ public class FlameControlMockAdapter implements FlameControlAdapter{
     @Override
     public void decreaseFlameByOneStep() {
         // TODO implement HardwareSimulation
+    }
+
+    @Override
+    public void setPointTempCelsius(BigDecimal setPoint){
+        log.info("setPoint is {}°C", setPoint.toString());
     }
 
     @Override

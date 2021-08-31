@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -35,7 +34,7 @@ public class FlameTempMockAdapter implements FlameTempAdapter{
         FlameTemperature result = new FlameTemperature();
         result.setTimestamp(OffsetDateTime.now());
 
-        result.setTemperature(Optional.of(breweryHardwareSimulation.getFlameTemp()));
+        result.setTemperature(Optional.of(breweryHardwareSimulation.getFlameTempSensor()));
         return result;
     }
 
