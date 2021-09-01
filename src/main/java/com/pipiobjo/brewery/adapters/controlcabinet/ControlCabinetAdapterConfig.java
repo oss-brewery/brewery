@@ -1,7 +1,6 @@
 package com.pipiobjo.brewery.adapters.controlcabinet;
 
 import io.quarkus.arc.DefaultBean;
-import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
 import io.quarkus.runtime.Startup;
 import io.quarkus.runtime.configuration.ProfileManager;
@@ -21,15 +20,6 @@ public class ControlCabinetAdapterConfig {
     String activeProfile = ProfileManager.getActiveProfile();
     String launchMode = LaunchMode.current().name();
     ControlCabinetAdapter adapter = null;
-
-    @Produces
-    @IfBuildProfile("mockDevices")
-    public ControlCabinetAdapter provideMock(){
-        log.info("Selecting mocking device for control cabinet temperatures, profile={}, launchMode={}", activeProfile, launchMode);
-        adapter = new ControlCabinetMockAdapter();
-        return adapter;
-    }
-
 
     @Produces
     @DefaultBean

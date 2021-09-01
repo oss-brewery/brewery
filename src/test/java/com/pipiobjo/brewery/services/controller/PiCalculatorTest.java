@@ -1,13 +1,13 @@
-package com.pipiobjo.brewery.services.collector;
+package com.pipiobjo.brewery.services.controller;
 
+import com.pipiobjo.brewery.services.collector.SensorCollectorServiceConfigProperties;
+import com.pipiobjo.brewery.services.controller.PiCalculator;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PiCalculatorTest {
 
@@ -36,30 +36,31 @@ class PiCalculatorTest {
 
         // Test for numerical integration
         for (it = 1L; it < 10L; it++) {
-            adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+            adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
             assertThat(adjustment).isEqualTo(BigDecimal.valueOf(stepSize*it).multiply(BigDecimal.valueOf(10)).divide(BigDecimal.valueOf(1000)).add(BigDecimal.valueOf(10)));
         }
 
         // Test saturation upper
         for (it = 10L; it < 901L; it++) {
-            assertThat(adjustment).isNotEqualTo(maxPercent);
-            adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+            assertThat(adjustment).isLessThanOrEqualTo(maxPercent);
+            adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         }
+        adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp.add(BigDecimal.ONE), flameTemp, KP, KI, maxPercent, minPercent);
         assertThat(adjustment).isEqualTo(maxPercent);
 
         // Test for numerical integration --> second Instance
         for (it = 1L; it < 10L; it++) {
-            adjustment = calculator2.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+            adjustment = calculator2.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
             assertThat(adjustment).isEqualTo(BigDecimal.valueOf(stepSize*it).multiply(BigDecimal.valueOf(10)).divide(BigDecimal.valueOf(1000)).add(BigDecimal.valueOf(10)));
         }
 
         // Test Anti-Wind-up upper limit
         for (it = 1L; it < 11L; it++) {
-            adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+            adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         }
         targetTemp = BigDecimal.valueOf(1000);
         flameTemp = BigDecimal.valueOf(1000);
-        adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+        adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         assertThat(adjustment).isEqualTo(BigDecimal.valueOf(90.0));
 
         // Test saturation lower
@@ -67,17 +68,18 @@ class PiCalculatorTest {
         flameTemp = BigDecimal.valueOf(1000);
         for (it = 1L; it < 801L; it++) {
             assertThat(adjustment).isNotEqualTo(minPercent);
-            adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+            adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         }
+        adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp.add(BigDecimal.ONE), KP, KI, maxPercent, minPercent);
         assertThat(adjustment).isEqualTo(minPercent);
 
         // Test Anti-Wind-up lower limit
         for (it = 1L; it < 11L; it++) {
-            adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+            adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         }
         targetTemp = BigDecimal.valueOf(1000);
         flameTemp = BigDecimal.valueOf(1000);
-        adjustment = calculator.calculate(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
+        adjustment = calculator.calculate(BigDecimal.valueOf(config.getBaseCollectionIntervallInMS()), targetTemp, flameTemp, KP, KI, maxPercent, minPercent);
         assertThat(adjustment).isEqualTo(BigDecimal.valueOf(10.0));
     }
 

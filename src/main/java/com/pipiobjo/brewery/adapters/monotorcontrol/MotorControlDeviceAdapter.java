@@ -1,6 +1,7 @@
 package com.pipiobjo.brewery.adapters.monotorcontrol;
 
 import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
+import io.quarkus.arc.DefaultBean;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 
 @Slf4j
 @ApplicationScoped
+@DefaultBean
 public class MotorControlDeviceAdapter implements MotorControlAdapter{
 
     @Inject
@@ -42,4 +44,5 @@ public class MotorControlDeviceAdapter implements MotorControlAdapter{
         getCurrentPosition();
         return false;
     }
+
 }

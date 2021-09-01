@@ -1,4 +1,4 @@
-package com.pipiobjo.brewery.adapters.inpot;
+package com.pipiobjo.brewery.adapters.flamecontrol;
 
 import io.quarkus.arc.DefaultBean;
 import io.quarkus.runtime.LaunchMode;
@@ -8,26 +8,23 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 
 @Slf4j
 @Startup
 @ApplicationScoped
-public class InPotTemperatureAdapterConfig {
+public class FlameControlAdapterConfig {
 
-    @Inject
-    InPotTemperatureConfigProperties config;
     String activeProfile = ProfileManager.getActiveProfile();
     String launchMode = LaunchMode.current().name();
-
+    FlameControlAdapter adapter = null;
 
     @Produces
     @DefaultBean
-    public InPotTemperatureAdapter provideDevice() {
-        log.info("Selecting real device for inpot temperatures, profile={}, launchMode={}", activeProfile, launchMode);
-        return new InPotTemperatureDeviceAdapter(config);
+    public FlameControlAdapter provideDevice() {
+        log.info("Selecting real device for flame control, profile={}, launchMode={}", activeProfile, launchMode);
+        adapter = new FlameControlDeviceAdapter();
+        return adapter;
     }
-
 
 
 }

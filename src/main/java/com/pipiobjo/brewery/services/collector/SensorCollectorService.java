@@ -19,7 +19,6 @@ import org.apache.commons.lang3.time.StopWatch;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +44,6 @@ public class SensorCollectorService {
     @Inject
     SensorCollectorServiceConfigProperties config;
 
-    @Inject
-    PiCalculator piCalculator;
-
     private Cancellable cancellable;
 
     public SelfCheckResult executeSelfCheck() {
@@ -57,12 +53,12 @@ public class SensorCollectorService {
         SelfCheckResult result = new SelfCheckResult();
 
         inPotTemperatureAdapter.checkConfiguration();
-        InpotTemperature inpotTemp = this.inPotTemperatureAdapter.getTemparatures();
+        InpotTemperature inpotTemp = this.inPotTemperatureAdapter.getTemperatures();
         log.info("inpotTemp={}", inpotTemp);
         result.setInpotTemperature(inpotTemp);
 
         controlCabinetAdapter.checkConfiguration();
-        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
+        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemperatures();
         log.info("controlCabinetTemp={}", controlCabinetTemp);
         result.setControlCabinetTemperature(controlCabinetTemp);
 
@@ -85,14 +81,9 @@ public class SensorCollectorService {
 
     public void startCollecting() {
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(config.getBaseCollectionIntervallInMS()));
-        long targetTemp = 1000;                             // set point
         if(this.cancellable != null){
             log.info("collecting data is already running");
         }
-        BigDecimal ki= BigDecimal.valueOf(1);               // I-gain
-        BigDecimal kp= BigDecimal.valueOf(1);               // P-gain
-        BigDecimal minPercent = BigDecimal.valueOf(0);
-        BigDecimal maxPercent = BigDecimal.valueOf(100);
 
         this.cancellable = ticks.subscribe().with(
                 it -> {
@@ -121,10 +112,8 @@ public class SensorCollectorService {
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
 
-                        picalculation(config.getBaseCollectionIntervallInMS(), targetTemp, flameTemp, kp, ki, maxPercent, minPercent);
-
                         watch.start();
-                        InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemparatures();
+                        InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemperatures();
                         watch.stop();
                         log.debug("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
                         watch.reset();
@@ -132,7 +121,7 @@ public class SensorCollectorService {
 
 
                         watch.start();
-                        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemparatures();
+                        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemperatures();
                         watch.stop();
                         log.debug("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
                         watch.reset();
@@ -157,10 +146,6 @@ public class SensorCollectorService {
                     }
                 }
         );
-    }
-
-    private BigDecimal picalculation(Long stepSize, long targetTemp, FlameTemperature flameTemp,BigDecimal kp,BigDecimal ki,BigDecimal maxPercent,BigDecimal minPercent) {
-        return piCalculator.calculate(stepSize, BigDecimal.valueOf(targetTemp), kp, ki, flameTemp.getTemperature().get(), maxPercent,minPercent);
     }
 
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {

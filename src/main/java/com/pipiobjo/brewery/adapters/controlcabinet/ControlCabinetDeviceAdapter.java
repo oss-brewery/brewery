@@ -54,7 +54,7 @@ public class ControlCabinetDeviceAdapter implements ControlCabinetAdapter {
 
 
     @Override
-    public ControlCabinetTemperature getTemparatures() {
+    public ControlCabinetTemperature getTemperatures() {
         ControlCabinetTemperature result = new ControlCabinetTemperature();
 
         OffsetDateTime now = OffsetDateTime.now();

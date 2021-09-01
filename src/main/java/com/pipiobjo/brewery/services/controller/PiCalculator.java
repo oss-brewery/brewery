@@ -1,17 +1,13 @@
-package com.pipiobjo.brewery.services.collector;
+package com.pipiobjo.brewery.services.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 
 @Slf4j
-@ApplicationScoped
 public class PiCalculator {
     private BigDecimal conditionIntegrator = BigDecimal.valueOf(0); // Initial condition
 
-    public BigDecimal calculate(Long stepSize, BigDecimal setpoint, BigDecimal feedback, BigDecimal kp,BigDecimal ki,BigDecimal upperLimit, BigDecimal lowerLimit) {
-        // vars
-        BigDecimal stepSizeBD = BigDecimal.valueOf(stepSize);
+    public BigDecimal calculate(BigDecimal stepSizeBD, BigDecimal setpoint, BigDecimal feedback, BigDecimal kp,BigDecimal ki,BigDecimal upperLimit, BigDecimal lowerLimit) {
         BigDecimal postSaturation;      // after saturation
         BigDecimal preSum;              // forecast for Anti-Wind-up
         BigDecimal sum;

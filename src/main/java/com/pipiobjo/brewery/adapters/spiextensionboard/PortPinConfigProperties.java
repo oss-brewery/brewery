@@ -1,7 +1,6 @@
 package com.pipiobjo.brewery.adapters.spiextensionboard;
 
 import io.quarkus.arc.config.ConfigProperties;
-import lombok.Data;
 
 import java.util.Optional;
 

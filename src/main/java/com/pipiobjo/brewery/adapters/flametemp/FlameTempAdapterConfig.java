@@ -1,7 +1,6 @@
 package com.pipiobjo.brewery.adapters.flametemp;
 
 import io.quarkus.arc.DefaultBean;
-import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.Startup;
@@ -22,16 +21,6 @@ public class FlameTempAdapterConfig {
     String activeProfile = ProfileManager.getActiveProfile();
     String launchMode = LaunchMode.current().name();
     FlameTempAdapter adapter;
-
-
-    @Produces
-    @IfBuildProfile("mockDevices")
-    public FlameTempAdapter provideMock() {
-        log.info("Selecting mocking device for flame temperatures, profile={}, launchMode={}", activeProfile, launchMode);
-        adapter = new FlameTempMockAdapter();
-        return adapter;
-    }
-
 
     @Produces
     @DefaultBean
