@@ -1,5 +1,7 @@
 package com.pipiobjo.brewery.services.simulation;
 
+import com.pipiobjo.brewery.interpolable.InterpolatingDouble;
+import com.pipiobjo.brewery.interpolable.NormLinearization;
 import io.quarkus.arc.profile.IfBuildProfile;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
@@ -14,11 +16,13 @@ import java.math.RoundingMode;
 import java.time.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static java.util.Objects.isNull;
+
 
 @Data
 @Slf4j
-@IfBuildProfile("mockDevices")
 @ApplicationScoped
+@IfBuildProfile("mockDevices")
 public class BreweryHardwareSimulation {
     /**
      * Information
@@ -28,9 +32,12 @@ public class BreweryHardwareSimulation {
      */
 
     // define calculation constants
-    private static final long SIMULATION_TICK_TIME_MS = 150;
+    public static final long SIMULATION_TICK_TIME_MS = 150;
 
     public static final BigDecimal DIFFERENCE_KELVIN_CELSIUS = BigDecimal.valueOf(273);
+
+    public static final BigDecimal MIN_INCREMENTS_MOTOR = BigDecimal.valueOf(0);
+    public static final BigDecimal MAX_INCREMENTS_MOTOR = BigDecimal.valueOf(5L*200L);
 
     private static final BigDecimal THERMAL_RESISTOR_AIR_2_BREW = BigDecimal.valueOf(0.0005);
     private static final BigDecimal THERMAL_RESISTOR_BURNER_2_BREW = BigDecimal.valueOf(0.0035);
@@ -53,6 +60,13 @@ public class BreweryHardwareSimulation {
     private static final BigDecimal INITIAL_BREW_TEMP = BigDecimal.valueOf(30);
     private static final BigDecimal INITIAL_CONDITION_IN_POT_1 = INITIAL_BREW_TEMP.add(DIFFERENCE_KELVIN_CELSIUS).divide(THERMAL_RESISTOR_AIR_2_BREW);
 
+    private static final BigDecimal MAX_BURNER_TEMP = BigDecimal.valueOf(1200);
+    private static final BigDecimal MIN_BURNER_TEMP = BigDecimal.valueOf(0);
+
+    private NormLinearization normLinearization = null;
+    private NormLinearization normLinearizationRevers = null;
+    private BigDecimal incrementsMotor = BigDecimal.valueOf(0);
+
     private BigDecimal controlCabinetAirTemp = BigDecimal.ZERO;
     private BigDecimal airTemp = BigDecimal.ZERO;
     private BigDecimal flameTemp = BigDecimal.ZERO;
@@ -60,8 +74,8 @@ public class BreweryHardwareSimulation {
     private BigDecimal inPotTempBottom = BigDecimal.ZERO;
     private BigDecimal inPotTempMiddle = BigDecimal.ZERO;
     private BigDecimal inPotTempTop = BigDecimal.ZERO;
-    private BigDecimal tempBrewKelvin = INITIAL_BREW_TEMP.add(DIFFERENCE_KELVIN_CELSIUS);
-    private BigDecimal tempBurnerKelvin = INITIAL_BURNER_TEMP.add(DIFFERENCE_KELVIN_CELSIUS);
+    private BigDecimal brewTempKelvin = INITIAL_BREW_TEMP.add(DIFFERENCE_KELVIN_CELSIUS);
+    private BigDecimal burnerTempKelvin = INITIAL_BURNER_TEMP.add(DIFFERENCE_KELVIN_CELSIUS);
     private boolean flameIsOn = true;
 
     private Pt1Sys pt1SysCabinetAirTemp = new Pt1Sys( BigDecimal.valueOf(15), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
@@ -78,11 +92,17 @@ public class BreweryHardwareSimulation {
     private int maxRandom = 100;
     private int minRandom = 0;
     private int randomNumber;
+
+    // TODO implement in SensorCollectorService.
+    private BigDecimal debugValueForFrontEnd = BigDecimal.ZERO;
+
     private Cancellable cancellable;
 
     @PostConstruct
     void init() {
         log.info("simulation is starting with tick time: {}ms", SIMULATION_TICK_TIME_MS);
+
+        initLinearization();
 
         Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofMillis(SIMULATION_TICK_TIME_MS));
         if(this.cancellable != null){
@@ -110,11 +130,13 @@ public class BreweryHardwareSimulation {
     private void calculate(BigDecimal stepSizeBD) {
         calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
         calculateAirTemp(stepSizeBD, inputAirTemp);
+        calculateBurnerTempKelvin();
         calculateFlameTemp();
         calculateInPot(stepSizeBD, flameTemp.add(DIFFERENCE_KELVIN_CELSIUS));
         calculateFlameTempSensor(stepSizeBD, flameTemp);
 
         // manual setting values
+        debugValue();
         if (cycleCount % cycleCountModulo == 0) {
             randomNumber = ThreadLocalRandom.current().nextInt(minRandom, maxRandom + 1);
             inputAirTemp = BigDecimal.valueOf(randomNumber);
@@ -139,7 +161,7 @@ public class BreweryHardwareSimulation {
 
     private void calculateFlameTemp(){
         if (flameIsOn){
-            flameTemp = tempBurnerKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
+            flameTemp = burnerTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
         }
         else{
             flameTemp = tempAmbientAirKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
@@ -158,11 +180,51 @@ public class BreweryHardwareSimulation {
         BigDecimal inputRateOfHeatFlow2 = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW,15, RoundingMode.HALF_DOWN);
         BigDecimal inputRateOfHeatFlow = inputRateOfHeatFlow1.add(inputRateOfHeatFlow2);
         pt1SysInPot.calculate(stepSizeBD, inputRateOfHeatFlow);
-        tempBrewKelvin = pt1SysInPot.getX().multiply(THERMAL_RESISTOR_AIR_2_BREW);
+        brewTempKelvin = pt1SysInPot.getX().multiply(THERMAL_RESISTOR_AIR_2_BREW);
 
-        inPotTempBottom = tempBrewKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS).add(BigDecimal.valueOf(-1));
-        inPotTempMiddle = tempBrewKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
-        inPotTempTop = tempBrewKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS).add(BigDecimal.valueOf(1));
+        inPotTempBottom = brewTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS).add(BigDecimal.valueOf(-1));
+        inPotTempMiddle = brewTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
+        inPotTempTop = brewTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS).add(BigDecimal.valueOf(1));
+    }
+
+    private void calculateBurnerTempKelvin(){
+        burnerTempKelvin = BigDecimal.valueOf(
+                normLinearizationRevers.getMap().getInterpolated(
+                        new InterpolatingDouble( 100.0*getIncrementsMotor().doubleValue()/MAX_INCREMENTS_MOTOR.doubleValue() )).getValue());
+    }
+
+    private void debugValue(){
+        debugValueForFrontEnd = burnerTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
+    }
+
+    private void initLinearization() {
+
+        if (isNull(normLinearization) && isNull(normLinearizationRevers)){
+
+            int numberMeasuringPoints = 101;
+            double startPercent = 0;
+            double endPercent = 100;
+            double endTemperature = MAX_BURNER_TEMP.doubleValue();
+            double powValue = 0.5;
+
+            double endNormalizationFactor = endTemperature / Math.pow(endPercent, powValue);
+
+            // creating "measured" points
+            double[] measuringPoint = new double[numberMeasuringPoints];
+            for (int i = (int) startPercent; i < numberMeasuringPoints; i++) {
+                measuringPoint[i] =  (i * (endPercent - startPercent) / (numberMeasuringPoints - 1));
+            }
+            // creating "measured" values
+            double[] measuringValue = new double[numberMeasuringPoints];
+            for (int i = (int) startPercent; i < numberMeasuringPoints; i++) {
+                measuringValue[i] = endNormalizationFactor * Math.pow(measuringPoint[i], powValue);
+            }
+            normLinearization = new NormLinearization(measuringPoint, measuringValue);
+            normLinearizationRevers = new NormLinearization(measuringValue, measuringPoint);
+
+        } else {
+            log.info("burner controller interpolation already exists");
+        }
     }
 
 }

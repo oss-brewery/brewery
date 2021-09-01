@@ -1,12 +1,11 @@
 package com.pipiobjo.brewery.services.controller;
 
-import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
+import com.pipiobjo.brewery.adapters.flametemp.FlameTempAdapter;
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.Startup;
 import io.quarkus.runtime.configuration.ProfileManager;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.Cancellable;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
@@ -15,7 +14,6 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.util.concurrent.ThreadLocalRandom;
 
 //@Data
 @Slf4j
@@ -23,17 +21,19 @@ import java.util.concurrent.ThreadLocalRandom;
 @ApplicationScoped
 public class GeneralControllerCycle {
 
-    private static final long CALCULATION_TICK_TIME_MS = 150;
+    private static final long CALCULATION_TICK_TIME_MS = 100;
 
     // Testing Values for Simulation
     private BigDecimal setPointBurnerTemp = BigDecimal.valueOf(500);
     private int cycleCount = 0;
-    private int cycleCountModulo = 300;
+    private int cycleCountModulo = 320;
 
     @Inject
     BurnerController burnerController;
+//    @Inject
+//    BreweryHardwareSimulation breweryHardwareSimulation;
     @Inject
-    BreweryHardwareSimulation breweryHardwareSimulation;
+    FlameTempAdapter flameTempAdapter;
 
     private Cancellable cancellable;
 
@@ -55,8 +55,8 @@ public class GeneralControllerCycle {
     private void calculate(BigDecimal stepSizeBD) {
         // calculation cycle for controller
         if (ProfileManager.getActiveProfile().equals("mockDevices")){
-            burnerControllerFunction(stepSizeBD);
 
+            burnerControllerFunction(stepSizeBD);
 
             // manual testing
             if (cycleCount % cycleCountModulo == 0) {
@@ -72,16 +72,7 @@ public class GeneralControllerCycle {
     }
 
     private void burnerControllerFunction(BigDecimal stepSizeBD){
-        // input
-        burnerController.setSetPoint(setPointBurnerTemp);
-        burnerController.setFeedback(breweryHardwareSimulation.getFlameTempSensor());
-
-        // calculation
-        burnerController.calculate(stepSizeBD);
-
-        // output
-        breweryHardwareSimulation.setTempBurnerKelvin(
-                burnerController.getManipulatedVariable().add(breweryHardwareSimulation.DIFFERENCE_KELVIN_CELSIUS));
+         burnerController.calculate(stepSizeBD, setPointBurnerTemp, flameTempAdapter.getFlameTemp().getTemperature().get());
     }
 
     void onStop(@Observes ShutdownEvent ev) {

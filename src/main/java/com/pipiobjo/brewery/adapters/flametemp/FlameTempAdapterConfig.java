@@ -1,8 +1,6 @@
 package com.pipiobjo.brewery.adapters.flametemp;
 
-import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.arc.DefaultBean;
-import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.Startup;

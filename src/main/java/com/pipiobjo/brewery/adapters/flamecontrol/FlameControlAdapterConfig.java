@@ -1,8 +1,6 @@
 package com.pipiobjo.brewery.adapters.flamecontrol;
 
-import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.arc.DefaultBean;
-import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
 import io.quarkus.runtime.Startup;
 import io.quarkus.runtime.configuration.ProfileManager;
@@ -10,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 
 @Slf4j
 @Startup
