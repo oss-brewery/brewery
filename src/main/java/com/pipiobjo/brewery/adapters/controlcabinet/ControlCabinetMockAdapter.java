@@ -4,14 +4,11 @@ import com.pipiobjo.brewery.services.simulation.BreweryHardwareSimulation;
 import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.LaunchMode;
 import io.quarkus.runtime.configuration.ProfileManager;
-import io.smallrye.mutiny.Multi;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -40,8 +37,10 @@ public class ControlCabinetMockAdapter implements ControlCabinetAdapter{
         ControlCabinetTemperature result = new ControlCabinetTemperature();
         result.setTimestamp(OffsetDateTime.now());
 //        result.setAirTemp(Optional.of(breweryHardwareSimulation.getAirTemp())); // TODO change it back if not needed
-        result.setAirTemp(Optional.of(breweryHardwareSimulation.getDebugValueForFrontEnd()));
-        result.setControlCabinetAirTemp(Optional.of(breweryHardwareSimulation.getControlCabinetAirTemp()));
+//        result.setAirTemp(Optional.of(breweryHardwareSimulation.getDebugValueForFrontEnd()));
+        result.setAirTemp(Optional.of(breweryHardwareSimulation.getTempAmbientAirCelsius())); // TODO is needed for feedforward control
+//        result.setControlCabinetAirTemp(Optional.of(breweryHardwareSimulation.getControlCabinetAirTemp()));
+        result.setControlCabinetAirTemp(Optional.of(breweryHardwareSimulation.getDebugValueForFrontEnd()));
         return result;
     }
 }

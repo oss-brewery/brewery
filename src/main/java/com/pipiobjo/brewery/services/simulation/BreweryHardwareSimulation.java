@@ -76,7 +76,7 @@ public class BreweryHardwareSimulation {
     private BigDecimal inPotTempTop = BigDecimal.ZERO;
     private BigDecimal brewTempKelvin = INITIAL_BREW_TEMP.add(DIFFERENCE_KELVIN_CELSIUS);
     private BigDecimal burnerTempKelvin = INITIAL_BURNER_TEMP.add(DIFFERENCE_KELVIN_CELSIUS);
-    private boolean flameIsOn = true;
+    private boolean automaticGasBurnerIsOn = true;
 
     private Pt1Sys pt1SysCabinetAirTemp = new Pt1Sys( BigDecimal.valueOf(15), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
     private Pt1Sys pt1SysAirTemp = new Pt1Sys(BigDecimal.valueOf(20), BigDecimal.valueOf(1), BigDecimal.valueOf(0));
@@ -84,7 +84,8 @@ public class BreweryHardwareSimulation {
     private Pt1Sys pt1SysFlameTempSensor = new Pt1Sys(TIME_CONSTANT_FLAME_TEMP, GAIN_FLAME_TEMP, INITIAL_CONDITION_FLAME_TEMP_SENSOR);
 
     // for manual setting values
-    private BigDecimal tempAmbientAirKelvin = BigDecimal.valueOf(290);
+    private BigDecimal tempAmbientAirCelsius = BigDecimal.valueOf(19.5);
+    private BigDecimal tempAmbientAirKelvin = tempAmbientAirCelsius.add(DIFFERENCE_KELVIN_CELSIUS);
     private BigDecimal inputCabinetAirTemp = BigDecimal.ZERO;
     private BigDecimal inputAirTemp = BigDecimal.ZERO;
     private int cycleCount = 0;
@@ -160,7 +161,7 @@ public class BreweryHardwareSimulation {
     }
 
     private void calculateFlameTemp(){
-        if (flameIsOn){
+        if (automaticGasBurnerIsOn){
             flameTemp = burnerTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
         }
         else{
@@ -176,7 +177,7 @@ public class BreweryHardwareSimulation {
 
     private void calculateInPot(BigDecimal stepSizeBD, BigDecimal inputFlameTempKelvin)
     {
-        BigDecimal inputRateOfHeatFlow1 = inputFlameTempKelvin.divide(THERMAL_RESISTOR_BURNER_2_BREW,15, RoundingMode.HALF_DOWN);
+        BigDecimal inputRateOfHeatFlow1 = (inputFlameTempKelvin.subtract(brewTempKelvin)).divide(THERMAL_RESISTOR_BURNER_2_BREW,15, RoundingMode.HALF_DOWN);
         BigDecimal inputRateOfHeatFlow2 = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW,15, RoundingMode.HALF_DOWN);
         BigDecimal inputRateOfHeatFlow = inputRateOfHeatFlow1.add(inputRateOfHeatFlow2);
         pt1SysInPot.calculate(stepSizeBD, inputRateOfHeatFlow);

@@ -216,6 +216,17 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
     }
 
     @Override
+    public void turnOnAutomaticGasBurner() {
+        //TODO
+    }
+
+    @Override
+    public void turnOffAutomaticGasBurner() {
+        //TODO
+    }
+
+
+    @Override
     public boolean isFlameOn() {
         return flameIsOn;
     }
@@ -278,16 +289,5 @@ public class SPIExtensionBoardDeviceAdapter implements SPIExtensionBoardAdapter 
         byte tempData = device.getRegister(opCodeRead, registerRead);
         return device.getBitinByte(tempData, element.pin.get());
     }
-
-
-    public void turnOnFlameControl() {
-        //TODO
-    }
-
-    public void turnOffFlameControl() {
-        //TODO
-    }
-
-
 
 }

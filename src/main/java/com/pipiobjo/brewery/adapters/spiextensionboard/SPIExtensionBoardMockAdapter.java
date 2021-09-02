@@ -67,7 +67,19 @@ public class SPIExtensionBoardMockAdapter implements SPIExtensionBoardAdapter {
 
     @Override
     public boolean isFlameOn() {
-        return breweryHardwareSimulation.isFlameIsOn();
+        return breweryHardwareSimulation.isAutomaticGasBurnerIsOn();
+    }
+
+    @Override
+    public void turnOnAutomaticGasBurner() {
+        //TODO
+        breweryHardwareSimulation.setAutomaticGasBurnerIsOn(true);
+    }
+
+    @Override
+    public void turnOffAutomaticGasBurner() {
+        //TODO
+        breweryHardwareSimulation.setAutomaticGasBurnerIsOn(false);
     }
 
 }

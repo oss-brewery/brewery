@@ -18,4 +18,16 @@ public interface SPIExtensionBoardAdapter {
     void close();
 
     boolean isFlameOn();
+
+    /**
+     * turn on the separate burning device.
+     * The device controls the gas valve and the ignition by its own.
+     */
+    void turnOnAutomaticGasBurner();
+
+    /**
+     * turn off the separate burning device.
+     * The device controls the gas valve by its own.
+     */
+    void turnOffAutomaticGasBurner();
 }
