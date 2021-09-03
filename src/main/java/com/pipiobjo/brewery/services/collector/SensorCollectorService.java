@@ -1,14 +1,13 @@
 package com.pipiobjo.brewery.services.collector;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
-import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetAdapter;
+import com.pipiobjo.brewery.adapters.io.ReadOutputState;
+import com.pipiobjo.brewery.adapters.io.DebugInputs;
+import com.pipiobjo.brewery.adapters.io.ReadInputState;
 import com.pipiobjo.brewery.adapters.controlcabinet.ControlCabinetTemperature;
-import com.pipiobjo.brewery.adapters.flametemp.FlameTempAdapter;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTemperature;
-import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
-import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
-import com.pipiobjo.brewery.services.controller.GeneralControllerCycle;
+import com.pipiobjo.brewery.adapters.inpot.InPotTemperature;
 import com.pipiobjo.brewery.services.model.CollectionResult;
+import com.pipiobjo.brewery.services.model.OutputResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import io.quarkus.runtime.ShutdownEvent;
 import io.smallrye.mutiny.Multi;
@@ -20,7 +19,6 @@ import org.apache.commons.lang3.time.StopWatch;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +30,12 @@ public class SensorCollectorService {
     public static final String PUBLISH_TO_CALCULATION_EVENT_NAME = "BREWERY_PUBLISH_TO_CALCULATION_EVENT_NAME";
     public static final String PUBLISH_TO_PERSISTENCE_EVENT_NAME = "BREWERY_PUBLISH_TO_PERSISTENCE_EVENT_NAME";
     public static final String START_SELFCHECK = "START_SELFCHECK_SENSOR_DATA_COLLECTION";
+    public static final String PUBLISH_TO_OUTPUT_EVENT_NAME = "BREWERY_PUBLISH_TO_OUTPUT_EVENT_NAME";
 
     @Inject
-    InPotTemperatureAdapter inPotTemperatureAdapter;
+    ReadInputState readInputState;
     @Inject
-    FlameTempAdapter flameTempAdapter;
-    @Inject
-    ControlCabinetAdapter controlCabinetAdapter;
-    @Inject
-    SPIExtensionBoardAdapter extensionBoard;
+    ReadOutputState readOutputState;
     @Inject
     EventBus bus;
     @Inject
@@ -54,17 +49,17 @@ public class SensorCollectorService {
         log.info("Starting self check");
         SelfCheckResult result = new SelfCheckResult();
 
-        inPotTemperatureAdapter.checkConfiguration();
-        InpotTemperature inpotTemp = this.inPotTemperatureAdapter.getTemperatures();
+        readInputState.checkConfiguration();
+
+        InPotTemperature inpotTemp = readInputState.getInPotTemperatures();
         log.info("inpotTemp={}", inpotTemp);
         result.setInpotTemperature(inpotTemp);
 
-        controlCabinetAdapter.checkConfiguration();
-        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemperatures();
+        ControlCabinetTemperature controlCabinetTemp = readInputState.getControlCabinetTemp();
         log.info("controlCabinetTemp={}", controlCabinetTemp);
         result.setControlCabinetTemperature(controlCabinetTemp);
 
-        FlameTemperature flameTemp = flameTempAdapter.getFlameTemp();
+        FlameTemperature flameTemp = readInputState.getFlameTemp();
         log.info("flameTemp={}", flameTemp);
         result.setFlameTemperature(flameTemp);
 
@@ -95,17 +90,18 @@ public class SensorCollectorService {
 
 
                     CollectionResult result = new CollectionResult();
+                    OutputResult outputResult = new OutputResult();
 
                     if (mode.contains(CollectionPublishMode.COLLECT_INPUT_FLAME_SENSOR)) {
                         watch.start();
-                        boolean flameControlButtonPushed = extensionBoard.isFlameControlButtonPushed();
+                        boolean flameControlButtonPushed = readInputState.isFlameControlButtonPushed();
                         watch.stop();
                         log.debug("flameControlButtonCheck in {} ms: {}", watch.getTime(), flameControlButtonPushed);
                         watch.reset();
                         result.setFlameControlButtonPushed(flameControlButtonPushed);
 
                         watch.start();
-                        boolean flameOn = extensionBoard.isFlameOn();
+                        boolean flameOn = readInputState.isFlameOn();
                         watch.stop();
                         log.debug("flameOnCheck in {} ms: {}", watch.getTime(), flameOn);
                         watch.reset();
@@ -115,26 +111,33 @@ public class SensorCollectorService {
                     if (mode.contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS)) {
 
                         watch.start();
-                        FlameTemperature flameTemp = flameTempAdapter.getFlameTemp();
+                        FlameTemperature flameTemp = readInputState.getFlameTemp();
                         watch.stop();
                         log.debug("flameTemp in {} ms: {}", watch.getTime(), flameTemp);
                         watch.reset();
                         result.setFlameTemperature(flameTemp);
 
                         watch.start();
-                        InpotTemperature inpotTemp = inPotTemperatureAdapter.getTemperatures();
+                        InPotTemperature inPotTemp = readInputState.getInPotTemperatures();
                         watch.stop();
-                        log.debug("inpotTemp in {} ms: {}", watch.getTime(), inpotTemp);
+                        log.debug("inPotTemp in {} ms: {}", watch.getTime(), inPotTemp);
                         watch.reset();
-                        result.setInpotTemperature(inpotTemp);
+                        result.setInpotTemperature(inPotTemp);
 
 
                         watch.start();
-                        ControlCabinetTemperature controlCabinetTemp = controlCabinetAdapter.getTemperatures();
+                        ControlCabinetTemperature controlCabinetTemp = readInputState.getControlCabinetTemp();
                         watch.stop();
                         log.debug("controlCabinetTemp in {} ms: {}", watch.getTime(), controlCabinetTemp);
                         watch.reset();
                         result.setControlCabinetTemperature(controlCabinetTemp);
+
+                        watch.start();
+                        DebugInputs debugInputs = readInputState.getDebugInputs();
+                        watch.stop();
+                        log.debug("debugInputs in {} ms: {}", watch.getTime(), debugInputs);
+                        watch.reset();
+                        result.setDebugInputs(debugInputs);
 
                     }
 
@@ -152,6 +155,13 @@ public class SensorCollectorService {
                     if (mode.contains(CollectionPublishMode.PUBLISH_TO_PERSISTENCE)) {
                         log.debug("publish to persistence");
                         bus.publish(PUBLISH_TO_PERSISTENCE_EVENT_NAME, result);
+                    }
+
+                    // TODO discus design of output adapter for the future
+                    if (mode.contains(CollectionPublishMode.PUBLISH_TO_OUTPUT)) {
+                        log.debug("publish to output");
+                        outputResult = readOutputState.getOutputs();
+                        bus.publish(PUBLISH_TO_OUTPUT_EVENT_NAME, outputResult);
                     }
                 }
         );
@@ -186,6 +196,10 @@ public class SensorCollectorService {
 
         if (isModeAddable(config.getBaseCollectionIntervallInMS(), config.getCalculationIntervallInMS(), executionTime)) {
             result.add(CollectionPublishMode.PUBLISH_TO_CALCULATION);
+        }
+
+        if (isModeAddable(config.getBaseCollectionIntervallInMS(), config.getOutputWritingIntervallInMS(), executionTime)) {
+            result.add(CollectionPublishMode.PUBLISH_TO_OUTPUT);
         }
 
         return result;

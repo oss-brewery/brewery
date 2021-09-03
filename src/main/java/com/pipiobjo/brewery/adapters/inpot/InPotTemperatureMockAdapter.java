@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -34,8 +33,8 @@ public class InPotTemperatureMockAdapter implements InPotTemperatureAdapter {
     }
 
     @Override
-    public InpotTemperature getTemperatures() {
-        InpotTemperature result = new InpotTemperature();
+    public InPotTemperature getTemperatures() {
+        InPotTemperature result = new InPotTemperature();
         result.setTimestamp(OffsetDateTime.now());
 
         result.setBottom(Optional.of(breweryHardwareSimulation.getInPotTempBottom()));

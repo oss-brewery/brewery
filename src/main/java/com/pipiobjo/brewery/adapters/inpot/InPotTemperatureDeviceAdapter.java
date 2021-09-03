@@ -62,8 +62,8 @@ public class InPotTemperatureDeviceAdapter implements InPotTemperatureAdapter {
 
 
     @Override
-    public InpotTemperature getTemperatures() {
-        InpotTemperature result = new InpotTemperature();
+    public InPotTemperature getTemperatures() {
+        InPotTemperature result = new InPotTemperature();
 
         OffsetDateTime now = OffsetDateTime.now();
         result.setTimestamp(now);

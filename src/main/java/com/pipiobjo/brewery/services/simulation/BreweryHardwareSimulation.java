@@ -94,8 +94,8 @@ public class BreweryHardwareSimulation {
     private int minRandom = 0;
     private int randomNumber;
 
-    // TODO implement in SensorCollectorService.
-    private BigDecimal debugValueForFrontEnd = BigDecimal.ZERO;
+    // TODO just for debugging at the moment --> try to find a future solution
+    private BigDecimal inputRateOfHeatFlow1 = BigDecimal.ZERO;
 
     private Cancellable cancellable;
 
@@ -128,6 +128,14 @@ public class BreweryHardwareSimulation {
 
     }
 
+    public BigDecimal getDebugValue1(){
+        return burnerTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
+    }
+
+    public BigDecimal getDebugValue2(){
+        return inputRateOfHeatFlow1;
+    }
+
     private void calculate(BigDecimal stepSizeBD) {
         calculateCabinetAirTemp(stepSizeBD, inputCabinetAirTemp);
         calculateAirTemp(stepSizeBD, inputAirTemp);
@@ -137,7 +145,6 @@ public class BreweryHardwareSimulation {
         calculateFlameTempSensor(stepSizeBD, flameTemp);
 
         // manual setting values
-        debugValue();
         if (cycleCount % cycleCountModulo == 0) {
             randomNumber = ThreadLocalRandom.current().nextInt(minRandom, maxRandom + 1);
             inputAirTemp = BigDecimal.valueOf(randomNumber);
@@ -177,7 +184,7 @@ public class BreweryHardwareSimulation {
 
     private void calculateInPot(BigDecimal stepSizeBD, BigDecimal inputFlameTempKelvin)
     {
-        BigDecimal inputRateOfHeatFlow1 = (inputFlameTempKelvin.subtract(brewTempKelvin)).divide(THERMAL_RESISTOR_BURNER_2_BREW,15, RoundingMode.HALF_DOWN);
+        inputRateOfHeatFlow1 = (inputFlameTempKelvin.subtract(brewTempKelvin)).divide(THERMAL_RESISTOR_BURNER_2_BREW,15, RoundingMode.HALF_DOWN);
         BigDecimal inputRateOfHeatFlow2 = tempAmbientAirKelvin.divide(THERMAL_RESISTOR_AIR_2_BREW,15, RoundingMode.HALF_DOWN);
         BigDecimal inputRateOfHeatFlow = inputRateOfHeatFlow1.add(inputRateOfHeatFlow2);
         pt1SysInPot.calculate(stepSizeBD, inputRateOfHeatFlow);
@@ -192,10 +199,6 @@ public class BreweryHardwareSimulation {
         burnerTempKelvin = BigDecimal.valueOf(
                 normLinearizationRevers.getMap().getInterpolated(
                         new InterpolatingDouble( 100.0*getIncrementsMotor().doubleValue()/MAX_INCREMENTS_MOTOR.doubleValue() )).getValue());
-    }
-
-    private void debugValue(){
-        debugValueForFrontEnd = burnerTempKelvin.subtract(DIFFERENCE_KELVIN_CELSIUS);
     }
 
     private void initLinearization() {

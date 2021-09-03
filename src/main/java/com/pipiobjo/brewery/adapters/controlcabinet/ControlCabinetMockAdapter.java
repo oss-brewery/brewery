@@ -40,7 +40,7 @@ public class ControlCabinetMockAdapter implements ControlCabinetAdapter{
 //        result.setAirTemp(Optional.of(breweryHardwareSimulation.getDebugValueForFrontEnd()));
         result.setAirTemp(Optional.of(breweryHardwareSimulation.getTempAmbientAirCelsius())); // TODO is needed for feedforward control
 //        result.setControlCabinetAirTemp(Optional.of(breweryHardwareSimulation.getControlCabinetAirTemp()));
-        result.setControlCabinetAirTemp(Optional.of(breweryHardwareSimulation.getDebugValueForFrontEnd()));
+        result.setControlCabinetAirTemp(Optional.of(breweryHardwareSimulation.getDebugValue1()));
         return result;
     }
 }

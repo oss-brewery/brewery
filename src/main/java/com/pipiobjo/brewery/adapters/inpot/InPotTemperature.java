@@ -7,7 +7,7 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 
 @Data
-public class InpotTemperature {
+public class InPotTemperature {
 
     OffsetDateTime timestamp;
     Optional<BigDecimal> bottom;

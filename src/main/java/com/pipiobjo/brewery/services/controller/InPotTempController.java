@@ -1,12 +1,10 @@
 package com.pipiobjo.brewery.services.controller;
 
-import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

@@ -28,5 +28,10 @@ public enum CollectionPublishMode {
     /**
      * Collect values from flame control sensor
      */
-    COLLECT_INPUT_FLAME_SENSOR
+    COLLECT_INPUT_FLAME_SENSOR,
+
+    /**
+     * The collected values should be published to the output hardware
+     */
+    PUBLISH_TO_OUTPUT
 }

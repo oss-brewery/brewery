@@ -6,6 +6,7 @@ import com.pipiobjo.brewery.services.collector.SensorCollectorServiceConfigPrope
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import io.quarkus.runtime.configuration.ProfileManager;
 import io.quarkus.vertx.ConsumeEvent;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -13,7 +14,7 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-//@Data
+@Data
 @Slf4j
 @ApplicationScoped
 public class GeneralControllerCycle {
@@ -22,6 +23,8 @@ public class GeneralControllerCycle {
     private BigDecimal setPointInPotTemp = BigDecimal.valueOf(40);
     private int cycleCount = 0;
     private int cycleCountModulo = 500;
+
+    private BigDecimal motorMovePercent = BigDecimal.ZERO;
 
     @Inject
     BurnerController burnerController;
@@ -40,6 +43,8 @@ public class GeneralControllerCycle {
         calculate(BigDecimal.valueOf(config.getCalculationIntervallInMS()));  // TODO discussion on implementing entry point
     }
 
+    // TODO implement postConstructor
+
     public void calculate(BigDecimal stepSizeBD) {
         // calculation cycle for controller
         if (ProfileManager.getActiveProfile().equals("mockDevices") && collectionResult != null && isPresent(collectionResult)){
@@ -47,11 +52,11 @@ public class GeneralControllerCycle {
             BigDecimal setPointBurnerTemp = inPotControllerFunction(
                     stepSizeBD, setPointInPotTemp, collectionResult.getInpotTemperature().getBottom().orElse(BigDecimal.ZERO));
 
-            BigDecimal motorMovePercent = burnerControllerFunction(
+            motorMovePercent = burnerControllerFunction(
                     stepSizeBD, setPointBurnerTemp,
                     collectionResult.getFlameTemperature().getTemperature().orElse(BigDecimal.ZERO),
                     feedForward(collectionResult.getControlCabinetTemperature().getAirTemp().orElse(BigDecimal.ZERO)));
-            motorControlAdapter.moveToPercent(motorMovePercent);
+//            motorControlAdapter.moveToPercent(motorMovePercent);
 
             // manual testing
             if (cycleCount % cycleCountModulo == 0) {

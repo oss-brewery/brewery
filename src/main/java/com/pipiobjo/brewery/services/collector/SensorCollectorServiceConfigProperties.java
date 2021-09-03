@@ -14,5 +14,6 @@ public class SensorCollectorServiceConfigProperties {
     @Positive() private long persistenceIntervallInMS;
     @Positive() private long uiUpdateIntervallInMS;
     @Positive() private long calculationIntervallInMS;
+    @Positive() private long outputWritingIntervallInMS;
 
 }
