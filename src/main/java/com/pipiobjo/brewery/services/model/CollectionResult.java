@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class CollectionResult {
     boolean flameControlButtonPushed;
+    boolean flameOn;
     FlameTemperature flameTemperature;
     InpotTemperature inpotTemperature;
     ControlCabinetTemperature controlCabinetTemperature;

@@ -26,9 +26,9 @@ brewery:
   collector:
     base-collection-intervall-in-ms: 10
     input-collection-intervall-in-ms: 20
-    temperature-collection-intervall-in-ms: 2000
+    temperature-collection-intervall-in-ms: 100
     ui-update-intervall-in-ms: 2000
-    calculation-intervall-in-ms: 150
+    calculation-intervall-in-ms: 100
     persistence-intervall-in-ms: 4000
 
   spi:

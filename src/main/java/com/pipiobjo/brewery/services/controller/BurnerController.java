@@ -1,6 +1,5 @@
 package com.pipiobjo.brewery.services.controller;
 
-import com.pipiobjo.brewery.adapters.monotorcontrol.MotorControlAdapter;
 import com.pipiobjo.brewery.adapters.spiextensionboard.SPIExtensionBoardAdapter;
 import com.pipiobjo.brewery.interpolable.InterpolatingDouble;
 import com.pipiobjo.brewery.interpolable.NormLinearization;
@@ -40,8 +39,6 @@ public class BurnerController {
     private NormLinearization normLinearization = null;
     private NormLinearization normLinearizationRevers = null;
 
-    @Inject
-    MotorControlAdapter motorControlAdapter;
     @Inject
     SPIExtensionBoardAdapter spiExtensionBoardAdapter;
 

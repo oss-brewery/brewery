@@ -7,6 +7,7 @@ import com.pipiobjo.brewery.adapters.flametemp.FlameTempAdapter;
 import com.pipiobjo.brewery.adapters.flametemp.FlameTemperature;
 import com.pipiobjo.brewery.adapters.inpot.InPotTemperatureAdapter;
 import com.pipiobjo.brewery.adapters.inpot.InpotTemperature;
+import com.pipiobjo.brewery.services.controller.GeneralControllerCycle;
 import com.pipiobjo.brewery.services.model.CollectionResult;
 import com.pipiobjo.brewery.services.model.SelfCheckResult;
 import io.quarkus.runtime.ShutdownEvent;
@@ -19,6 +20,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +103,13 @@ public class SensorCollectorService {
                         log.debug("flameControlButtonCheck in {} ms: {}", watch.getTime(), flameControlButtonPushed);
                         watch.reset();
                         result.setFlameControlButtonPushed(flameControlButtonPushed);
+
+                        watch.start();
+                        boolean flameOn = extensionBoard.isFlameOn();
+                        watch.stop();
+                        log.debug("flameOnCheck in {} ms: {}", watch.getTime(), flameOn);
+                        watch.reset();
+                        result.setFlameOn(flameOn);
                     }
 
                     if (mode.contains(CollectionPublishMode.COLLECT_TEMPERATURE_SENSORS)) {
@@ -148,6 +157,7 @@ public class SensorCollectorService {
         );
     }
 
+    // TODO discus a check for time multiples  --> debug message ?
     private List<CollectionPublishMode> selectCollectionMode(Long it, SensorCollectorServiceConfigProperties config) {
         List<CollectionPublishMode> result = new ArrayList<>();
 
