@@ -17,22 +17,20 @@ public class MotorControlDeviceAdapter implements MotorControlAdapter{
 
     @Override
     public long getMaxPosition() {
-//        long motorPositionIncMax = spiExtensionBoard.getMotorPositionIncMax();
-//        log.info("getMaxPosition: {}", motorPositionIncMax);
+        // see also "getCurrentPosition"
         return 0;
     }
 
     @Override
     public long getMinPosition() {
-//        long motorPositionIncMin = spiExtensionBoard.getMotorPositionIncMin();
-//        log.info("getMinPosition: {}", motorPositionIncMin);
+        // see also "getCurrentPosition"
         return 0;
     }
 
     @Override
     public long getCurrentPosition() {
-//        long motorPositionInc = spiExtensionBoard.getMotorPositionInc();
-//        log.info("current {}", motorPositionInc);
+        // TODO software persistence required because stepper has no position sensor
+        // TODO implement a reference drive at Startup for having correct position.
         return 0;
     }
 

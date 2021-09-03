@@ -3,8 +3,6 @@ package com.pipiobjo.brewery.websocket.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.json.JsonObject;
-
 @Data
 @NoArgsConstructor
 public class WebsocketMessage {

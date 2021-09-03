@@ -56,7 +56,6 @@ public class GeneralControllerCycle {
                     stepSizeBD, setPointBurnerTemp,
                     collectionResult.getFlameTemperature().getTemperature().orElse(BigDecimal.ZERO),
                     feedForward(collectionResult.getControlCabinetTemperature().getAirTemp().orElse(BigDecimal.ZERO)));
-//            motorControlAdapter.moveToPercent(motorMovePercent);
 
             // manual testing
             if (cycleCount % cycleCountModulo == 0) {

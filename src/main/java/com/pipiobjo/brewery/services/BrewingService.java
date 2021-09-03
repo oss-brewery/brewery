@@ -21,15 +21,7 @@ public class BrewingService{
 
     public void init() {
         log.info("init brewing service");
-//        breweryStartupButton.test();
-
     }
-
-//    @ConsumeEvent(value = BreweryStartupButton.BREWERY_STARTUP_EVENT_NAME, blocking = true)
-//    public void consume(String event) {
-//        log.info("Start Button is pushed ... now lets rule the brewing process");
-////        breweryStatusLED.doMagic();
-//    }
 
     /**
      * Executing brewery self check. Includes checks for:
@@ -40,7 +32,6 @@ public class BrewingService{
      * </ul>
      */
     public SelfCheckResult runSelfcheck() {
-//        bus.publish(SensorCollectorService.START_SELFCHECK, "name");
         SelfCheckResult result = sensorCollectorService.executeSelfCheck();
         return result;
     }
